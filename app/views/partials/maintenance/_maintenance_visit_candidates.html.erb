@@ -1,0 +1,24 @@
+<thead>
+	<th>Name</th>
+</thead>
+<tbody>
+
+	<% DesktopEmployee.select("CONCAT(tblEmployee_FirstName,' ',tblEmployee_Surname) as empname,tblEmployee_EngineerID as engineerid,tblEmployee_Reference ").each do |employee| %>
+		<tr data-engineerid="<%=employee.engineerid%>" data-resourcekey="Employees<%=employee.tblEmployee_Reference%>">
+			<td><%= employee.empname %></td>
+		</tr>
+	<% end %>
+	<% DesktopEmployeeCIS.select("CONCAT(tblEmployeeCIS_FirstName,' ',tblEmployeeCIS_Surname) as empname,tblEmployeeCIS_EngineerID as engineerid,tblEmployeeCIS_Reference").each do |employeecis| %>
+		<tr data-engineerid="<%=employeecis.engineerid%>" data-resourcekey="Employees<%=employeecis.tblEmployeeCIS_Reference%>">
+			<td><%= employeecis.empname %></td>
+		</tr>
+	<% end %>	
+
+	<% DesktopSupplier.eligible_subbies.select("tblSupplier_Name as subname,tblSupplier_Ref as engineerid, tblSupplier_Ref as subref").each do |subbie| %>
+		<tr data-engineerid="<%=subbie.engineerid%>" data-resourcekey="Subcontractors<%=subbie.subref%>">
+			<td><%= subbie.subname %></td>
+		</tr>
+	<% end %>		
+
+
+</tbody>

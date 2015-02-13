@@ -1,0 +1,146 @@
+# Logfile created on 2015-02-11 16:02:41 +0000 by logger.rb/44203
+[02/11/15 16:02:41 +0000 chao-Satellite-C40-B (22668)] INFO : Starting the New Relic agent in "development" environment.
+[02/11/15 16:02:41 +0000 chao-Satellite-C40-B (22668)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[02/11/15 16:02:41 +0000 chao-Satellite-C40-B (22668)] INFO : Reading configuration from config/newrelic.yml (/home/chao/rubyw/cmonrails)
+[02/11/15 16:02:41 +0000 chao-Satellite-C40-B (22668)] INFO : New Relic Agent Developer Mode enabled.
+[02/11/15 16:02:41 +0000 chao-Satellite-C40-B (22668)] INFO : Environment: development
+[02/11/15 16:02:41 +0000 chao-Satellite-C40-B (22668)] INFO : Dispatcher: webrick
+[02/11/15 16:02:41 +0000 chao-Satellite-C40-B (22668)] INFO : Application: My Application (Development)
+[02/11/15 16:02:41 +0000 chao-Satellite-C40-B (22668)] INFO : Installing Net instrumentation
+[02/11/15 16:02:41 +0000 chao-Satellite-C40-B (22668)] INFO : Installing Dalli Memcache instrumentation
+[02/11/15 16:02:41 +0000 chao-Satellite-C40-B (22668)] INFO : Installing Rails 3+ middleware instrumentation
+[02/11/15 16:02:41 +0000 chao-Satellite-C40-B (22668)] INFO : Installing ActiveRecord 4 instrumentation
+[02/11/15 16:02:41 +0000 chao-Satellite-C40-B (22668)] INFO : Installing deferred Rack instrumentation
+[02/11/15 16:02:41 +0000 chao-Satellite-C40-B (22668)] INFO : Installing Rack::Builder middleware instrumentation
+[02/11/15 16:02:41 +0000 chao-Satellite-C40-B (22668)] INFO : Installing Rails 4 Error instrumentation
+[02/11/15 16:02:42 +0000 chao-Satellite-C40-B (22668)] INFO : Installing Rails 4 Controller instrumentation
+[02/11/15 16:02:42 +0000 chao-Satellite-C40-B (22668)] INFO : Installing Rails 4 view instrumentation
+[02/11/15 16:02:42 +0000 chao-Satellite-C40-B (22668)] INFO : Finished instrumentation
+[02/11/15 16:02:43 +0000 chao-Satellite-C40-B (22668)] INFO : Reporting to: https://rpm.newrelic.com/accounts/729324/applications/4752320
+[02/11/15 16:02:43 +0000 chao-Satellite-C40-B (22678)] INFO : Starting Agent shutdown
+[02/11/15 16:05:11 +0000 chao-Satellite-C40-B (22742)] INFO : Starting Agent shutdown
+[02/11/15 16:06:38 +0000 chao-Satellite-C40-B (22668)] INFO : Starting Agent shutdown
+[02/11/15 16:06:42 +0000 chao-Satellite-C40-B (22788)] INFO : Starting the New Relic agent in "development" environment.
+[02/11/15 16:06:42 +0000 chao-Satellite-C40-B (22788)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[02/11/15 16:06:42 +0000 chao-Satellite-C40-B (22788)] INFO : Reading configuration from config/newrelic.yml (/home/chao/rubyw/cmonrails)
+[02/11/15 16:06:42 +0000 chao-Satellite-C40-B (22788)] INFO : New Relic Agent Developer Mode enabled.
+[02/11/15 16:06:42 +0000 chao-Satellite-C40-B (22788)] INFO : Environment: development
+[02/11/15 16:06:42 +0000 chao-Satellite-C40-B (22788)] INFO : Dispatcher: webrick
+[02/11/15 16:06:42 +0000 chao-Satellite-C40-B (22788)] INFO : Application: My Application (Development)
+[02/11/15 16:06:43 +0000 chao-Satellite-C40-B (22788)] INFO : Installing Net instrumentation
+[02/11/15 16:06:43 +0000 chao-Satellite-C40-B (22788)] INFO : Installing Dalli Memcache instrumentation
+[02/11/15 16:06:43 +0000 chao-Satellite-C40-B (22788)] INFO : Installing Rails 3+ middleware instrumentation
+[02/11/15 16:06:43 +0000 chao-Satellite-C40-B (22788)] INFO : Installing ActiveRecord 4 instrumentation
+[02/11/15 16:06:43 +0000 chao-Satellite-C40-B (22788)] INFO : Installing deferred Rack instrumentation
+[02/11/15 16:06:43 +0000 chao-Satellite-C40-B (22788)] INFO : Installing Rack::Builder middleware instrumentation
+[02/11/15 16:06:43 +0000 chao-Satellite-C40-B (22788)] INFO : Installing Rails 4 Error instrumentation
+[02/11/15 16:06:43 +0000 chao-Satellite-C40-B (22788)] INFO : Installing Rails 4 Controller instrumentation
+[02/11/15 16:06:43 +0000 chao-Satellite-C40-B (22788)] INFO : Installing Rails 4 view instrumentation
+[02/11/15 16:06:43 +0000 chao-Satellite-C40-B (22788)] INFO : Finished instrumentation
+[02/11/15 16:06:44 +0000 chao-Satellite-C40-B (22788)] INFO : Reporting to: https://rpm.newrelic.com/accounts/729324/applications/4752320
+[02/11/15 16:06:50 +0000 chao-Satellite-C40-B (22813)] INFO : Starting Agent shutdown
+[02/11/15 16:07:13 +0000 chao-Satellite-C40-B (22827)] INFO : Starting Agent shutdown
+[02/11/15 16:07:28 +0000 chao-Satellite-C40-B (22839)] INFO : Starting Agent shutdown
+[02/11/15 16:10:19 +0000 chao-Satellite-C40-B (22925)] INFO : Starting Agent shutdown
+[02/11/15 16:12:24 +0000 chao-Satellite-C40-B (22951)] INFO : Starting Agent shutdown
+[02/11/15 16:16:53 +0000 chao-Satellite-C40-B (23047)] INFO : Starting Agent shutdown
+[02/11/15 16:18:00 +0000 chao-Satellite-C40-B (23074)] INFO : Starting Agent shutdown
+[02/11/15 16:26:36 +0000 chao-Satellite-C40-B (23208)] INFO : Starting Agent shutdown
+[02/11/15 16:27:33 +0000 chao-Satellite-C40-B (23232)] INFO : Starting Agent shutdown
+[02/11/15 16:28:15 +0000 chao-Satellite-C40-B (23249)] INFO : Starting Agent shutdown
+[02/11/15 16:29:13 +0000 chao-Satellite-C40-B (23265)] INFO : Starting Agent shutdown
+[02/11/15 16:30:24 +0000 chao-Satellite-C40-B (23282)] INFO : Starting Agent shutdown
+[02/11/15 16:31:13 +0000 chao-Satellite-C40-B (23299)] INFO : Starting Agent shutdown
+[02/11/15 16:32:05 +0000 chao-Satellite-C40-B (23319)] INFO : Starting Agent shutdown
+[02/11/15 16:32:20 +0000 chao-Satellite-C40-B (22788)] INFO : Starting Agent shutdown
+[02/13/15 08:56:09 +0000 chao-Satellite-C40-B (3401)] INFO : Starting the New Relic agent in "development" environment.
+[02/13/15 08:56:09 +0000 chao-Satellite-C40-B (3401)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[02/13/15 08:56:09 +0000 chao-Satellite-C40-B (3401)] INFO : Reading configuration from config/newrelic.yml (/home/chao/rubyw/cmonrails)
+[02/13/15 08:56:09 +0000 chao-Satellite-C40-B (3401)] INFO : New Relic Agent Developer Mode enabled.
+[02/13/15 08:56:09 +0000 chao-Satellite-C40-B (3401)] INFO : Environment: development
+[02/13/15 08:56:09 +0000 chao-Satellite-C40-B (3401)] INFO : Dispatcher: webrick
+[02/13/15 08:56:09 +0000 chao-Satellite-C40-B (3401)] INFO : Application: My Application (Development)
+[02/13/15 08:56:09 +0000 chao-Satellite-C40-B (3401)] INFO : Installing Net instrumentation
+[02/13/15 08:56:09 +0000 chao-Satellite-C40-B (3401)] INFO : Installing Dalli Memcache instrumentation
+[02/13/15 08:56:09 +0000 chao-Satellite-C40-B (3401)] INFO : Installing Rails 3+ middleware instrumentation
+[02/13/15 08:56:09 +0000 chao-Satellite-C40-B (3401)] INFO : Installing ActiveRecord 4 instrumentation
+[02/13/15 08:56:09 +0000 chao-Satellite-C40-B (3401)] INFO : Installing deferred Rack instrumentation
+[02/13/15 08:56:09 +0000 chao-Satellite-C40-B (3401)] INFO : Installing Rack::Builder middleware instrumentation
+[02/13/15 08:56:09 +0000 chao-Satellite-C40-B (3401)] INFO : Installing Rails 4 Error instrumentation
+[02/13/15 08:56:10 +0000 chao-Satellite-C40-B (3401)] INFO : Installing Rails 4 Controller instrumentation
+[02/13/15 08:56:10 +0000 chao-Satellite-C40-B (3401)] INFO : Installing Rails 4 view instrumentation
+[02/13/15 08:56:10 +0000 chao-Satellite-C40-B (3401)] INFO : Finished instrumentation
+[02/13/15 08:56:11 +0000 chao-Satellite-C40-B (3401)] INFO : Reporting to: https://rpm.newrelic.com/accounts/729324/applications/4752320
+[02/13/15 08:56:14 +0000 chao-Satellite-C40-B (3413)] INFO : Starting Agent shutdown
+[02/13/15 09:22:45 +0000 chao-Satellite-C40-B (3947)] INFO : Starting Agent shutdown
+[02/13/15 09:23:07 +0000 chao-Satellite-C40-B (3959)] INFO : Starting Agent shutdown
+[02/13/15 09:25:12 +0000 chao-Satellite-C40-B (3983)] INFO : Starting Agent shutdown
+[02/13/15 09:26:18 +0000 chao-Satellite-C40-B (4009)] INFO : Starting Agent shutdown
+[02/13/15 09:40:59 +0000 chao-Satellite-C40-B (4215)] INFO : Starting Agent shutdown
+[02/13/15 09:42:18 +0000 chao-Satellite-C40-B (4233)] INFO : Starting Agent shutdown
+[02/13/15 09:43:17 +0000 chao-Satellite-C40-B (4250)] INFO : Starting Agent shutdown
+[02/13/15 09:44:20 +0000 chao-Satellite-C40-B (4272)] INFO : Starting Agent shutdown
+[02/13/15 09:44:47 +0000 chao-Satellite-C40-B (4285)] INFO : Starting the New Relic agent in "development" environment.
+[02/13/15 09:44:47 +0000 chao-Satellite-C40-B (4285)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[02/13/15 09:44:47 +0000 chao-Satellite-C40-B (4285)] INFO : Reading configuration from config/newrelic.yml (/home/chao/rubyw/cmonrails)
+[02/13/15 09:44:47 +0000 chao-Satellite-C40-B (4285)] INFO : New Relic Agent Developer Mode enabled.
+[02/13/15 09:44:47 +0000 chao-Satellite-C40-B (4285)] INFO : Environment: development
+[02/13/15 09:44:47 +0000 chao-Satellite-C40-B (4285)] INFO : Dispatcher: webrick
+[02/13/15 09:44:47 +0000 chao-Satellite-C40-B (4285)] INFO : Application: My Application (Development)
+[02/13/15 09:44:47 +0000 chao-Satellite-C40-B (4285)] INFO : Installing Net instrumentation
+[02/13/15 09:44:47 +0000 chao-Satellite-C40-B (4285)] INFO : Installing Dalli Memcache instrumentation
+[02/13/15 09:44:47 +0000 chao-Satellite-C40-B (4285)] INFO : Installing Rails 3+ middleware instrumentation
+[02/13/15 09:44:47 +0000 chao-Satellite-C40-B (4285)] INFO : Installing ActiveRecord 4 instrumentation
+[02/13/15 09:44:47 +0000 chao-Satellite-C40-B (4285)] INFO : Installing deferred Rack instrumentation
+[02/13/15 09:44:47 +0000 chao-Satellite-C40-B (4285)] INFO : Installing Rack::Builder middleware instrumentation
+[02/13/15 09:44:47 +0000 chao-Satellite-C40-B (4285)] INFO : Installing Rails 4 Error instrumentation
+[02/13/15 09:44:47 +0000 chao-Satellite-C40-B (4285)] INFO : Installing Rails 4 Controller instrumentation
+[02/13/15 09:44:47 +0000 chao-Satellite-C40-B (4285)] INFO : Installing Rails 4 view instrumentation
+[02/13/15 09:44:47 +0000 chao-Satellite-C40-B (4285)] INFO : Finished instrumentation
+[02/13/15 09:44:48 +0000 chao-Satellite-C40-B (4285)] INFO : Doing deferred dependency-detection before Rack startup
+[02/13/15 09:44:49 +0000 chao-Satellite-C40-B (4285)] INFO : Reporting to: https://rpm.newrelic.com/accounts/729324/applications/4752320
+[02/13/15 09:45:17 +0000 chao-Satellite-C40-B (4285)] INFO : Starting Agent shutdown
+[02/13/15 09:46:57 +0000 chao-Satellite-C40-B (4555)] INFO : Starting the New Relic agent in "development" environment.
+[02/13/15 09:46:57 +0000 chao-Satellite-C40-B (4555)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[02/13/15 09:46:57 +0000 chao-Satellite-C40-B (4555)] INFO : Reading configuration from config/newrelic.yml (/home/chao/rubyw/cmonrails)
+[02/13/15 09:46:57 +0000 chao-Satellite-C40-B (4555)] INFO : New Relic Agent Developer Mode enabled.
+[02/13/15 09:46:57 +0000 chao-Satellite-C40-B (4555)] INFO : Environment: development
+[02/13/15 09:46:57 +0000 chao-Satellite-C40-B (4555)] INFO : Dispatcher: webrick
+[02/13/15 09:46:57 +0000 chao-Satellite-C40-B (4555)] INFO : Application: My Application (Development)
+[02/13/15 09:46:57 +0000 chao-Satellite-C40-B (4555)] INFO : Installing Net instrumentation
+[02/13/15 09:46:57 +0000 chao-Satellite-C40-B (4555)] INFO : Installing Dalli Memcache instrumentation
+[02/13/15 09:46:57 +0000 chao-Satellite-C40-B (4555)] INFO : Installing Rails 3+ middleware instrumentation
+[02/13/15 09:46:57 +0000 chao-Satellite-C40-B (4555)] INFO : Installing ActiveRecord 4 instrumentation
+[02/13/15 09:46:57 +0000 chao-Satellite-C40-B (4555)] INFO : Installing deferred Rack instrumentation
+[02/13/15 09:46:57 +0000 chao-Satellite-C40-B (4555)] INFO : Installing Rack::Builder middleware instrumentation
+[02/13/15 09:46:57 +0000 chao-Satellite-C40-B (4555)] INFO : Installing Rails 4 Error instrumentation
+[02/13/15 09:46:57 +0000 chao-Satellite-C40-B (4555)] INFO : Installing Rails 4 Controller instrumentation
+[02/13/15 09:46:57 +0000 chao-Satellite-C40-B (4555)] INFO : Installing Rails 4 view instrumentation
+[02/13/15 09:46:57 +0000 chao-Satellite-C40-B (4555)] INFO : Finished instrumentation
+[02/13/15 09:46:58 +0000 chao-Satellite-C40-B (4555)] INFO : Doing deferred dependency-detection before Rack startup
+[02/13/15 09:46:59 +0000 chao-Satellite-C40-B (4555)] INFO : Reporting to: https://rpm.newrelic.com/accounts/729324/applications/4752320
+[02/13/15 09:53:31 +0000 chao-Satellite-C40-B (4555)] WARN : The error reporting queue has reached 20. The error detail for this and subsequent errors will not be transmitted to New Relic until the queued errors have been sent: Missing `secret_key_base` for 'development' environment, set this value in `config/secrets.yml`
+[02/13/15 09:53:32 +0000 chao-Satellite-C40-B (4555)] WARN : The error reporting queue has reached 20. The error detail for this and subsequent errors will not be transmitted to New Relic until the queued errors have been sent: Missing `secret_key_base` for 'development' environment, set this value in `config/secrets.yml`
+[02/13/15 09:53:32 +0000 chao-Satellite-C40-B (4555)] WARN : The error reporting queue has reached 20. The error detail for this and subsequent errors will not be transmitted to New Relic until the queued errors have been sent: Missing `secret_key_base` for 'development' environment, set this value in `config/secrets.yml`
+[02/13/15 09:53:32 +0000 chao-Satellite-C40-B (4555)] WARN : The error reporting queue has reached 20. The error detail for this and subsequent errors will not be transmitted to New Relic until the queued errors have been sent: Missing `secret_key_base` for 'development' environment, set this value in `config/secrets.yml`
+[02/13/15 09:54:44 +0000 chao-Satellite-C40-B (4555)] INFO : Starting Agent shutdown
+[02/13/15 09:54:49 +0000 chao-Satellite-C40-B (4858)] INFO : Starting the New Relic agent in "development" environment.
+[02/13/15 09:54:49 +0000 chao-Satellite-C40-B (4858)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[02/13/15 09:54:49 +0000 chao-Satellite-C40-B (4858)] INFO : Reading configuration from config/newrelic.yml (/home/chao/rubyw/cmonrails)
+[02/13/15 09:54:49 +0000 chao-Satellite-C40-B (4858)] INFO : New Relic Agent Developer Mode enabled.
+[02/13/15 09:54:49 +0000 chao-Satellite-C40-B (4858)] INFO : Environment: development
+[02/13/15 09:54:49 +0000 chao-Satellite-C40-B (4858)] INFO : Dispatcher: webrick
+[02/13/15 09:54:49 +0000 chao-Satellite-C40-B (4858)] INFO : Application: My Application (Development)
+[02/13/15 09:54:50 +0000 chao-Satellite-C40-B (4858)] INFO : Installing Net instrumentation
+[02/13/15 09:54:50 +0000 chao-Satellite-C40-B (4858)] INFO : Installing Dalli Memcache instrumentation
+[02/13/15 09:54:50 +0000 chao-Satellite-C40-B (4858)] INFO : Installing Rails 3+ middleware instrumentation
+[02/13/15 09:54:50 +0000 chao-Satellite-C40-B (4858)] INFO : Installing ActiveRecord 4 instrumentation
+[02/13/15 09:54:50 +0000 chao-Satellite-C40-B (4858)] INFO : Installing deferred Rack instrumentation
+[02/13/15 09:54:50 +0000 chao-Satellite-C40-B (4858)] INFO : Installing Rack::Builder middleware instrumentation
+[02/13/15 09:54:50 +0000 chao-Satellite-C40-B (4858)] INFO : Installing Rails 4 Error instrumentation
+[02/13/15 09:54:50 +0000 chao-Satellite-C40-B (4858)] INFO : Installing Rails 4 Controller instrumentation
+[02/13/15 09:54:50 +0000 chao-Satellite-C40-B (4858)] INFO : Installing Rails 4 view instrumentation
+[02/13/15 09:54:50 +0000 chao-Satellite-C40-B (4858)] INFO : Finished instrumentation
+[02/13/15 09:54:51 +0000 chao-Satellite-C40-B (4858)] INFO : Doing deferred dependency-detection before Rack startup
+[02/13/15 09:54:51 +0000 chao-Satellite-C40-B (4858)] INFO : Reporting to: https://rpm.newrelic.com/accounts/729324/applications/4752320
+[02/13/15 09:55:27 +0000 chao-Satellite-C40-B (4858)] INFO : Starting Agent shutdown

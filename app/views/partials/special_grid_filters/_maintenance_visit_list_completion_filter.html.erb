@@ -1,0 +1,7 @@
+	<option value=" Not IN (9,8)" selected>Hide Completed</option>
+	<option value=" IN (9,8)">Show Completed</option>
+	<option value="">Show All</option>
+	<%DesktopIntegrationStatus.all.each do |status|%>
+		<option value="=<%=status.tblIntegrationStatus_StatusValue%>"><%=status.tblIntegrationStatus_StatusName%></option>
+	<%end%>
+

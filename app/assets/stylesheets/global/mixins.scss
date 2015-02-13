@@ -1,0 +1,24 @@
+@mixin box-sizing( $sizing ) {
+	-webkit-box-sizing: $sizing;
+	   -moz-box-sizing: $sizing;
+	        box-sizing: $sizing;
+}
+
+@mixin unselectable() {
+	-webkit-user-select: none;
+	   -moz-user-select: none;
+	    -ms-user-select: none;
+	        user-select: none;
+}
+
+@mixin inner-shadow( $hOff, $vOff, $blur, $colour ) {
+	-webkit-box-shadow: inset $hOff $vOff $blur $colour;
+	   -moz-box-shadow: inset $hOff $vOff $blur $colour;
+	        box-shadow: inset $hOff $vOff $blur $colour;
+}
+
+@mixin box-shadow( $hShadow, $vShadow, $blur, $spread, $colour ) {
+	-webkit-box-shadow: $hShadow $vShadow $blur $spread $colour;
+	   -moz-box-shadow: $hShadow $vShadow $blur $spread $colour;
+	        box-shadow: $hShadow $vShadow $blur $spread $colour;
+}

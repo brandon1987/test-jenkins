@@ -1,0 +1,72 @@
+<table style='margin-top:-30px'>
+	<tr>
+		<td>
+
+			<div class='borderpanel' style='width:410px;height:487px'>
+				<h5>Transaction Markups</h5>		
+				<form>
+					<table>
+						<tr>
+							<td class='markupscol1'>
+								<label for="labourmarkup">Labour (%)</label>
+							</td>
+							<td class='markupscol2'>
+								<input id='labourmarkup'  type='text' value=<%=@maintenancetask.labour_markup%> class='standardinput'>
+							</td>			
+						</tr>
+
+						<tr>
+							<td class='markupscol1'>
+								<label for="materialsmarkup">Materials (%)</label>
+							</td>
+							<td class='markupscol2'>
+								<input id='materialsmarkup'  type='text' value=<%=@maintenancetask.material_markup%> class='standardinput'>
+							</td>			
+						</tr>
+
+						<tr>
+							<td class='markupscol1'>
+								<label for="subcontractormarkup">Subcontractor (%)</label>
+							</td>
+							<td class='markupscol2'>
+								<input id='subcontractormarkup'  type='text' value=<%=@maintenancetask.sub_markup%> class='standardinput'>
+							</td>			
+						</tr>
+
+						<tr>
+							<td class='markupscol1'>
+								<label for="stockmarkup">Stock (%)</label>
+							</td>
+							<td class='markupscol2'>
+								<input id='stockmarkup'  type='text' value=<%=@maintenancetask.stock_markup%> class='standardinput'>
+							</td>			
+						</tr>
+
+						<tr>
+							<td class='markupscol1'>
+								<label for="pomarkup">Purchase Order (%)</label>
+							</td>
+							<td class='markupscol2'>
+								<input id='pomarkup'  type='text' value=<%=@maintenancetask.po_markup%> class='standardinput'>
+							</td>			
+						</tr>
+					</table>
+				</form>
+			</div>
+
+		</td>
+
+		<td>
+
+			<div class='borderpanel gridpanel' style='width:410px;height:487px;margin-left:5px'>
+				<h5 style="margin-bottom:13px;">Status Changes</h5>		
+					<div>
+						<table id='taskstatuschangesgrid'>
+							
+						</table>
+					</div>
+			</div>
+
+		</td>
+	</tr>
+</table>

@@ -1,0 +1,12 @@
+<div id="template-select-dialog" title="Select a template" style="display: none;">
+	<select name="report_template">
+		<% Report.all.each do |report| %>
+		<option value="<%= report.filename %>"<%= " selected" if report.is_default %>><%= report.filename %></option>
+		<% end %>
+	</select>
+	
+	<div class="reports-box-footer">
+		<button class="reports-box-back-button regular-button">Back</button>
+		<button id="report-select-button" class="save-button" style="float: right;">Select</button>
+	</div>
+</div>

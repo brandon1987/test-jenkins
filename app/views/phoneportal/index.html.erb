@@ -1,0 +1,73 @@
+<head>
+  <title>Construction Manager</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="icon" type="image/gif" href="/assets/img/image32.gif" />
+  <link rel="icon" type="image/gif" href="/assets/img/image16.gif" />
+  <meta name="description" content="Manage your contractors, purchase and sales order, invoicing, timetabling and more with Construction Manager.">
+  <meta name="viewport" content="width=device-width">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:400|Open+Sans:300italic,400italic,700italic,400,700,300' rel='stylesheet' type='text/css'>
+
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <script src="https://cdn.socket.io/socket.io-1.0.6.js"></script>
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.1.47/jquery.form-validator.min.js"></script>
+
+  <link href="/assets/jqueryplugins/flat/blue.css" rel="stylesheet">
+  <script src="/assets/jqueryplugins/icheck.min.js"></script>
+
+  <script>
+</script>
+</head>
+
+<body>
+	Username<input id="username" type='text'><br>
+  Password<input id="password" type='text'><br>
+  qry<input id="qry" type='text'><br>
+  specialmode<input id="specialmode" type='text'><br>
+
+
+	<button id='testlogin'>Test Login</button>
+	<div id="output"></div>
+
+</body>
+</html>
+
+<script>
+
+
+
+
+  $(document).ready(function(){
+  	$("#testlogin").click(function(){
+				  $.ajax({
+				    type: 'GET',
+				    url: '/phoneportal/main',
+				    data: {
+				      username: $("#username").val(),
+				      password: $("#password").val(),
+              special:$("#specialmode").val(),
+              qry:$("#qry").val(),
+              contractid:2,
+              siteaddressid:1,
+              customerid:'BRO001',
+              instructions:'11111',
+              engineerid:'nigel',
+              visitref:'1002-ZABA001-nigel-1'
+				    },
+				    success: function(response) {
+				    	$("#output").html(response);
+				    }
+				  });  		
+  	});
+
+  });
+
+
+
+
+
+</script>

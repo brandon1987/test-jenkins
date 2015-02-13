@@ -1,0 +1,56 @@
+<thead>
+	<th>Name</th>
+	<th>Vist Ref</th>
+	<th>Status</th>
+</thead>
+<tbody>
+	<%unless xidmjob.nil?%>
+		<% DesktopMaintenanceVisit.select(:id,
+										  :name,
+										  :integration_job_no,
+										  :statusname,:xid_xml,
+										  :integration_status,
+										  :instructions,
+										  :work_carried_out,
+										  :materials_used,
+										  :visit_planned_start,
+										  :visit_planned_end,
+										  :work_start,
+										  :work_complete,
+										  :travel_time,
+										  :work_time,
+										  :engineer_id,
+										  :resource_key,
+										  "tblMaintenanceScheduleAppointments_ID",
+										  "tblMaintenanceScheduleAppointments_StartTime",
+										  "tblMaintenanceScheduleAppointments_EndTime",
+										  ).joins(" LEFT JOIN tblintegrationstatus ON tblIntegrationStatus_StatusValue=tblMaintenanceRelated_IntegrationStatus left join tblmaintenancescheduleappointments on tblMaintenanceScheduleAppointments_XIDMaintenanceRelated=tblMaintenanceRelated_ID").where("tblMaintenanceRelated_XIDMJob=#{xidmjob}" ).each do |visit| %>
+			<tr id="<%= visit.id %>" data-visitref="<%= visit.integration_job_no %>" 
+									 data-xidxml="<%= visit.xid_xml %>" 
+									 data-status="<%=visit.integration_status%>"  
+									 data-instructions="<%=visit.instructions%>"  
+									 data-materialsused="<%=visit.materials_used%>"  
+									 data-workcarriedout="<%=visit.work_carried_out%>" 
+									 data-engineerid="<%=visit.engineer_id%>" 
+									 data-plannedstart="<%=visit.visit_planned_start%>"
+									 data-plannedend="<%=visit.visit_planned_end%>"
+									 data-workstart="<%=visit.work_start%>"
+									 data-workend="<%=visit.work_complete%>"
+									 data-timetravelling="<%=visit.travel_time%>"
+									 data-timeonsite="<%=visit.work_time%>"
+									 data-appointmentid="<%=visit.tblMaintenanceScheduleAppointments_ID%>"
+									 data-appointmentstart="<%=visit.tblMaintenanceScheduleAppointments_StartTime%>"
+									 data-appointmentend="<%=visit.tblMaintenanceScheduleAppointments_EndTime%>"
+									 data-resourcekey="<%=visit.resource_key%>"
+			>
+			
+				<td><%= visit.name %></td>	
+				<td><%= visit.integration_job_no %></td>	
+				<td><%= visit.statusname %></td>	
+
+			</tr>
+		<% end %>
+	<%end%>
+
+</tbody>
+

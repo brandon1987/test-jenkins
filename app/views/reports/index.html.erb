@@ -1,0 +1,35 @@
+<% content_for :page_specific_headers do %>
+<link rel="stylesheet" type="text/css" href="/assets/reports.css">
+<script src="/assets/reports.js"></script>
+<script type="text/javascript">COMPANY_ID = <%= session[:company_id] %></script>
+<% end %>
+
+<ul class="sub-menu-bar">
+	<li id="new-report-button">New</li>
+	<li id="edit-report-button">Edit</li>
+	<li id="delete-report-button">Delete</li>
+	<li id="default-report-button">Set default</li>
+</ul>
+
+<div class="content-main">
+	<section class="text-section">
+		<h1>Reports</h1>
+
+		<p>Double click on a report template to edit it.</p>
+
+		<table id="reports-table">
+			<thead>
+				<th style="text-align:center;">Report</th>
+				<th>Default</th>
+			</thead>
+			<tbody>
+				<% Report.all.each do |report| %>
+				<tr id="<%= report.filename %>">
+					<td><%= report.filename %></td>
+					<td><%= '<i class="fa fa-check"></i>'.html_safe if report.is_default %></td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</section>
+</div>

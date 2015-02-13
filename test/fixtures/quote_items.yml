@@ -1,0 +1,35 @@
+quote_item_1:
+  quote: quote_1
+  code: TEXT
+  description: A bunch of stuff
+  quantity: 100
+  unit_price: 12.34
+  discount_percentage: 0
+  net: 13.37
+  vat_rate: 20
+  vat: 100
+  total: 200
+
+quote_item_2:
+  quote: quote_2
+  code: TEXT
+  description: Some other stuff
+  quantity: 1
+  unit_price: 10
+  discount_percentage: 0
+  net: 10
+  vat_rate: 20
+  vat: 2
+  total: 12
+
+one_million_quote_item:
+  quote: one_million_quote
+  code: TEXT
+  description: Dolla dolla billz
+  quantity: 1
+  unit_price: 1_000_000
+  discount_percentage: 0
+  net: 1_000_000
+  vat_rate: 20
+  vat: 2
+  total: 12

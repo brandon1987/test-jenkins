@@ -1,0 +1,74 @@
+<% if flash[:error] == "no_db" %>
+<div class="notice-box">
+	You must fill in your <strong>database settings</strong> before continuing.
+</div>
+<% elsif flash[:error] == "no_sage" %>
+<div class="notice-box">
+	You must fill in your <strong>sage integration settings</strong> before continuing.
+</div>
+<% end %>
+
+<h2 class="section-title">Database Settings  <span class="fa fa-database"></span></h2>
+
+<span>Construction Manager must connect back to your current Construction Manager
+database to take advantage of the data within. Configure that here:</span>
+
+<form class="stacked-form" onsubmit="return false;" style="overflow: hidden;">
+	<div style="width:610px; margin:5px auto;">
+	<fieldset style="width: 300px; float: left;">
+		<label for="hostname" style="margin-top:10px;">Hostname</label>
+		<input type="text" id="hostname" name="hostname"
+			placeholder="e.g. example.com or 123.123.123.123" value="<%= session[:userdb_host] %>">
+
+		<label for="port">Port</label>
+		<input type="text" id="port" name="port"
+			placeholder="e.g. 3306" value="<%= session[:userdb_port] %>">
+
+		<label for="database">Database</label>
+		<input type="text" id="database" name="database"
+			placeholder="e.g. cm50" value="<%= session[:userdb_db] %>">
+
+		<button id="test-connection-button" class="regular-button" style="margin-top: 20px; width: 100%;">Test Connection</button>
+	</fieldset>
+
+	<fieldset style="width: 300px; float: left; margin-left: 10px;">
+	<!-- fake fields are a workaround for chrome autofill getting the wrong fields -->
+		<input style="display:none" type="text" name="fakeusernameremembered"/>
+		<input style="display:none" type="password" name="fakepasswordremembered"/>
+
+		<label for="username">Username</label>
+		<input type="text" id="username" name="username"
+			placeholder="e.g. root" value="<%= session[:userdb_user] %>">
+
+		<label for="password">Password</label>
+		<input type="password" id="password" name="password" 
+			placeholder="e.g. secret" value="<%= session[:userdb_pass] %>">
+
+		<label style="visibility: hidden;">&nbsp;</label>
+		<input type="text" style="border: solid transparent 1px !important; background-color: transparent; cursor: default;" disabled>
+
+		<button id="save-connection-button" class="save-button" style="float: none; margin-top: 22px; width:100%">Save</button>
+	</fieldset>
+	</div>
+</form>
+
+<h2 class="section-title" style="margin-top: 40px;">Sage Integration Settings  <span class="fa fa-desktop"></span></h2>
+
+<span>This field should point to your CM-Sage Integration Listener address.</span>
+
+<form class="stacked-form" onsubmit="return false;" style="overflow: hidden; width:620px; margin:5px auto;">
+	<label for="integration-url">Integration URL</label>
+	<input type="text" id="integration-url" name="integration-url"
+		placeholder="e.g. https://123.123.123.123:8081/cm-sage/" style="width: 610px;" value="<%= @company.sage_integration_url %>">
+
+	<label for="integration-url">Integration Password</label>
+	<input type="password" id="integration-password" name="integration-password"style="width: 610px;" value="<%= @company.sage_integration_password %>">
+
+	<div style="width: 300px; float: left;">
+		<button id="test-integration-url-button" class="regular-button" style="margin-top: 20px; width:100%;">Test Connection</button>
+	</div>
+
+	<div style="width: 300px; float: left; margin-left: 10px;">
+		<button id="save-integration-url-button" class="save-button" style="float:none; margin-top: 20px; width:100%;">Save</button>
+	</div>
+</form>

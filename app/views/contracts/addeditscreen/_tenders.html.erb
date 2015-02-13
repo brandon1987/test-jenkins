@@ -1,0 +1,109 @@
+<div class="tenders" style="width: 40%; float: left; padding-right: 10px;">
+	<h3 class="section-title">Groups <span class="fa fa-group"></span></h3>
+
+	<div id="tenders-tree" style="border: solid #999 1px; height: 230px; overflow-y: scroll; overflow-x: hidden;"></div>
+
+	<div class="control-bar" style="margin-top: 10px; text-align: center;">
+		<button id="tenders-import-button" class="regular-button">Tender Value Import</button>
+		<button id="save-tender-template-btn" class="save-button">Save as Template</button>
+	</div>
+
+	<div class="control-bar" style="margin: 10px 0; text-align: center;">
+		<button id="tenders-add-group-btn" class="save-button">Add Group</button>
+		<button id="edit-tenders-group-btn" class="regular-button">Edit</button>
+		<button id="delete-tender-group-btn" class="delete-button">Delete</button>
+		<button id="move-tender-group-btn" class="regular-button">Move</button>
+		<button id="cancel-move-tender-group-btn" style="display: none;">Cancel</button>
+	</div>
+</div>
+
+<div style="width: 60%; float: left;">
+	<h3 class="section-title">Tenders <span class="fa fa-gavel"></span></h3>
+
+	<div style="height: 230px;">
+		<table id="tenders-grid">
+			<thead>
+				<tr>
+					<th>Ref</th>
+					<th>Details</th>
+					<th>Cost budget</th>
+					<th>Cost budget alert</th>
+					<th>Sales budget</th>
+					<th>Tender type</th>
+					<th>% complete</th>
+					<th>Value complete</th>
+					<th>Authorised</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+
+	<form class="aligned-form">
+		<div>
+			<label for="group-budget-subtotal">Group budget subtotal</label>
+			<input type="text" id="group-budget-subtotal" name="group-budget-subtotal" placeholder="Group budget subtotal">
+		</div>
+	</form>
+
+	<div class="control-bar" style="margin: 10px 0;">
+		<button id="add-tender-btn" class="save-button">Add Tender</button>
+		<button id="delete-tender-btn" class="delete-button">Delete</button>
+		<button id="open-tender-dlg-btn" class="regular-button">Templates</button>
+		<button id="move-tender-btn" class="regular-button">Move</button>
+	</div>
+</div>
+
+<div id="tender-templates-dlg" title="Tender templates" style="display: none;">
+	<div>
+		<select id="tenders-template-list" size=10 style="height:230px;">
+			<% @tender_templates.each do |template| %>
+			<option value="<%= template.id %>"<%= raw " class=\"default\"" if template.id == @default_tender_template %>><%= template.name %></option>
+			<% end %>
+		</select>
+		<div>
+			<button id="new-tender-template-btn">New</button>
+			<button id="rename-tender-template-btn">Rename</button>
+			<button id="delete-tender-template-btn">Delete</button>
+			<button id="default-tender-template-btn">Default</button>
+		</div>
+	</div>
+	<div>
+		<div id="tenders-template-tree" style="border: solid #999 1px; height: 230px; overflow-y: scroll; overflow-x: hidden; margin-bottom:5px;"></div>
+		<div>
+			<button id="add-tender-template-group-btn">Add</button>
+			<button id="rename-tender-template-group-btn">Rename</button>
+			<button id="delete-tender-template-group-btn">Delete</button>
+		</div>
+	</div>
+	<div>
+		<div style="height: 230px; margin-bottom: 5px;">
+			<table id="tender-template-values-table">
+				<thead>
+					<tr>
+						<th>Ref</th>
+						<th>Details</th>
+						<th>Amount</th>
+					</tr>
+				</thead>
+				<tbody></tbody>
+			</table>
+		</div>
+		<div>
+			<button id="import-tender-template-items-btn">Import</button>
+			<button id="remove-tender-template-item-btn">Remove</button>
+		</div>
+	</div>
+</div>
+
+<%= render "partials/csv_upload_form", {
+prefix: "tenders",
+columns: ["Ref", "Details", "Cost budget", "Sales budget"],
+callback: "postTendersCSV"
+} %>
+
+<%= render "partials/csv_upload_form", {
+pretty_prefix: "template items",
+prefix:        "tendertemplateitems",
+columns:       ["Ref", "Details", "Amount"],
+callback:      "postTendersTemplateItemsCSV"
+} %>

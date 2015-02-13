@@ -1,0 +1,28 @@
+// Place all the styles related to the customers controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#customers{
+  background: white;
+  color: #34495e;
+//  text-shadow: -2px 2px 3px #bdc3c7;
+  //box-shadow: -5px 9px 2px #2980b9;
+}
+
+.row .row{
+  width:100%;
+}
+
+#add-customer-dialog section>button{
+  float:right;
+}
+
+h4{
+ // text-shadow: 3px 3px 3px #2c3e50;
+}
+
+h4 .fa {
+  float: right;
+  margin: 20px 15px 0 0;
+  //text-shadow: 3px 3px 3px #2c3e50;
+}

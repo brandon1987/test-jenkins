@@ -1,0 +1,15 @@
+<%=render "partials/mail/header"%>
+	Dear <%=@customername%>,<br><br>
+
+	Your registration with the ConstructionManager.Net clientportal for <%=@companyname%> is now complete<br/><br/>
+ 
+	The client portal can be accessed from <a href='http://constructionmanager.net/clientportal'>http://constructionmanager.net/clientportal</a><br/><br/>
+
+	You will be prompted for a company reference, your username and your password to log in. <br/>
+	Your Company Ref: <span style='font-weight:bold'><%=@companyref%></span><br/>
+	Your Username: <span style='font-weight:bold'><%=@customerusername%></span><br><br>
+
+
+
+<%=render "partials/mail/footer"%>
+

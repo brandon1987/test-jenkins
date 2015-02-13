@@ -1,0 +1,22 @@
+<%managerid=-2 if managerid.nil?%>
+
+<select id='popup_projectmanager' class='standarddropdown'>
+	<option></option>	
+	<% DesktopEmployee.select("tblEmployee_Reference,CONCAT(tblEmployee_FirstName,' ',tblEmployee_Surname) AS managername").where("tblEmployee_ProjectManager=-1").each do |projectmanager| %>
+		<option   <%='selected' if managerid==projectmanager.tblEmployee_Reference%>  value='<%=projectmanager.tblEmployee_Reference %>'> <%= projectmanager.managername %></option>
+	<% end %>
+	<% DesktopEmployeeCIS.select("tblEmployeeCIS_Reference,CONCAT(tblEmployeeCIS_FirstName,' ',tblEmployeeCIS_Surname) AS managername").where("tblEmployeeCIS_ProjectManager=-1").each do |projectmanager| %>
+		<option   <%='selected' if managerid==projectmanager.tblEmployeeCIS_Reference%>  value='<%=projectmanager.tblEmployeeCIS_Reference %>'> <%= projectmanager.managername %></option>
+	<% end %>
+
+</select>
+
+
+<script>
+	$(document).ready(function() {
+		$("#popup_projectmanager").select2({
+			dropdownAutoWidth:true,
+			placeholder:""
+		});
+	});
+</script>

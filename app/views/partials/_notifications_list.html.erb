@@ -1,0 +1,28 @@
+
+	<h5>
+		Notifications
+		<div style="float:right"><button class="notification_delete_all" style="height:26px;font-size:14px;margin-top:1px;margin-right:1px;">Clear</button></div>
+	</h5>		
+	<%UserNotifications.where(user_id:session[:user_id]).each do |notification|%>
+	
+		<div class="notification_line">
+
+			<div class="notification_delete" data-notification-id=<%=notification.id%>>
+				<i class="fa  fa-times-circle fa-lg"></i>
+			</div>
+			<div class="notification_spacer"></div>
+
+			<div class="notification_priority" priority=<%=notification.notification_priority%>></div>
+
+
+			<div class="notification_textarea">
+				<a class="notification_link" href="<%=notification.notification_url%>">				
+					<span  class="notification_timestamp"><%=datetime_format(notification.created_at)%></span>
+					<%=notification.notification_text%>
+				</a>
+			</div>
+
+		</div>
+
+	<%end%>
+

@@ -1,0 +1,23 @@
+<h3 class="section-title">Quotes <span class="fa fa-group"></span></h3>
+<table id="contract-quotes-grid">
+	<thead>
+		<th>ID</th>
+		<th>Description</th>
+		<th>Value</th>
+		<th>Amount Invoiced</th>
+		<th>Difference</th>
+		<th></th>
+	</thead>
+	<tbody>
+		<% @quotes.each do |quote| %>
+		<tr id="<%= dom_id(quote) %>">
+			<td><%= quote.id %></td>
+			<td><%= quote.details %></td>
+			<td><%= money_format(quote.net) %></td>
+			<td><%= money_format(quote.amount_invoiced) %></td>
+			<td><%= money_format(quote.net - quote.amount_invoiced) %></td>
+			<td><button class="regular-button" <%= " disabled" if quote.is_invoiced? %>>Invoice</button></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>

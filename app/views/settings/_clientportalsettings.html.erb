@@ -1,0 +1,62 @@
+<div style="float: left; width: calc(30% - 5px); margin-right: 5px; padding-right: 10px;">
+	<h2 class="section-title">Client Portal <span class="fa fa-list"></span></h2>
+
+
+	<span>ConstructionManager.Net allows you to give your customers access to certain information in your system if you desire. </span><p>
+
+
+	<form class="stacked-form" onsubmit="return false;" style="overflow: hidden;">
+
+		<fieldset style="width: 100%; float: left;">
+			<label for="hostname">Your Company ref</label>
+			<input type="text" id="clientportalname" name="clientportalname" placeholder="Your Company Name" value="<%= @company.login_name if @company.login_name %>"><br>
+
+			<span>Your Customers will use this name to log into the client portal, it is suggested that you avoid using overly long or complicated names.</span>
+
+			<button id="customerportalsavebutton" class="regular-button" style="margin-top: 20px; width: 200px;float:right;">Save</button>
+		</fieldset>
+
+
+	</form>
+
+</div>
+
+<div style="float: left; width: calc(70% - 5px); margin-left: 5px;">
+	<h2 class="section-title">Access Instructions<span class="fa fa-lock"></span></h2>
+
+		<span>Once enabled, the client portal is available to your customers at: <a href="www.ConstructionManager.net/clientportal">ConstructionManager.net/clientportal</a></span><p>
+		In order to allow your customer access they must be added to the access list below. Once added, your customer will be prompted via email to provide a password.
+
+		<table id='clientportalcustomerslist' >
+			<thead>
+				<tr>
+					<th>Customer Name</th>
+					<th>Maintenance Visits</th>
+					<th>Maintenance Tasks</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+
+</div>
+
+
+<div id="clientportalhiddencolumnsdialog" style='display:none'>
+	<div style="width:100%">
+		<table class="bluetable" id="clientportalhiddencolumnstable" style="width:400px;margin-left:auto;margin-right:auto;margin-top:5px;margin-bottom:5px">
+			<thead style="display:block;">
+				<tr>
+					<th style="width:300px;">Column</th>
+					<th style="width:100px;">Visible</th>
+				</tr>
+			</thead>
+			<tbody style="height:400px;display:block;overflow:auto">
+
+			</tbody>
+		</table>
+		<button id="clientportalhiddencoldialogclose" style="margin-left:270px;width:150px">Close</button>
+	</div>
+
+</div>

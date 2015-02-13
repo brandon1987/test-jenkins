@@ -1,0 +1,131 @@
+<h3 class="section-title">Site Addresses <span class="fa fa-map-marker"></span></h3>
+
+<form class="stacked-form" style="width: 40%; float: left;" onsubmit="return false;">
+	
+	<label for="address_list">Addresses</label>
+	<select name="address_list" id="address_list" size="15">
+		<% @site_addresses.each do |address| %>
+		<option value="<%= address.id %>"><%= address.name %></option>
+		<% end %>
+	</select>
+
+	<div id="site-address-buttons" class="button-bar" style="padding-top: 10px; text-align: center;">
+		<button id="new-address-button" name="new-address-button" class="regular-button">New</button>
+		<button id="delete-address-button" name="delete-address-button" class="delete-button">Delete</button>
+		<button id="import-address-button" name="import-address-button" class="regular-button">Import</button>
+	</div>
+</form>
+
+<form id="address-data-form" onsubmit="return false;">
+	<section class="aligned-form" style="width: 30%; float: left;">
+		<div>
+			<label for="address_name">Name</label>
+			<input type="text" id="address_name" name="address[name]" placeholder="Name">
+		</div>
+
+		<div>
+			<label for="address_ref">Ref</label>
+			<input type="text" id="address_ref" name="address[ref]" placeholder="Ref">
+		</div>
+
+		<div>
+			<label for="address">Street 1</label>
+			<input type="text" id="address" name="address[address_1]" placeholder="Street 1">
+		</div>
+
+		<div>
+			<label for="address_2">Street 2</label>
+			<input type="text" id="address_2" name="address[address_2]" placeholder="Street 2">
+		</div>
+
+		<div>
+			<label for="town">Town</label>
+			<input type="text" id="town" name="address[address_3]" placeholder="Town">
+		</div>
+
+		<div>
+			<label for="county">County</label>
+			<input type="text" id="county" name="address[address_4]" placeholder="County">
+		</div>
+
+		<div>
+			<label for="postcode">Post code</label>
+			<input type="text" id="postcode" name="address[address_5]" placeholder="Post code">
+		</div>
+
+		<div>
+			<label for="fax">Fax</label>
+			<input type="text" id="fax" name="address[fax]" placeholder="Fax">
+		</div>
+
+		<div>
+			<label for="tel">Tel</label>
+			<input type="text" id="tel" name="address[tel]" placeholder="Tel">
+		</div>
+	</section>
+	<section class="aligned-form" style="width: 30%; float: left;">
+		<div>
+			<label for="workphone">Tel (Work)</label>
+			<input type="text" id="workphone" name="address[work_phone]" placeholder="Tel (Work)">
+		</div>
+
+		<div>
+			<label for="mobile">Tel (Mobile)</label>
+			<input type="text" id="mobile" name="address[mobile_phone]" placeholder="Tel (Mobile)">
+		</div>
+
+		<div>
+			<label for="homephone">Tel (Home)</label>
+			<input type="text" id="homephone" name="address[home_phone]" placeholder="Tel (Home)">
+		</div>
+
+		<div>
+			<label for="descrip">Description</label>
+			<input type="text" id="descrip" name="address[description]" placeholder="Description">
+		</div>
+
+		<div>
+			<label for="email">Email</label>
+			<input type="text" id="email" name="address[email]" placeholder="Email">
+		</div>
+
+		<div>
+			<label for="contact">Contact</label>
+			<input type="text" id="contact" name="address[contact]" placeholder="Contact">
+		</div>
+
+		<div>
+			<label for="analysis1">Analysis 1</label>
+			<input type="text" id="analysis1" name="address[analysis_1]" placeholder="Analysis 1">
+		</div>
+
+		<div>
+			<label for="analysis2">Analysis 2</label>
+			<input type="text" id="analysis2" name="address[analysis_2]" placeholder="Analysis 2">
+		</div>
+
+		<div>
+			<label for="analysis3">Analysis 3</label>
+			<input type="text" id="analysis3" name="address[analysis_3]" placeholder="Analysis 3">
+		</div>
+
+		<button id="save-address-button" class="save-button full-width" style="margin-top: 20px;">Save</button>
+	</section>
+</form>
+
+<section class="aligned-form" style="float: left;">
+	<div>
+		<li id="adding-address-message1" style="color:black; font-weight:bold; display: none;">Fill the form and press Save to add the address or press Cancel to discard changes.</li>
+		<li id="adding-address-message2" style="color:black; font-weight:bold; display: none;">New address saved successfully.</li>
+	</div>
+</section>
+
+<%= render "partials/csv_upload_form", {
+	prefix:  "addresses",
+	columns: [
+		"Name", "Ref", "Street 1", "Street 2", "Town", "County", "Post code",
+		"Fax", "Tel", "Tel (Work)", "Tel (Mobile)", "Tel (Home)", "Description",
+		"Email", "Contact", "Analysis 1", "Analysis 2", "Analysis 3"
+	],
+	callback: "postAddressImportCSV"
+} %>

@@ -1,0 +1,103 @@
+<table id='certificatestransactionsgrid' style="width:100%">
+	<thead>
+		<th>Acc Ref.</th>
+		<th>Sub Name</th>
+		<th>Date</th>
+		<th>Ref</th>
+		<th>Details</th>
+		<th>Gross</th>
+		<th>Net Due</th>
+		<th>Labour</th>
+		<th>Materials</th>
+		<th>Vat</th>
+		<th>CIS Tax</th>
+		<th>Pay Amt</th>
+		<th>Paid</th>
+		<th>Outstanding</th>
+		<th>Variations</th>
+
+
+
+	</thead>
+	<tbody>
+		<%unless id.nil?%>
+			<%
+			fieldsarray = Array.new
+			joinsarray = Array.new
+			groupsarray = Array.new
+			strwhere=""
+
+			fieldsarray<<"tblCert_ID"
+			fieldsarray<<"tblCert_XID456"
+			fieldsarray<<"tblSupplier_Name"
+			fieldsarray<<"tblCert_Date"
+			fieldsarray<<"tblCert_Ref"
+			fieldsarray<<"tblCert_Details"
+			fieldsarray<<"(tblCert_SubTotal -(tblCert_Previous+ tblcert_PreviousDis+tblcert_PreviousRet - tblcert_RetReleasePrev+ tblcert_CITBOldPrev))AS Gross"
+			fieldsarray<<"tblCert_NetDue"
+			fieldsarray<<"tblCert_Labour"
+			fieldsarray<<"tblcert_materials"
+			fieldsarray<<"tblCert_Vat"
+			fieldsarray<<"tblCert_CISTax"
+			fieldsarray<<"tblCert_PayAmount"
+			fieldsarray<<"SUM(CASE WHEN tblPurchaseInv_Type=6 THEN tblPurchaseInv_AmountPaid ELSE tblPurchaseInv_AmountPaid*-1 END) AS AmtPaid"
+			fieldsarray<<"tblCert_PayAmount-SUM(CASE WHEN tblPurchaseInv_Type=6 THEN tblPurchaseInv_AmountPaid ELSE tblPurchaseInv_AmountPaid*-1 END) AS Outstanding"
+			fieldsarray<<"tblCert_Variations-tblCert_PreviousV AS Variations"
+
+			joinsarray<<"LEFT JOIN tblSuppliers ON tblCertificates.tblCert_XID456 = tblSuppliers.tblSupplier_Ref"
+			joinsarray<<"LEFT JOIN tblpurchaseinv ON tblPurchaseInv_XIDCert=tblCertificates.tblCert_ID"
+
+			groupsarray<<"tblCert_ID"
+
+			strwhere << "TRIM(tblCert_XID456) <> '' "
+			%>		
+			<% certresults=DesktopCertificate.select(fieldsarray).joins(joinsarray).where(strwhere).group(groupsarray) %>
+			<% certresults.each do |certificate|%>
+				<tr id="<%=certificate.tblCert_ID %>" >
+					<td><%=certificate.tblCert_XID456%></td>	
+					<td><%=certificate.tblSupplier_Name%></td>	
+					<td><%=certificate.tblCert_Date%></td>						
+					<td><%=certificate.tblCert_Ref%></td>	
+					<td><%=certificate.tblCert_Details%></td>	
+					<td><%=money_format(certificate.Gross) %></td>	
+					<td><%=money_format(certificate.tblCert_NetDue)%></td>	
+					<td><%=money_format(certificate.tblCert_Labour)%></td>	
+					<td><%=money_format(certificate.tblcert_materials)%></td>	
+					<td><%=money_format(certificate.tblCert_Vat)%></td>	
+					<td><%=money_format(certificate.tblCert_CISTax)%></td>	
+					<td><%=money_format(certificate.tblCert_PayAmount)%></td>	
+					<td><%=money_format(certificate.AmtPaid)%></td>	
+					<td><%=money_format(certificate.Outstanding)%></td>	
+					<td><%=money_format(certificate.Variations)%></td>	
+				</tr>
+			<% end %>
+		<%end%>
+	</tbody>
+</table>
+
+<%
+
+##SELECT tblCertificates.tblCert_ID,
+##tblCertificates.tblCert_XID456,
+##tblSuppliers.tblSupplier_Name,
+##tblCertificates.tblCert_Date,
+##tblCertificates.tblCert_Ref,
+##tblCertificates.tblCert_Details,
+##(tblCert_SubTotal -(tblCert_Previous+ tblcert_PreviousDis+tblcert_PreviousRet - tblcert_RetReleasePrev+ tblcert_CITBOldPrev))AS Gross,
+##tblCertificates.tblCert_NetDue, 
+##tblCertificates.tblCert_Labour,
+##tblcert_materials,
+##tblCertificates.tblCert_Vat,
+##tblCertificates.tblCert_CISTax,
+##tblCertificates.tblCert_PayAmount,
+##SUM(CASE WHEN tblPurchaseInv_Type=6 THEN tblPurchaseInv_AmountPaid ELSE tblPurchaseInv_AmountPaid*-1 END) AS AmtPaid,  
+##tblCert_PayAmount-SUM(CASE WHEN tblPurchaseInv_Type=6 THEN tblPurchaseInv_AmountPaid ELSE tblPurchaseInv_AmountPaid*-1 END) AS Outstanding,
+##tblCertificates.tblCert_Variations- tblCertificates.tblCert_PreviousV AS Variations
+## 
+##FROM tblCertificates 
+##LEFT JOIN tblSuppliers ON tblCertificates.tblCert_XID456 = tblSuppliers.tblSupplier_Ref  
+##LEFT JOIN tblpurchaseinv ON tblPurchaseInv_XIDCert=tblCertificates.tblCert_ID
+##WHERE  TRIM(tblCertificates.tblCert_XID456) <> ''   
+##GROUP BY tblcertificates.tblCert_ID
+##ORDER BY  tblCertificates.tblCert_XID456, tblCertificates.tblCert_XIDJob, tblCertificates.tblCert_Number
+%>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Printable Quotes List</title>
+</head>
+<body>
+	<table>
+		<thead>
+			<tr>
+				<th>Number</th>
+				<th>Name</th>
+				<th>Date</th>
+				<th>Details</th>
+				<th>Nett</th>
+				<th>VAT</th>
+				<th>Total</th>
+				<th>Status</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @quotes.each do |quote| %>
+			<tr id="<%= dom_id(quote) %>">
+				<td><%= quote.id %></td>
+				<td><%= quote.customer.contact_name if not quote.customer.nil? %></td>
+				<td><%= quote.date.strftime('%d/%m/%Y') %></td>
+				<td><%= quote.details %></td>
+				<td><%= quote.net %></td>
+				<td><%= quote.vat %></td>
+				<td><%= quote.net + quote.vat %></td>
+				<td><%= quote.status %></td>
+			</tr>
+		    <% end %>
+	    </tbody>
+	</table>
+</body>
+</html>
+

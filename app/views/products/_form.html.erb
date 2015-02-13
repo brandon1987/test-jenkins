@@ -1,0 +1,38 @@
+<form id="add-edit-product-form" onsubmit="return false;" style="text-align:center;">
+	<section class="aligned-form" style="width: 50%; float: left;">
+		<div>
+			<div>
+				<label for="code">Code</label>
+				<input type="text" name="code" placeholder="Code" value="<%= @product.code %>" data-validation="required">
+			</div>
+
+			<div>
+				<label for="unit_cost">Unit Cost</label>
+				<input type="text" name="unit_cost" placeholder="Unit Cost" value="<%= @product.unit_cost %>" data-validation="number" data-validation-allowing="float" data-validation-error-msg="Unit cost must be numbers only">
+			</div>
+
+			<div>
+				<label for="short_description">Short Description</label>
+				<textarea name="short_description" placeholder="Short Description" rows="4" data-validation="required"><%= @product.short_description %></textarea>
+			</div>
+		</div>
+	</section>
+	<section class="aligned-form" style="width: 50%; float: left; margin-bottom:10px;">
+		<div>
+			<div>
+				<label for="unit_type">Unit Type</label>
+				<input type="text" name="unit_type" placeholder="Unit Type" value="<%= @product.unit_type %>" data-validation="required">
+			</div>
+
+			<div>
+				<label for="long_description">Long Description</label>
+				<textarea name="long_description" placeholder="Long Description" rows="6" data-validation="required"><%= @product.long_description %></textarea>
+			</div>
+		</div>
+	</section>
+	
+	<div id="error-message-wrapper" style="text-align:right;"></div>
+	<div style="text-align:right;clear:both;">
+		<button id="product-save-button" class="save-button" style="width:200px;">Save</button>
+	</div>
+</form>

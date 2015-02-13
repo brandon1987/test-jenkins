@@ -1,0 +1,1693 @@
+
+<% content_for :page_specific_headers do %>
+
+  <script type="text/javascript" src="/assets/planner.js"></script>
+  <link rel="stylesheet" type="text/css" href="/assets/planner.css">
+
+
+  <script type="text/javascript" src="/assets/jqueryplugins/jquery.ui-contextmenu.min.js"></script>
+
+  <script type="text/javascript">
+  // Permissions
+  CAN_CREATE = <%= @access_rights["calendar_add"] %>;
+  CAN_EDIT   = <%= @access_rights["calendar_edit"] %>;
+  CAN_DELETE = <%= @access_rights["calendar_delete"] %>;
+  </script>
+<% end %>
+
+<%= render "menu" %>
+
+
+<div id="planneranchor" style="margin:5px;margin-top:0px"></div>
+
+    <div class="borderpanel" style="height:57px;margin-right:5px;margin-left:5px">
+      <h5 style="text-align:center">Visit Detail</h5>
+      <span id="visitDetails" style="text-align:left"></span>
+    </div>
+
+
+
+<div id="newAppointmentForm" style="display:none">
+    <form id="newappointment" onsubmit="return false;">
+    <div id="appointmentpage1">
+
+        <table class="wizardform">
+            <tr>
+                <td id="jobnobox">
+                    <div id="jobnoselect" style="width:300px"></div>
+                </td>
+                <td class="noshadow" style="text-align:center">
+                    OR
+                </td>
+                <td id="mjobnobox" style="text-align:right">
+                    <div id="mjobselect" style="width:300px"></div>
+                </td>
+
+            </tr>
+            </table>
+
+            <table id="standardfields" class="wizardform" style="margin-top:10px">
+              <tr>
+                  <td colspan="3">
+                          <table class="noformat" style="height:185px;">
+                              <tr id="visitsrefrow" style="display:none;border:none !important">
+                                  <td style='width:150px;vertical-align:middle'>Visit Ref</td><td  style='width:200px;'><input id="visitref" style="width:200px"  name="visitref"></td>
+                              </tr>
+                              <tr id="visitstatusrow" style="display:none">
+                                  <td style='width:150px;'>Status</td><td><div id="statusselect" style="width:200px" name="status"></div></td>
+                              </tr>
+
+                              <tr style="height:100%">
+                                  <td style="width:150px">Instructions</td><td><textarea id="longdescription" name="longdescription" style="height:185px;width:525px;padding 0px;"></textarea></td>
+                              </tr>
+                          </table>
+                          <table id='plantfields' class="noformat centralized">
+                              <tr style='max-height:20px'>
+                                  <td style='width:150px;'>Plant Description</td><td colspan=3><input id="plantdescription" style="width:500px" name="plantdescription"></td>
+                              </tr>                            
+                              <tr>
+                                  <td>Tender</td><td style='width:200px;'><div id="tenderselect" style="width:200px"  name="tender"></div></td>
+                                  <td style='width:60px;margin-left:15px'>Ref</td><td  style='width:200px;'><input id="ref" name="ref" style="width:200px"></td>
+                              </tr>
+                              <tr>
+                                  <td>Cost Code</td><td style='width:200px;'><div id="costcode" style="width:200px" name="costcode"></div></td>
+                                  <td style='width:60px;margin-left:15px'>Qty</td><td><input id="qty" name="qty" style="width:200px"></td>
+                              </tr>
+
+                              <tr>
+                                  <td>Date</td><td><input id="date" name="date" style="width:200px"></td>
+                                  <td style='width:60px;margin-left:15px'>Price</td><td><input id="price" name="price" style="width:200px"></td>
+                              </tr>
+                          </table>                          
+                       <br>
+                  </td>
+              </tr>
+
+
+
+            </table>
+            <div id='editrow' style='display:none;margin-top:5px;margin-left:5px;font-size:11px'>
+              Created by:<span id='createuser'></span>&nbsp     Last updated by:<span id='edituser'></span>
+            </div>
+
+
+    </div>
+        <div id="wizardcontrols">
+            <button id="buttondelete" class="progress-button delete-button" style="display:none">Delete</button>
+            <button id="buttoncancel" class="progress-button regular-button" >Cancel</button>
+            <button id="buttonsave" class="progress-button save-button" >Save</button>
+        </div>
+    </form>
+</div>
+
+<div id='jsplanneroptionsdialog' style='display:none'>
+  <div id='jsplanneroptionstabs'>
+    <ul>
+      <li><a href="#optionstab1"><span>General</span></a></li>
+      <li><a href="#optionstab2"><span>Job Display</span></a></li>
+      <li><a href="#optionstab3"><span>M-Job Display</span></a></li>
+    </ul>  
+
+      <div id='optionstab1'>
+        <table class='jsplanneroptionstable'>   
+          <tr>  
+            <td><label for='rowscaleslider'>Row Scale</label></td><td><div id='rowscaleslider' style='width:200px;'></div></td>                   
+            </tr><tr>
+            <td><label for='jsplannertimelinecompressionoption'>Compress Unworked Hours</label></td><td><input id='jsplannertimelinecompressionoption' type='checkbox'><br></td>                  
+            </tr><tr> 
+            <td><label for='jsplannertimelinedaysperweekoption'>Timeline Skip Days Per Week</label></td><td><input id='jsplannertimelinedaysperweekoption' type='text' style='width:200px;'><br></td>                   
+            </tr><tr> 
+            <td><label for="employeesourcecheck">Use Payroll Employees</label></td><td><input type="checkbox" style="vertical-align:middle" id="employeesourcecheck"></td>
+          </tr>
+        </table>
+      </div>
+        <div id='optionstab2'>
+          <table class='jsplanneroptionstable'>
+            <tr> 
+              <td><label for="contractoptional4">Contracts Display Field 1</label></td><td><div id='contractoptional4' class='planneroptionalfield'></div></td>
+              </tr><tr> 
+              <td><label for="contractoptional5">Contracts Display Field 2</label></td><td><div id='contractoptional5' class='planneroptionalfield'></div></td>
+              </tr><tr> 
+              <td><label for="contractoptional1">Contracts Display Field 3</label></td><td><div id='contractoptional1' class='planneroptionalfield'></div></td>
+              </tr><tr> 
+              <td><label for="contractoptional2">Contracts Display Field 4</label></td><td><div id='contractoptional2' class='planneroptionalfield'></div></td>
+              </tr><tr> 
+              <td><label for="contractoptional3">Contracts Display Field 5</label></td><td><div id='contractoptional3' class='planneroptionalfield'></div></td>
+             </tr>
+          </table>
+        </div>
+        <div id='optionstab3'>
+          <table class='jsplanneroptionstable'>
+            <tr> 
+              <td><label for="mjoboptional4">M-Job Display Field 1</label></td><td><div id='mjoboptional4' class='plannermjoboptionalfield'></div></td>
+              </tr><tr> 
+              <td><label for="mjoboptional5">M-Job Display Field 2</label></td><td><div id='mjoboptional5' class='plannermjoboptionalfield'></div></td>
+              </tr><tr> 
+              <td><label for="mjoboptional1">M-Job Display Field 3</label></td><td><div id='mjoboptional1' class='plannermjoboptionalfield'></div></td>
+              </tr><tr> 
+              <td><label for="mjoboptional2">M-Job Display Field 4</label></td><td><div id='mjoboptional2' class='plannermjoboptionalfield'></div></td>
+              </tr><tr> 
+              <td><label for="mjoboptional3">M-Job Display Field 5</label></td><td><div id='mjoboptional3' class='plannermjoboptionalfield'></div></td>
+             </tr>
+           </table>
+        </div> 
+
+
+  </div > 
+      <table class='jsplanneroptionstable'>   
+        <tr>
+          <td colspan=2 style='text-align:right'><button id='jsplanneroptionscancelbutton' class="regular-button" style='margin-right:10px;width:150px';>Cancel</button><button id='jsplanneroptionssavebutton' class="save-button" style="width:150px">Save</button></td>                  
+        </tr>
+      </table>                 
+</div>
+
+<div id='plannerfiltersdialog' style='display:none'>
+  <div id='jsplannerfiltertabs'>
+    <ul>
+      <li><a href="#filteroptionstab1"><span>Contracts</span></a></li>
+      <li><a href="#filteroptionstab2"><span>Employees</span></a></li>
+      <li><a href="#filteroptionstab3"><span>Subcontractors</span></a></li>
+      <li><a href="#filteroptionstab4"><span>Skills</span></a></li>
+    </ul>  
+
+      <div id='filteroptionstab1' class='nopaddingtabs'>
+        <form>
+        <div id="jobfilterselect" class="filterdropdown"></div>
+        </form>
+      </div>
+      <div id='filteroptionstab2' class='nopaddingtabs'>
+        <div id="employeesfilterselect" class="filterdropdown"></div>
+      </div>
+      <div id='filteroptionstab3' class='nopaddingtabs'>
+        <div id="subbiefilterselect" class="filterdropdown"></div>
+      </div>
+      <div id='filteroptionstab4' class='nopaddingtabs'>
+        <div id="skillsfilterselect" class="filterdropdown"></div>
+      </div>
+
+  </div>
+  <button id="filterdialogclose" class="regular-button" style='position:absolute;right:10px;bottom:10px;'>Close</button>
+</div>
+
+<script>
+// VARIABLE SETUP
+var selectedJob=-1;
+var isMJobAutonumber = 0;
+var selectionStartTime = 0;
+var selectionEndTime = 0;
+var selectionResourceId = "";
+var selectionEngineerId = "";
+var selectionType="";
+var appointmentId = 0;
+var jobfilter = "";
+var employeereffilter = "";
+var subbiefilter = "";
+var skillsfilter="";
+var resourcedata="";
+var employeesource="tblemployee";
+var planttranid=-1;
+var timestamp=<%= if params[:timestamp].nil? then 0 else params[:timestamp] end%>;
+
+if(typeof(timestamp)=="undefined"){
+  timestamp=0;
+}
+
+$("#date").datepicker({dateFormat:"dd-mm-yy"});
+
+
+//fix for the dropdowns on jquery dialogs
+$.ui.dialog.prototype._allowInteraction = function(e) {
+    return !!$(e.target).closest('.ui-dialog, .ui-datepicker, .select2-drop').length;
+};
+/////////////////////////////////////////////
+
+// CONDFIGURE DROPDOWNS
+// Contracts dropdown
+
+subbiefilter=read_cookie("subbiefilter");
+skillsfilter=read_cookie("skillsfilter");
+employeereffilter=read_cookie("employeereffilter");
+if(subbiefilter==null){subbiefilter=""}; 
+if(skillsfilter==null){skillsfilter=""}; 
+if(employeereffilter==null){employeereffilter=""}; 
+  
+
+
+
+var contractsobj = <%= get_contract_list_for_dropdowns.to_json.html_safe %>;
+$("#jobfilterselect").select2({
+	data:{ results: contractsobj, text: 'textcombined' },
+	formatSelection: formatdisplay,
+	formatResult: formatselect,
+	multiple: true,
+	placeholder:"Filter Contracts"        
+});
+$("#jobfilterselect").select2("val", jobfilter.split(","));
+
+// Employees dropdown
+var employeesobj = <%= get_employee_list_for_dropdowns.to_json.html_safe %>;
+employeesobj.unshift({'id':-1,'field1':'Show No Employees','field2':'','textcombined':'Show No Employees'});
+$('#employeesfilterselect').select2({
+	data:{ results: employeesobj, text: 'textcombined' },
+	formatSelection: formatdisplay,
+	formatResult: formatselect,
+	multiple: true,
+	placeholder:"Filter Employees"        
+});
+try{
+$('#employeesfilterselect').select2("val", employeereffilter.split(","));
+}catch(e){}
+// Subcontractors
+var subbiesobj = <%= get_subbie_list_for_dropdowns.to_json.html_safe %>;
+subbiesobj.unshift({'id':-1,'field1':'Show No Subcontractors','field2':'','textcombined':'Show No Subcontractors'});    
+$('#subbiefilterselect').select2({
+	data:{ results: subbiesobj, text: 'textcombined' },
+	formatSelection: formatdisplay,
+	formatResult: formatselect,
+	multiple: true,
+	placeholder:"Filter Subcontractors"
+});
+
+
+$("#subbiefilterselect").select2("val",subbiefilter.split(","));
+
+// MJobs
+var mjobobj = <%= get_mjob_list_for_dropdowns.to_json.html_safe %>;
+mjobobj.unshift({'id':-1,'field1':'','field2':'','textcombined':''});    
+$('#mjobselect').select2({
+	data:{ results: mjobobj, text: 'textcombined' },
+	formatSelection: formatdisplay,
+	formatResult: formatselect,
+	placeholder:"Pick MJob"
+});
+
+// Statuses
+var statusobj = <%= get_status_list_for_dropdowns.to_json.html_safe %>;
+$('#statusselect').select2({
+    data:{ results: statusobj, text: 'textcombined' },
+    formatSelection: formatdisplay,
+    formatResult: formatselect,
+    placeholder:"Set Status"
+});
+
+// Skills
+var statusobj = <%= get_skills_list_for_dropdowns.to_json.html_safe %>;
+$('#skillsfilterselect').select2({
+    data:{ results: statusobj, text: 'textcombined' },
+    formatSelection: formatdisplay,
+    formatResult: formatselect,
+    multiple:true,
+    placeholder:"Filter Skills"
+});
+$("#skillsfilterselect").select2("val",skillsfilter.split(","));
+
+// Unfiltered contracts
+var contractunfilteredobj = <%= get_contract_list_for_dropdowns.to_json.html_safe %>;
+contractunfilteredobj.unshift({'id':-1,'field1':'','field2':'','textcombined':''});
+$('#jobnoselect').select2({
+	data:{ results: contractunfilteredobj, text: 'textcombined' },
+	formatSelection: formatdisplay,
+	formatResult: formatselect,
+	placeholder:"Pick Contract"
+});
+
+function initPlanner() {
+
+  jobfilter=read_cookie("jobfilter");
+  
+  $("#planneranchor").jsplanner({
+    plannerdatasource: [{
+      "table": "tblmaintenancescheduleappointments left join tblmaintenancetask on tblMaintenanceTask_ID=tblMaintenanceScheduleAppointments_XIDMJob left join tblMaintenanceRelated on tblMaintenanceRelated_ID=tblMaintenanceScheduleAppointments_XIDMaintenanceRelated left join tblContracts on tblContractId=tblMaintenanceScheduleAppointments_XIDContract left join tblintegrationstatus on tblIntegrationStatus_StatusValue=tblMaintenanceRelated_IntegrationStatus left join tbladdresses on tblAddresses_ID=tblMaintenanceTask_XIDSiteAddress  LEFT JOIN tblpriority on tblPriority_ID=tblMaintenanceTask_XIDPriority left join tblstatus on tblStatus_ID=tblContractStatus  left join tbljobanalysis on tblJobAnalysis_ID=tblContractXIDJobAnalysis left join tbljobtype on tblJobType_ID=tblContractType ",
+      "id": "tblMaintenanceScheduleAppointments_ID",
+      "description": "tblMaintenanceScheduleAppointments_Description",
+      "longdescription": "tblMaintenanceScheduleAppointments_longDescription",
+      "xidmjob": "tblMaintenanceScheduleAppointments_XIDMJob",
+      "jobno": "tblContractXidJobNo",
+      "xidmaintenancerelated": "tblMaintenanceScheduleAppointments_XIDMaintenanceRelated",
+      "xidcontract": "tblMaintenanceScheduleAppointments_XIDContract",
+      "xidsiteaddress": "tblMaintenanceScheduleAppointments_XIDSiteAddress",
+      "starttime": "tblMaintenanceScheduleAppointments_StartTime",
+      "endtime": "tblMaintenanceScheduleAppointments_EndTime",
+      "resourcekey": "tblMaintenanceScheduleAppointments_ResourceKey",
+      "mjobref": "tblMaintenanceTask_Ref1",
+      "instructions": "tblMaintenanceRelated_Instructions",
+      "visitref": "tblMaintenanceRelated_IntegrationJobNo",
+      "integrationstatus": "tblMaintenanceRelated_IntegrationStatus ",
+      "statustext": "tblIntegrationStatus_StatusName ",
+      "where": "where tblMaintenanceScheduleAppointments_XIDMJob >-100 ",
+      "sourcetable": "tblmaintenancescheduleappointments"
+    }],
+    inittime:timestamp,
+    timeLineScale: getTimeScalar(),
+    compressedTimelineScale: getCompressedTimeScalar(),
+    resourceHeaderRowHeight: getRowScalar(),
+    resourceLineRowHeight: getRowScalar(),
+    isTimelineCompression: getIsTimelineCompression(),
+    timelineDaysPerWeek:getTimelineDaysInWeek(),
+    timeLineCompression:-1,
+    contractoptionalfields:getContractOptionalFields(),
+    maintenanceoptionalfields:getMaintenanceOptionalFields(),
+    newappointment: function(event, data) {
+      planttranid=-1;
+      selectionType=data.resourcetype ;
+      selectionResourceId = data.resourcekey;
+      selectionStartTime = data.start;
+      selectionEndTime = data.end;
+      selectionEngineerId = data.engineerid;
+      selectionResourceName = data.resourcename;
+      appointmentId = -1
+      reenableform();
+      planttranid=-1;
+
+
+      $("#editrow").hide();
+      $("#buttondelete").hide();
+      reloadJobDropDown(null,null);
+
+      if (selectionType=="jsplannerresourcecolumngroupidPlant"){
+        loadFormPlantEdit(); //only want to load this when we are actually doing a plant appt.
+        loadCostCodes(-1);
+        loadTenders(-1);
+
+        $("#plantdescription").val(selectionResourceName)     ;
+
+        $("#plantfields").show();
+        $("#newAppointmentForm").dialog({
+          height: 740,
+          width: 710,
+          modal: true,
+          title: "Create New Plant Appointment"
+         });
+
+      }else{
+
+
+
+        $("#plantfields").hide();        
+        $("#newAppointmentForm").dialog({
+          height: 545,
+          width: 710,
+          modal: true,
+          title: "Create New Appointment"
+        });
+      }
+    },
+    appointmentDelete: function(event,data){
+      processJobDelete(data.appointmentid);
+    },
+    processAppointmentCopy: function(event,data){
+      $.ajax({
+        type: "POST",
+        url: "/planner/copy_appointment",
+        data: data
+      }).done(function(returndata) {
+        //no longer have to refresh here due to websocket additions        
+        //$('#planneranchor').jsplanner("jsplannerredrawappointments", data.resourcekey);
+      });
+    },
+
+    optionsButton: function(event,data){
+        $("#mjoboptional1").select2("val",read_cookie('mjoboptional1'));
+        $("#mjoboptional2").select2("val",read_cookie('mjoboptional2'));
+        $("#mjoboptional3").select2("val",read_cookie('mjoboptional3'));
+        $("#mjoboptional4").select2("val",read_cookie('mjoboptional4'));
+        $("#mjoboptional5").select2("val",read_cookie('mjoboptional5'));
+        $("#contractoptional1").select2("val",read_cookie('contractoptional1'));
+        $("#contractoptional2").select2("val",read_cookie('contractoptional2'));
+        $("#contractoptional3").select2("val",read_cookie('contractoptional3'));
+        $("#contractoptional4").select2("val",read_cookie('contractoptional4'));
+        $("#contractoptional5").select2("val",read_cookie('contractoptional5'));
+
+        $("#employeesourcecheck").prop('checked',(employeesource=="tblemployee"));
+        $("#jsplannertimelinecompressionoption").prop('checked', getIsTimelineCompression()==-1);
+        $("#jsplannertimelinedaysperweekoption").prop('value',getTimelineDaysInWeek());
+        $("#jsplanneroptionsdialog").dialog({
+        	title:"Options",
+           	width:500
+        });
+    },
+    appointmentDetail: function(event,data){
+
+      data=String(data).replace("<br>","&nbsp&nbsp&nbsp");
+      data=String(data).replace("[object Object]","");
+      $("#visitDetails").html(data);
+    },
+
+	editappointment: function(event, data) {
+    reenableform();
+		$("#editrow").show();
+		$("#buttondelete").show();
+		appointmentId = data.appointmentid;
+		selectionType=data.resourcetype; 
+		var dialogHeight = 545;
+
+		if (selectionType == "jsplannerresourcecolumngroupidPlant") {
+			$("#plantfields").show();
+			dialogHeight = 740;
+		} else {
+			$("#plantfields").hide();
+		}
+
+		loadFormForEdit(data.appointmentid, dialogHeight);
+	},
+
+    saveOptions: function(event,data){
+      //saves all our planner options into cookies with the appropriate names
+      for (strName in data) {
+        save_cookie(strName,data[strName]);
+      }
+    },
+
+    processAppointmentChange: function(event, data) {
+      var renameconfirmation;
+      
+      var isContract = $("#jsplannerevent" + data.id).hasClass("appointmentviolet");
+
+      if (data.resourcekey != data.originalresourcekey && !isContract) {
+        var question = "The owner of this appointment has been changed. Do you wish to renumber the appointment to match?<br> (The original appointment will be deleted and any related records marked as cancelled)";
+        confirmation(question).then(function(answer) {
+          if (answer == "true") {
+            renameconfirmation = true;
+          } else {
+            renameconfirmation = false;
+          }
+
+          $.ajax({
+            type: "POST",
+            url: "/planner/save_appointment",
+            data: $.extend({}, {
+              "rename": renameconfirmation
+            }, data)
+          }).done(function(returndata) {
+            websocket.emit('redraw_planner', COMPANY_ID);
+            //$('#planneranchor').jsplanner("jsplannerredrawappointments", data.resourcekey);
+          });
+        });
+      } else {
+        $.ajax({
+          type: "POST",
+          url: "/planner/save_appointment",
+          data: $.extend({}, {
+            "rename": false
+          }, data)
+        }).done(function(returndata) {
+          websocket.emit('redraw_planner', COMPANY_ID);
+          //$('#planneranchor').jsplanner("jsplannerredrawappointments", data.resourcekey);
+        });
+      }
+    }
+  });
+
+}
+
+//init planner used to be here
+
+
+
+$('#rowscaleslider').slider({
+    value: getRowScalar(),
+    min: 30,
+    max: 120,
+    step: 5,
+    stop: function(event, ui) {
+        $('#planneranchor').jsplanner("setRowHeight", ui.value);
+    }
+});
+
+$("#jsplanneroptionssavebutton").click(function(){
+    if ($("#jsplannertimelinecompressionoption").prop('checked')==true){
+        $('#planneranchor').jsplanner("jsplannerSetOpt", "isTimelineCompression",-1);
+    }else{
+        $('#planneranchor').jsplanner("jsplannerSetOpt", "isTimelineCompression",0);
+    }
+
+    save_cookie('contractoptional1',$("#contractoptional1").select2("val"));
+    save_cookie('contractoptional2',$("#contractoptional2").select2("val"));
+    save_cookie('contractoptional3',$("#contractoptional3").select2("val"));
+    save_cookie('contractoptional4',$("#contractoptional4").select2("val"));
+    save_cookie('contractoptional5',$("#contractoptional5").select2("val"));
+    save_cookie('mjoboptional1',$("#mjoboptional1").select2("val"));
+    save_cookie('mjoboptional2',$("#mjoboptional2").select2("val"));
+    save_cookie('mjoboptional3',$("#mjoboptional3").select2("val"));
+    save_cookie('mjoboptional4',$("#mjoboptional4").select2("val"));
+    save_cookie('mjoboptional5',$("#mjoboptional5").select2("val"));
+    $("#planneranchor").jsplanner("jsplannerSetOpt","contractoptionalfields",getContractOptionalFields());
+    $("#planneranchor").jsplanner("jsplannerSetOpt","maintenanceoptionalfields",getMaintenanceOptionalFields());
+
+    $('#planneranchor').jsplanner("jsplannerSetOpt", "timelineDaysPerWeek",$("#jsplannertimelinedaysperweekoption").prop('value'));
+    $('#planneranchor').jsplanner("saveOptions");
+
+
+    setEmployeeSource(); //this option has nothing to do with the planner per se so save processes seperately.
+    
+
+
+
+    $("#jsplanneroptionsdialog").dialog('close');
+
+
+
+});
+
+
+$("#jsplanneroptionscancelbutton").click(function(){
+    $("#jsplanneroptionsdialog").dialog('close');
+});
+
+
+
+function loadOptionalFieldDropdowns(){
+  $(".plannermjoboptionalfield").select2({
+    data:[{id:'',text:''},
+          {id:'tblMaintenanceRelated_IntegrationJobNo',text:'M-Job Visit No'},
+          {id:'tblMaintenanceRelated_Instructions',text:'Visit Instructions'},
+          {id:'tblAddresses_Name',text:'Site Address Name'},
+          {id:'tblAddresses_Add1',text:'Site Address Add1'},
+          {id:'tblAddresses_Add2',text:'Site Address Add2'},
+          {id:'tblAddresses_Add3',text:'Site Address Add3'},
+          {id:'tblAddresses_Add4',text:'Site Address Add4'},
+          {id:'tblAddresses_Add5',text:'Site Address Add5'},
+          {id:'tblAddresses_Description',text:'Site Address Description'},
+          {id:'tblAddresses_Tel',text:'Site Address Tel'},
+          {id:'tblAddresses_Fax',text:'Site Address Fax'},
+          {id:'tblAddresses_Email',text:'Site Address Email'},
+          {id:'tblAddresses_Contact',text:'Site Address Contact'},
+          {id:'tblAddresses_Ref',text:'Site Address Ref'},
+          {id:'tblMaintenanceTask_ManagerName',text:'Project Manager'},
+          {id:'tblMaintenanceTask_WorkDescription',text:'Mjob Description'},
+          {id:'tblPriority_Description',text:'Priority'}
+          ],
+    placeholder:'Pick a field to display',
+    width: 'resolve'
+  });
+
+  $(".planneroptionalfield").select2({
+    data:[{id:'',text:''},
+          {id:'tblContractXidJobNo',text:'Job No'},
+          {id:'tblContractDescription',text:'Contract Value'},
+          {id:'tblContractXIDCustomer',text:'Customer Ref'},
+          {id:'tblContractValue',text:'Contract Value'},
+          {id:'tblContractCustomerName',text:'Customer Name'},
+          {id:'tblContractXref',text:'XRef'},
+          {id:'tblContractProjectManager',text:'Project Manager'},
+          {id:'tblStatus_Status',text:'Status'},
+          {id:'tblJobType_JobType',text:'Classification'},
+          {id:'tblJobAnalysis_JobAnalysis',text:'Analysis'},
+          ],
+    placeholder:'Pick a field to display',
+    width: 'resolve'
+
+  }); 
+  $("#jsplanneroptionstabs").tabs();
+  $("#jsplannerfiltertabs").tabs();
+}   
+
+
+function loadCostCodes(defaultid){
+  $.ajax({ //load the job numbers dropdown contents
+    type: "GET",
+    url: "/planner/cost_code_list"
+  }).done(function(costcodeobj) {
+      //var costcodeobj = $.parseJSON(returndata);
+      costcodeobj .unshift({'id':-1,'field1':'','field2':'','textcombined':'None'});
+      $('#costcode').select2('destroy');
+      $('#costcode').select2({
+          data:{ results: costcodeobj , text: 'textcombined' },
+          formatSelection: formatdisplay,
+          formatResult: formatselect,
+          placeholder:"Pick Cost Code"
+      });
+      $('#costcode').select2("val",defaultid);
+
+
+  });  
+}
+
+function loadTenders(defaultid){
+  $('#tenderselect').select2('destroy');
+
+  if(selectedJob==-1){
+        tenderobj={'id':-1,'field1':'','field2':'','textcombined':'None'};    
+        $('#tenderselect').select2({
+            data:{ results: tenderobj , text: 'textcombined' },
+            formatSelection: formatdisplay,
+            formatResult: formatselect,
+            placeholder:"None"
+        });
+
+  }else{
+      $.ajax({ //load the job numbers dropdown contents
+        type: "POST",
+        url: "/planner/tenders_list",
+        data: {
+          tendercontract: selectedJob 
+        }
+      }).done(function(tenderobj) {
+          tenderobj.unshift({'id':-1,'field1':'','field2':'','textcombined':'None'});
+
+          $('#tenderselect').select2({
+              data:{ results: tenderobj , text: 'textcombined' },
+              formatSelection: formatdisplay,
+              formatResult: formatselect,
+              placeholder:"Pick Tender Code"
+          });
+
+      }); 
+  }
+  $('#tenderselect').select2("val",defaultid);    
+}
+
+
+function getContractOptionalFields(){
+  var strOptions="";
+  if (read_cookie("contractoptional4")==null){
+    save_cookie ("contractoptional4","tblContractXidJobNo");
+  }
+  if (read_cookie("contractoptional5")==null){
+    save_cookie ("contractoptional5","tblContractDescription");
+  }
+  if (read_cookie("contractoptional1")==null){
+    save_cookie ("contractoptional1","");
+  }
+    if (read_cookie("contractoptional2")==null){
+    save_cookie ("contractoptional2","");
+  }
+    if (read_cookie("contractoptional3")==null){
+    save_cookie ("contractoptional3","");
+  }
+
+
+
+
+  if(read_cookie("contractoptional4")!=""){
+    strOptions+=read_cookie("contractoptional4")+",";
+  }
+      if(read_cookie("contractoptional5")!=""){
+    strOptions+=read_cookie("contractoptional5")+",";
+  }
+
+  if(read_cookie("contractoptional1")!=""){
+    strOptions+=read_cookie("contractoptional1")+",";
+  }
+  if(read_cookie("contractoptional2")!=""){
+    strOptions+=read_cookie("contractoptional2")+",";
+  }
+  if(read_cookie("contractoptional3")!=""){
+    strOptions+=read_cookie("contractoptional3")+",";
+  }
+
+
+
+  return strOptions
+}
+
+function getMaintenanceOptionalFields(){
+  var strOptions="";
+  //fields 4 and 5 are actually fields 1 and 2 horay for retroactive changes and bad design!
+  if (read_cookie("mjoboptional4")==null){
+    save_cookie ("mjoboptional4","tblMaintenanceRelated_IntegrationJobNo");
+  }
+  if (read_cookie("mjoboptional5")==null){
+    save_cookie ("mjoboptional5","tblMaintenanceRelated_Instructions");
+  }  
+  if (read_cookie("mjoboptional1")==null){
+    save_cookie ("mjoboptional1","");
+  }
+  if (read_cookie("mjoboptional2")==null){
+    save_cookie ("mjoboptional2","");
+  }  
+  if (read_cookie("mjoboptional3")==null){
+    save_cookie ("mjoboptional3","");
+  }    
+
+
+  if(read_cookie("mjoboptional4")!=""){
+    strOptions+=read_cookie("mjoboptional4")+",";
+  }
+  if(read_cookie("mjoboptional5")!=""){
+    strOptions+=read_cookie("mjoboptional5")+",";
+  }
+  if(read_cookie("mjoboptional1")!=""){
+    strOptions+=read_cookie("mjoboptional1")+",";
+  }
+  if(read_cookie("mjoboptional2")!=""){
+    strOptions+=read_cookie("mjoboptional2")+",";
+  }
+  if(read_cookie("mjoboptional3")!=""){
+    strOptions+=read_cookie("mjoboptional3")+",";
+  }
+
+
+
+  return strOptions;
+
+}
+
+
+function getTimeScalar() {
+  var ts = read_cookie("TimeScalar");
+  if (ts == null) {
+    return 0.061;
+  } else {
+    return parseFloat(ts);
+  }
+}
+
+function getIsTimelineCompression() {
+  var ts = read_cookie("IsTimelineCompression");
+  if (ts == null) {
+    return -1;
+  } else {
+    return ts;
+  }
+}
+function getTimelineDaysInWeek() {
+  var ts = read_cookie("CompressionDaysInWeek");
+  if (ts == null) {
+    return 5;
+  } else {
+    return ts;
+  }
+}
+
+function getCompressedTimeScalar() {
+  var ts = read_cookie("CompressedTimeScalar");
+  if (ts == null) {
+    return 0.01;
+  } else {
+    return parseFloat(ts);
+  }
+}
+function getRowScalar() {
+  var rs = read_cookie("RowScalar");
+  if (rs == null) {
+    return 30;
+  } else {
+    return parseInt(rs);
+  }
+}
+
+function loadFormForEdit(appointmentid, dialogHeight) {
+  resetAppointmentDialogPermissions();
+
+	$.ajax({
+		type: "POST",
+		url: "/planner/load_event_details",
+		data: {
+			appointmentid: appointmentid
+		}
+	}).done(function(resultsobj) {
+    if (!resultsobj.success) {
+      swal("Error", "We encountered a problem loading the event details.", "error");
+      return;
+    }
+
+		$("#jobnoselect").select2('enable', false);
+		$("#mjobselect").select2('enable', false);
+		$("#createuser").html(resultsobj.tblmaintenancescheduleappointments_CreatedBy);
+		$("#edituser").html( resultsobj.tblmaintenancescheduleappointments_LastUpdated);
+
+		if (resultsobj.tblMaintenanceScheduleAppointments_XIDMJob > 0) {
+			setFormMJobMode(); //this is an mjob record
+
+			$("#longdescription").val(resultsobj.tblMaintenanceScheduleAppointments_LongDescription);
+
+			$("#visitref").val(resultsobj.tblMaintenanceRelated_IntegrationJobNo);
+			$("#statusselect").select2('val',resultsobj.tblMaintenanceRelated_IntegrationStatus);
+			planttranid=resultsobj.tblmaintenancescheduleappointments_XIDPlant;
+			reloadJobDropDown(null,resultsobj.tblMaintenanceScheduleAppointments_XIDMJob);
+		} else {
+			setFormContractMode(); //dont want them changing the job or the mjob in either case.
+			$("#visitstatusrow").hide();
+			$("#visitsrefrow").hide();
+			//this is a contract only record
+			$("#longdescription").val(resultsobj.tblMaintenanceScheduleAppointments_LongDescription);
+
+			planttranid=resultsobj.tblmaintenancescheduleappointments_XIDPlant;
+
+			if (planttranid !=- 1) {
+				//this is an unusual case, the appointment is for a plant item so we can allow a change to the job no.
+				$("#jobnoselect").select2('enable', true);
+			}
+
+			reloadJobDropDown(resultsobj.tblMaintenanceScheduleAppointments_XIDContract, null);
+		}
+
+		if(resultsobj.tblmaintenancescheduleappointments_XIDPlant!=-1){
+			loadFormPlantEdit();
+		}
+
+    setAppointmentDialogPermissions();
+
+		$("#newAppointmentForm").dialog({
+			height: dialogHeight,
+			width: 710,
+			modal: true,
+			title: "Edit Appointment"
+		});
+	});
+}
+
+function getDateFromEpoch(timestamp) {
+    var d = new Date(0); 
+    d.setUTCSeconds(timestamp);
+    return d.toDateString();
+}
+
+function loadFormPlantEdit(){
+
+  if (planttranid!=-1){
+    $.ajax({
+      type: "POST",
+      url: "/planner/load_plant_tran_details",
+      data: {
+        planttranid: planttranid
+      }
+    }).done(function(resultsobj) {
+        $("#plantdescription").val(resultsobj.tblStock_Description);
+        $("#tenderselect").val(resultsobj.tblStock_XIDTender);
+        $("#costcode").val(resultsobj.tblStock_CostCode);
+        $('#ref').val(resultsobj.tblStock_Ref);
+        $("#date").val(resultsobj.datetran);
+        $("#qty").val(resultsobj.tblStock_Qty);
+        $("#price").val(resultsobj.tblStock_SalesPrice);
+        loadCostCodes(resultsobj.tblStock_CostCode);
+        loadTenders(resultsobj.tblStock_XIDTender);
+        selectedJob=resultsobj.tblStock_XIDContract;
+    });
+  } else {
+    //blank form reset
+        $("#plantdescription").val("");
+        $("#tenderselect").val(-1);
+        $("#costcode").val(-1);
+        $("#longdescription").val("");
+        $('#ref').val("");
+        $("#date").val("");
+
+
+ 
+        $.ajax({
+          type: "POST",
+          url: "/planner/get_plant_code_details",
+          data: {
+            stockcode: selectionResourceId
+          }
+        }).done(function(stockcodeobj) {
+          //stockcodeobj = jQuery.parseJSON(returndata);
+          var appointmentinterval=selectionEndTime-selectionStartTime; //gets us number of or fraction of a day
+          var appointmentquantity=0
+          switch(stockcodeobj[0].tblstock_hireperiodunits){
+            case "DAYS(5)":
+              appointmentquantity=calcBusinessDays(new Date(selectionStartTime*1000),new Date(selectionEndTime*1000))
+            break;
+            case "Days(7)":
+              appointmentquantity=Math.ceil((appointmentinterval/86400)); 
+            break;            
+            case "WEEKS FULL":
+              appointmentquantity=Math.ceil((appointmentinterval/604800));             
+            break;
+            case "WEEKS PART":
+              appointmentquantity=(appointmentinterval/604800);             
+            break;            
+            case "MONTHS":
+              appointmentquantity=Math.ceil((appointmentinterval/2592000));             
+            break;
+            default:
+              appointmentquantity=Math.ceil((appointmentinterval/86400));            
+            break;
+
+          }
+          $("#qty").val(appointmentquantity);
+          $("#price").val(stockcodeobj[0].tblstock_hireunitprice);
+          $("#date").val(getDateFromEpoch(selectionStartTime));
+        });
+
+        loadCostCodes(-1);
+        loadTenders(-1);   
+  }
+
+
+
+}
+
+
+$("#mjobselect").change(function(val,added,removed){
+  selectedJob=$("#mjobselect").select2("data").XIDContract;
+  if ($(this).val() == -1) {
+    reenableform();
+  } else {
+    setFormMJobMode();
+  }
+  checkValidMJobAppointment() 
+  loadTenders(-1);    
+});
+
+$("#jobnoselect").change(function() {
+  selectedJob=$(this).val(); 
+  if ($(this).val() == -1) {
+    reenableform();
+  } else {
+    setFormContractMode();
+  }
+  loadTenders(-1);   
+});
+
+$("#visitref").change(function() {
+  checkValidMJobAppointment();
+});
+
+
+$("#buttondelete").click(function() {
+  var question = "Are you sure you wish to delete this appointment? Related Jobs and Mjobs will not be affected";
+  confirmation(question).then(function(answer) {
+
+    if (answer == "true") {
+        processJobDelete(appointmentId);
+        $('#newAppointmentForm').dialog("close");
+    } else {
+
+    }
+  });
+});
+
+function setEmployeeSource(){
+var bchange=false;
+  if($("#employeesourcecheck").is(':checked') ){
+    bchange=(employeesource!="tblemployee");
+    save_cookie ("employeesource","tblemployee")
+    employeesource="tblemployee";
+  }else{
+    bchange=(employeesource!="tblemployeecis");
+    save_cookie ("employeesource","tblemployeecis")
+    employeesource="tblemployeecis";   
+  }
+  if(bchange==true){
+
+    loadPlannerDefaults();
+    loadAndSendResourceData();
+    $('#planneranchor').jsplanner("jsplannerredraw");
+    
+
+  }
+}
+function processJobDelete(appointmentid){
+
+  $.ajax({ //Status dropdown
+    type: "POST",
+    url: "/planner/delete_appointment",
+    data: {
+      appointmentid: appointmentid
+    }
+  }).done(function(returndata) {
+    $('#planneranchor').jsplanner("jsplannerConfirmDelete", appointmentid);
+  });
+
+}
+
+
+$("#buttoncancel").click(function() {
+  closeandresetdialog();
+});
+
+$("#buttonsave").click(function() {
+
+  if (appointmentId == -1) {
+    saveAppointment();
+  } else {
+    saveAppointmentEdit();
+  }
+})
+
+$('#employeesfilterselect').on('change', function(val,added,removed) {
+  if (val.val==null){
+    employeereffilter ="";
+  }else{
+
+    if(val.val.indexOf("-1") > -1 ) {
+       val.val=["-1"];
+       $('#employeesfilterselect').select2("val",val.val);
+    }    
+    employeereffilter = val.val.toString();
+  }
+  save_cookie ("employeereffilter",employeereffilter);  
+  loadAndSendResourceData();
+});
+
+
+
+$('#subbiefilterselect').on('change', function(val,added,removed) {
+  if(val.val==null){
+    subbiefilter="";
+  }else{
+    if(val.val.indexOf("-1") > -1 ) {
+       val.val=["-1"];
+       $('#subbiefilterselect').select2("val",val.val);
+    }        
+    subbiefilter = val.val.toString();
+  }
+  save_cookie ("subbiefilter",subbiefilter);
+  loadAndSendResourceData();
+});
+
+
+$('#skillsfilterselect').on('change', function(val,added,removed) {
+  if(val.val==null){
+    skillsfilter="";
+  }else{
+    skillsfilter = val.val.toString();
+  }
+  save_cookie ("skillsfilter",skillsfilter);
+  loadAndSendResourceData();
+});
+
+
+$('#jobfilterselect').on('change', function(val,added,removed) {
+  if (val.val==null){
+    jobfilter="";
+  }else{
+    jobfilter = val.val.toString();
+  }
+  save_cookie ("jobfilter",jobfilter);
+  reloadAppointments();
+  
+});
+
+
+
+
+
+function read_cookie(key) {
+  var result;
+  return (result = new RegExp('(?:^|; )' + encodeURIComponent(key) + '=([^;]*)').exec(document.cookie)) ? (result[1]) : null;
+}
+
+function save_cookie(key, value) {
+  var CookieDate = new Date;
+  CookieDate.setFullYear(CookieDate.getFullYear() + 10);
+  document.cookie = key + '=' + value + '; expires=' + CookieDate.toGMTString() + ';';
+}
+function closeandresetdialog() {
+  $('#newappointment').trigger("reset");
+  $("#jobnoselect").select2('enable', true);
+  $("#mjobselect").select2('enable', true);
+  $("#statusselect").select2('data',null);
+  $("#detail").val("");
+  $("#ref").val("");
+  $("#date").val("");
+  $("#qty").val("");
+  $("#price").val("");
+  $('#newAppointmentForm').dialog("close");
+
+  selectedJob=-1;
+}
+
+
+function saveAppointmentEdit() {
+	var plantdataobj = null;
+
+	if ($("#jobnoselect").select2("val") == "") {
+		if (selectionType == "jsplannerresourcecolumngroupidPlant"){
+			plantdataobj = {
+				plantdescription: $("#plantdescription").val(),
+				tender:           $("#tenderselect").val(),
+				costcode:         $("#costcode").val(),
+				details:          $("#longdescription").val(),
+				ref:              $('#ref').val(),
+				date:             $("#date").val(),
+				qty:              $("#qty").val(),
+				price:            $("#price").val(),
+				xidcontract:      $("#mjobselect").select2("data").XIDContract,
+				jobno:            $("#mjobselect").select2("data").jobno,
+				tenderref:        $("#tenderselect").select2("data").field1,
+				mjobid:           -1,
+				planttranid:      planttranid
+			};
+		}
+
+		data = {
+			action:          'update_mjob',
+			appointmentid:   appointmentId,
+			longdescription: $("#longdescription").val(),
+			visitref:        $("#visitref").val(),
+			status:          $("#statusselect").val(),
+			plantdata:       plantdataobj
+		};
+	} else {
+		if (selectionType == "jsplannerresourcecolumngroupidPlant"){
+			plantdataobj = {
+				plantdescription: $("#plantdescription").val(),
+				tender:           $("#tenderselect").val(),
+				costcode:         $("#costcode").val(),
+				details:          $("#longdescription").val(),
+				ref:              $('#ref').val(),
+				date:             $("#date").val(),
+				qty:              $("#qty").val(),
+				price:            $("#price").val(),
+				xidcontract:      $("#jobnoselect").select2("val"),
+				jobno:            $("#jobnoselect").select2("data").field1,
+				tenderref:        $("#tenderselect").select2("data").field1,
+				mjobid:           $("#mjobselect").val(),
+				planttranid:      planttranid
+			};
+		}
+
+		data = {
+			action:          'update_contract',
+			appointmentid:   appointmentId,
+			longdescription: $("#longdescription").val(),
+			xidcontract:     $('#jobnoselect').select2('val'),
+			plantdata:       plantdataobj
+		};
+	}
+
+	$.ajax({
+		type:    "PATCH",
+		url:     "/appointments/" + data['action'],
+		data:    data,
+		success: function(response) {
+			if (!response.success) {
+				swal("Error", "There was a problem updating the maintenance job.", "error");
+			} else {
+				websocket.emit('redraw_planner', COMPANY_ID);
+			}
+		}
+	})
+}
+
+function saveAppointment() {
+
+    if ($("#jobnoselect").val()!=null && $("#jobnoselect").val()!="" && $("#jobnoselect").val()!=-1) {
+      saveAppointmentForContractMode();
+    } else {
+      saveAppointmentForMJOBMode();
+    }
+  
+}
+
+function saveAppointmentForContractMode() {
+	var plantdataobj=null;
+	if (selectionType == "jsplannerresourcecolumngroupidPlant"){
+		plantdataobj = {
+			plantdescription:$("#plantdescription").val(),
+			tender:$("#tenderselect").val(),
+			costcode:$("#costcode").val(),
+			details:$("#longdescription").val(),
+			ref:$('#ref').val(),
+			date:$("#date").val(),
+			qty:$("#qty").val(),
+			price:$("#price").val(),
+			jobno:$('#jobnoselect').select2("data").field1,
+			tenderref:$("#tenderselect").select2("data").field1,
+			mjobid:-1
+		};
+	}
+
+	$.ajax({ //Status dropdown
+		type: "POST",
+		url: "/planner/save_new_appointment_contract",
+		data: {
+			longdescription: $("#longdescription").val(),
+			xidcontract:     $("#jobnoselect").val(),
+			starttime:       selectionStartTime,
+			endtime:         selectionEndTime,
+			resourcekey:     selectionResourceId,
+			plantdata:       plantdataobj
+		}
+	}).done(function(returndata) {
+    websocket.emit('redraw_planner', COMPANY_ID);
+		$('#newappointment').trigger("reset");
+		$('#newAppointmentForm').dialog("close");
+		closeandresetdialog();
+	});
+}
+
+function saveAppointmentForMJOBMode() {
+	var plantdataobj=null;
+
+	if (selectionType == "jsplannerresourcecolumngroupidPlant") {
+		plantdataobj={
+			plantdescription:$("#plantdescription").val(),
+			tender:    $("#tenderselect").val(),
+			costcode:  $("#costcode").val(),
+			details:   $("#longdescription").val(),
+			ref:       $('#ref').val(),
+			date:      $("#date").val(),
+			qty:       $("#qty").val(),
+			price:     $("#price").val(),
+			jobno:     $("#mjobselect").select2("data").jobno,
+			tenderref: $("#tenderselect").select2("data").field1,
+			mjobid:    $("#mjobselect").val()
+		};
+	}
+
+	if ($("#statusselect").val()==0) {
+		alert("Please set a status for the MJob before saving.");
+	} else {
+		$.ajax({ //Status dropdown
+			type: "POST",
+			url: "/planner/save_new_appointment_mjob",
+			data: {
+				longdescription:   $("#longdescription").val(),
+				xidsiteaddress:    $("#mjobselect").select2("data").xidsiteaddress,
+				xidcontract:       $("#mjobselect").select2("data").XIDContract,
+				xidmjob:           $("#mjobselect").val(),
+				engineerid:        selectionEngineerId,
+				integrationstatus: $("#statusselect").val(),
+				visitref:          $("#visitref").val(),
+				starttime:         selectionStartTime,
+				endtime:           selectionEndTime,
+				resourcekey:       selectionResourceId,
+				resourcename:      selectionResourceName,
+				plantdata:         plantdataobj
+			}
+		}).done(function(returndata) {
+			websocket.emit('redraw_planner', COMPANY_ID);    
+			$('#newappointment').trigger("reset");
+			$('#newAppointmentForm').dialog("close");     
+			closeandresetdialog();
+		});
+	}
+}
+
+function reenableform() {
+  $("#jobnoselect").select2('enable', true);
+  $("#mjobselect").select2('enable', true);
+  $("tr").removeClass("disabledelement");
+  $("td").removeClass("disabledelement");
+  $("select").prop("disabled", false);
+  $("#visitstatusrow").hide(0);
+  $("#visitsrefrow").hide(0);
+  $("#buttonsave").prop("disabled", false);
+  $("#statusselect").val(0);
+
+  $("#longdescription").val("");
+  $("#visitsrefrow").addClass("disabledelement");
+  $("#visitref").prop("disabled", true);
+  $("#visitref").val("Autonumber");
+
+}
+
+function setFormContractMode() {
+  $("#mjobnobox").addClass("disabledelement");
+  $("#mjobselect").removeClass("disabledelement");
+  $("#jobnoselect").select2('enable', true);  
+  $("#mjobselect").select2('enable', false);
+  $("#buttonsave").prop("disabled", false);
+}
+
+function setFormMJobMode() {
+  $("#mjobnobox").removeClass("disabledelement");
+  $("#jobnobox").addClass("disabledelement");
+  $("#jobnoselect").select2('enable', false);
+  $("#mjobselect").select2('enable', true);
+  $("#visitstatusrow").show("fade", 500)
+  $("#visitsrefrow").show("fade", 500)
+  $("#buttonsave").prop("disabled", false);
+}
+
+
+function checkValidMJobAppointment() {
+  if ($("#mjobselect").val != -1 && $("#visitref").val != "" && $("statusselect").val !=-1) {
+    $("#buttonsave").prop("disabled", false);
+  }
+}
+
+
+function confirmation(question) {
+  var defer = $.Deferred();
+  $('<div></div>')
+    .html(question)
+    .dialog({
+      autoOpen: true,
+      width: 750,
+      modal: true,
+      title: 'Confirmation',
+      buttons: {
+        "Yes": function() {
+          defer.resolve("true"); //this text 'true' can be anything. But for this usage, it should be true or false.
+          $(this).dialog("close");
+        },
+        "No": function() {
+          defer.resolve("false"); //this text 'false' can be anything. But for this usage, it should be true or false.
+          $(this).dialog("close");
+        }
+      }
+    });
+  return defer.promise();
+};
+
+function setPlannerTimelineScale(value) {
+  $('#planneranchor').jsplanner("jsplannersetcurrentcentertimetoday");
+  $('#planneranchor').jsplanner("jsplannersettimelinescale", value);  
+}
+
+$(document).ready(function() {
+  $("#buttonsave").prop("disabled", true);
+  $("#planneranchor").css("height",document.documentElement.clientHeight-220+"px");
+
+
+  $(window).resize(function(e) {
+      if (e.target == window) {
+          $("#planneranchor").css("height",document.documentElement.clientHeight-220+"px");
+      }
+  });
+
+  initPlanner();
+  loadPlannerDefaults();
+  loadAndSendResourceData();
+  loadOptionalFieldDropdowns();
+});
+
+function reloadAppointments() {
+  var jobwhere = "";
+
+  if (jobfilter != null && jobfilter != "") {
+    jobwhere = "AND tblMaintenanceScheduleAppointments_XIDContract in (" + jobfilter + ")"
+  }
+  $('#planneranchor').jsplanner("setJobFilter", " where tblMaintenanceScheduleAppointments_XIDMJob>-100 " + jobwhere + " ");
+  $('#planneranchor').jsplanner("jsplannerredraw");
+}
+
+function loadAndSendResourceData() {
+	employeesource=read_cookie("employeesource");
+
+	if (employeesource == null) {
+		employeesource = "tblemployee";
+	}
+  if(employeesource=="tblemployee"){
+    $('#employeesourcecheck').iCheck('check')
+  }else{
+    $('#employeesourcecheck').iCheck('uncheck')
+  }
+
+
+
+	var subbiewhere = "";
+	var employeewhere = "";
+	var skillswhere="";
+
+	if (employeereffilter != "" && employeereffilter != null) {
+		employeewhere = " AND "+employeesource+"_Reference in(" + employeereffilter + ")";
+	}
+
+	if (employeesource === "tblemployee") {
+		employeewhere += " AND tblEmployee_isLeaver = 0"
+	}
+
+	if(skillsfilter!="" && skillsfilter!=null){
+		skillswhere= " AND tblXIDEmployeeSkills_XIDSkillID in ("+skillsfilter+")";
+	}
+
+	//need to add surrounding quotes to the subbies filter before we send it off as they are string comparators.
+	if (subbiefilter != "" && subbiefilter != null) {
+		subbieArray=subbiefilter.split(",");
+
+		for (var i in subbieArray) {
+			subbieArray[i] = "'" + subbieArray[i] + "'";
+		}
+
+		subbiewhere = " AND tblSupplier_Ref in(" + subbieArray.toString() + ")"
+	}
+
+	var postData = [{
+		"table": employeesource + " left join tblxidemployeeskills on tblXIDEmployeeSkills_XIDEmployeeRef="+ employeesource +"_Reference ",
+		"resourceid": 'CONCAT("Employees",'+employeesource+'_Reference)',
+		"resourcename": 'CONCAT('+employeesource+'_FirstName," ",'+employeesource+'_Surname)',
+		"resourcetype": "Employees",
+		"where": " where "+employeesource+"_Reference<>-1 " + employeewhere + skillswhere,
+		"engineerid": employeesource+"_EngineerID"
+	}, {
+		"table": "tblSuppliers",
+		"resourceid": 'CONCAT("Subcontractors",tblSupplier_Ref)',
+		"resourcename": 'tblSupplier_Name',
+		"resourcetype": "Subcontractors",
+		"where": " where tblSupplier_TaxTreatment<>'' " + subbiewhere,
+		"engineerid": "tblSupplier_Ref"
+	}, {
+		"table": "tblStock",
+		"resourceid": 'tblstock_stockcode',
+		"resourcename": 'CONCAT(tblstock_stockcode," - ",tblstock_description)',
+		"resourcetype": "Plant",
+		"where": " where tblstock_itemtype=-2",
+		"engineerid": "tblstock_stockcode"
+	}]
+
+	$.ajax({
+		type: "POST",
+		url: "/planner/resources",
+		data: {
+			queryparam: postData
+		}
+	}).done(function(returndata) {
+		$('#planneranchor').jsplanner("clearResourceData");
+		$('#planneranchor').jsplanner("addResourceData", returndata);
+		$('#planneranchor').jsplanner("jsplannerredraw");
+	});
+}
+
+function loadPlannerDefaults(){
+    var resultsobj = <%= DesktopDefault.all.to_json.html_safe %>;
+    isMJobAutonumber = -1;
+    $('#planneranchor').jsplanner("jsplannerSetOpt", "appointmentduewarninghours", resultsobj[0].tblCDefaults_appointmentduewarninghours);
+    if (resultsobj[0].tblCDefaults_isSundayWorked == 0) {
+      $('#planneranchor').jsplanner("jsplannerSetExclusionPeriod", {
+        startday: "Sunday",
+        endday: "Monday",
+        starttime: '00:00',
+        endtime: '00:00'
+      })
+    } else {
+      $('#planneranchor').jsplanner("jsplannerSetExclusionPeriod", {
+        startday: "Sunday",
+        endday: "Sunday",
+        starttime: '00:00',
+        endtime: resultsobj[0].tblCDefaults_SundayStart.substring(0, 5)
+      })
+      $('#planneranchor').jsplanner("jsplannerSetExclusionPeriod", {
+        startday: "Sunday",
+        endday: "Monday",
+        starttime: resultsobj[0].tblCDefaults_SundayEnd.substring(0, 5),
+        endtime: '00:00'
+      })
+    }
+
+    if (resultsobj[0].tblCDefaults_isMondayWorked == 0) {
+      $('#planneranchor').jsplanner("jsplannerSetExclusionPeriod", {
+        startday: "Monday",
+        endday: "Tuesday",
+        starttime: '00:00',
+        endtime: '00:00'
+      })
+    } else {
+      $('#planneranchor').jsplanner("jsplannerSetExclusionPeriod", {
+        startday: "Monday",
+        endday: "Monday",
+        starttime: '00:00',
+        endtime: resultsobj[0].tblCDefaults_MondayStart.substring(0, 5)
+      })
+      $('#planneranchor').jsplanner("jsplannerSetExclusionPeriod", {
+        startday: "Monday",
+        endday: "Tuesday",
+        starttime: resultsobj[0].tblCDefaults_MondayEnd.substring(0, 5),
+        endtime: '00:00'})
+    }
+
+    if (resultsobj[0].tblCDefaults_isTuesdayWorked == 0) {
+      $('#planneranchor').jsplanner("jsplannerSetExclusionPeriod", {
+        startday: "Tuesday",
+        endday: "Wednesday",
+        starttime: '00:00',
+        endtime: '00:00'
+      })
+    } else {
+      $('#planneranchor').jsplanner("jsplannerSetExclusionPeriod", {
+        startday: "Tuesday",
+        endday: "Tuesday",
+        starttime: '00:00',
+        endtime: resultsobj[0].tblCDefaults_TuesdayStart.substring(0, 5)
+      })
+      $('#planneranchor').jsplanner("jsplannerSetExclusionPeriod", {
+        startday: "Tuesday",
+        endday: "Wednesday",
+        starttime: resultsobj[0].tblCDefaults_TuesdayEnd.substring(0, 5),
+        endtime: '00:00'
+      })
+    }
+
+    if (resultsobj[0].tblCDefaults_isWednesdayWorked == 0) {
+      $('#planneranchor').jsplanner("jsplannerSetExclusionPeriod", {
+        startday: "Wednesday",
+        endday: "Thursday",
+        starttime: '00:00',
+        endtime: '00:00'
+      })
+    } else {
+      $('#planneranchor').jsplanner("jsplannerSetExclusionPeriod", {
+        startday: "Wednesday",
+        endday: "Wednesday",
+        starttime: '00:00',
+        endtime: resultsobj[0].tblCDefaults_WednesdayStart.substring(0, 5)
+      })
+      $('#planneranchor').jsplanner("jsplannerSetExclusionPeriod", {
+        startday: "Wednesday",
+        endday: "Thursday",
+        starttime: resultsobj[0].tblCDefaults_WednesdayEnd.substring(0, 5),
+        endtime: '00:00'
+      })
+    }
+
+    if (resultsobj[0].tblCDefaults_isThursdayWorked == 0) {
+      $('#planneranchor').jsplanner("jsplannerSetExclusionPeriod", {
+        startday: "Thursday",
+        endday: "Friday",
+        starttime: '00:00',
+        endtime: '00:00'
+      })
+    } else {
+      $('#planneranchor').jsplanner("jsplannerSetExclusionPeriod", {
+        startday: "Thursday",
+        endday: "Thursday",
+        starttime: '00:00',
+        endtime: resultsobj[0].tblCDefaults_ThursdayStart.substring(0, 5)
+      })
+      $('#planneranchor').jsplanner("jsplannerSetExclusionPeriod", {
+        startday: "Thursday",
+        endday: "Friday",
+        starttime: resultsobj[0].tblCDefaults_ThursdayEnd.substring(0, 5),
+        endtime: '00:00'
+      })
+    }
+
+    if (resultsobj[0].tblCDefaults_isFridayWorked == 0) {
+      $('#planneranchor').jsplanner("jsplannerSetExclusionPeriod", {
+        startday: "Friday",
+        endday: "Saturday",
+        starttime: '00:00',
+        endtime: '00:00'
+      })
+    } else {
+      $('#planneranchor').jsplanner("jsplannerSetExclusionPeriod", {
+        startday: "Friday",
+        endday: "Friday",
+        starttime: '00:00',
+        endtime: resultsobj[0].tblCDefaults_FridayStart.substring(0, 5)
+      })
+      $('#planneranchor').jsplanner("jsplannerSetExclusionPeriod", {
+        startday: "Friday",
+        endday: "Saturday",
+        starttime: resultsobj[0].tblCDefaults_FridayEnd.substring(0, 5),
+        endtime: '00:00'
+      })
+    }
+
+    if (resultsobj[0].tblCDefaults_isSaturdayWorked == 0) {
+      $('#planneranchor').jsplanner("jsplannerSetExclusionPeriod", {
+        startday: "Saturday",
+        endday: "Sunday",
+        starttime: '00:00',
+        endtime: '00:00'
+      })
+    } else {
+      $('#planneranchor').jsplanner("jsplannerSetExclusionPeriod", {
+        startday: "Saturday",
+        endday: "Saturday",
+        starttime: '00:00',
+        endtime: resultsobj[0].tblCDefaults_SaturdayStart.substring(0, 5)
+      })
+      $('#planneranchor').jsplanner("jsplannerSetExclusionPeriod", {
+        startday: "Saturday",
+        endday: "Sunday",
+        starttime: resultsobj[0].tblCDefaults_SaturdayEnd.substring(0, 5),
+        endtime: '00:00'
+      })
+    }
+
+    $("#visitsrefrow").prop("disabled", true);
+    $("#visitref").prop("text", "Autonumber");
+    $('#planneranchor').jsplanner("jsplannerredraw");
+}
+
+function formatselect(item) { return "<span class='dropdowntext'>"+ item.field1+"</span><span class='dropdowntext' style='text-align:right;margin-left:10px'>"+ item.field2 +"</span>"; }
+function formatdisplay(item) { return item.textcombined; }
+
+function reloadJobDropDown(defaultcontract,defaultmjob){
+
+  $.ajax({ //load the job numbers dropdown contents
+    type: "GET",
+    url: "/planner/contract_list"
+  }).done(function(contractunfilteredobj) {
+      //var contractunfilteredobj = $.parseJSON(returndata);
+      contractunfilteredobj.unshift({'id':-1,'field1':'','field2':'','textcombined':''});
+      $('#jobnoselect').select2('destroy');
+      $('#jobnoselect').select2({
+          data:{ results: contractunfilteredobj, text: 'textcombined' },
+          formatSelection: formatdisplay,
+          formatResult: formatselect,
+          placeholder:"Pick Contract"
+      });
+      $('#jobnoselect').select2('val',defaultcontract);
+
+  });
+
+
+  $.ajax({ //load the mjob numbers dropdown contents
+    type: "GET",
+    url: "/planner/mjob_list"
+  }).done(function(mjoblist) {
+      //var mjoblist = $.parseJSON(returndata);
+      mjoblist.unshift({'id':-1,'field1':'','field2':'','textcombined':''});
+      $('#mjobselect').select2('destroy');
+      $('#mjobselect').select2({
+          data:{ results: mjoblist, text: 'textcombined' },
+          formatSelection: formatdisplay,
+          formatResult: formatselect,
+          placeholder:"Pick M-Job"
+      });
+      $('#mjobselect').select2('val',defaultmjob);
+
+  });  
+
+}
+
+function setPlannerFilters(tabno){
+
+  $("#jsplannerfiltertabs").tabs("option", "active", tabno-1 );
+  $("#plannerfiltersdialog").dialog({
+          height: 450,
+          width: 400,
+          modal: true,
+          title: "Planner Filters"
+         });
+}
+
+$("#filterdialogclose").click(function (){
+   $("#plannerfiltersdialog").dialog('close');
+ }); 
+   
+
+
+function calcBusinessDays(dDate1, dDate2) { // input given as Date objects
+    var iWeeks, iDateDiff, iAdjust = 0;
+    if (dDate2 < dDate1) return -1; // error code if dates transposed
+    var iWeekday1 = dDate1.getDay(); // day of week
+    var iWeekday2 = dDate2.getDay();
+    iWeekday1 = (iWeekday1 == 0) ? 7 : iWeekday1; // change Sunday from 0 to 7
+    iWeekday2 = (iWeekday2 == 0) ? 7 : iWeekday2;
+    if ((iWeekday1 > 5) && (iWeekday2 > 5)) iAdjust = 1; // adjustment if both days on weekend
+    iWeekday1 = (iWeekday1 > 5) ? 5 : iWeekday1; // only count weekdays
+    iWeekday2 = (iWeekday2 > 5) ? 5 : iWeekday2;
+
+    // calculate differnece in weeks (1000mS * 60sec * 60min * 24hrs * 7 days = 604800000)
+    iWeeks = Math.floor((dDate2.getTime() - dDate1.getTime()) / 604800000)
+
+    if (iWeekday1 <= iWeekday2) {
+      iDateDiff = (iWeeks * 5) + (iWeekday2 - iWeekday1)
+    } else {
+      iDateDiff = ((iWeeks + 1) * 5) - (iWeekday1 - iWeekday2)
+    }
+    iDateDiff -= iAdjust // take into account both days on weekend
+    return (iDateDiff + 1); // add 1 because dates are inclusive
+}
+
+
+</script>

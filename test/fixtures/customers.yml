@@ -1,0 +1,63 @@
+TestCustomer1:
+  ref: JWID1
+  name: James' Widgets
+  contact_name: James N
+  vat_reg_no: GB0123456
+  notes: TestNotes1
+  address_1: 213 Warwards Lane
+  address_2:
+  town: Birmingham
+  region: West Midlands
+  postcode: B29 7QU
+  country_code: GB
+  tel: 01234 567890
+  tel_2: 07841234567
+  fax: 07841234568
+  email: james.srn@gmail.com
+  email2: james.srn@gmail.com
+  email3: james.srn@gmail.com
+  www: http://www.jsrn.net
+  xid_tax_rate: 0
+
+TestCustomer2:
+  ref: TN2
+  name: TestName2
+  contact_name: TestContactName2
+  vat_reg_no: dfg
+  notes: TestNotes2
+  address_1: 123 Test St
+  address_2:
+  town: Birmingham
+  region: West Midlands
+  postcode: B29 7QU
+  country_code: GB
+  tel: 01234 567890
+  tel_2: 07841234567
+  fax: 07841234568
+  email: test2@example.com
+  email2: test2@example.com
+  email3: test2@example.com
+  www: http://www.test2.com
+  xid_tax_rate: 0
+
+customer_3:
+  ref:          ABS001
+  name:         Testing Stuff Ltd.
+  contact_name: Jerry T.
+  vat_reg_no:   dfg
+  notes:        TestNotes2
+  address_1:    123 Test St
+  address_2:
+  town:         Birmingham
+  region:       West Midlands
+  postcode:     B29 7QU
+  country_code: GB
+  tel:          01234 567890
+  tel_2:        07841234567
+  fax:          07841234568
+  email:        test2@example.com
+  email2:       test2@example.com
+  email3:       test2@example.com
+  www:          http://www.test2.com
+  xid_tax_rate: 0
+  link_id:      1202

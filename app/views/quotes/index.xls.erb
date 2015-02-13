@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">Number</Data></Cell>
+        <Cell><Data ss:Type="String">Name</Data></Cell>
+        <Cell><Data ss:Type="String">Date</Data></Cell>
+        <Cell><Data ss:Type="String">Details</Data></Cell>
+        <Cell><Data ss:Type="String">Net</Data></Cell>
+        <Cell><Data ss:Type="String">VAT</Data></Cell>
+        <Cell><Data ss:Type="String">Total</Data></Cell>
+        <Cell><Data ss:Type="String">Status</Data></Cell>
+        <Cell><Data ss:Type="String">Contract / MJob</Data></Cell>
+      </Row>
+    <% @quotes.each do |quote| %>
+      <Row>
+        <Cell><Data ss:Type="Number"><%= quote.id %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= quote.customer.name if not quote.customer.nil? %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= quote.date.strftime('%d/%m/%Y') %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= quote.details %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= quote.net %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= quote.vat %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= quote.net + quote.vat %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= quote.status %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= raw attachment_link(quote) %></Data></Cell>
+      </Row>
+    <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>

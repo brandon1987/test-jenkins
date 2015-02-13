@@ -1,0 +1,26 @@
+<form class="mail-settings-form stacked-form" onsubmit="return false;">
+	<fieldset class="recipient-checkboxes" style="width: 50%; float: left; padding-right: 5px;">
+		<label for="<%= section %>_to_1">To</label>
+		<br>
+		<input type="checkbox" id="<%= section %>_to_1" name="<%= section %>_to_1"<%= " checked" if @mail_preferences["#{section}_to_1"] == 1 %>>
+		<label for="<%= section %>_to_1">Customer email address 1</label>
+		<br>
+		<input type="checkbox" id="<%= section %>_to_2" name="<%= section %>_to_2"<%= " checked" if @mail_preferences["#{section}_to_2"] == 1 %>>
+		<label for="<%= section %>_to_2">Customer email address 2</label>
+		<br>
+		<input type="checkbox" id="<%= section %>_to_3" name="<%= section %>_to_3"<%= " checked" if @mail_preferences["#{section}_to_3"] == 1 %>>
+		<label for="<%= section %>_to_3">Customer email address 3</label>	
+	</fieldset>
+	<fieldset style="width: 50%; float: left; padding-left: 5px;">
+		<label for="<%= section %>_cc">CC</label>
+		<textarea id="<%= section %>_cc" name="<%= section %>_cc"><%= @mail_preferences["#{section}_cc"] %></textarea>
+
+		<label for="<%= section %>_bcc">BCC</label>
+		<textarea id="<%= section %>_bcc" name="<%= section %>_bcc"><%= @mail_preferences["#{section}_bcc"] %></textarea>
+	</fieldset>
+
+	<label for="<%= section %>_body" style="clear: both; padding-top: 5px;">Body</label>
+	<textarea name="<%= section %>_body" id="<%= section %>_body"><%= @mail_preferences["#{section}_body"] %></textarea>
+
+	<button class="email-template-save-button save-button">Save</button>
+</form>
