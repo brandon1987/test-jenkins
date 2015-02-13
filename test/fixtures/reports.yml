@@ -1,7 +1,0 @@
-Report1:
-   filename: JNCExample.mrt
-   is_default: 0
-
-Report2:
-   filename: TestReport1.mrt
-   is_default: 1
