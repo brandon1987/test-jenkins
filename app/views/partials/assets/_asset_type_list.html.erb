@@ -1,0 +1,18 @@
+
+	<thead>
+		<tr>
+			<th>Type Name</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% AssetType.all.each do |assettype|%>
+
+			<tr id='<%=assettype.id%>'>
+				<td>
+					<%=assettype.type_name%>
+				</td>
+			</tr>
+		<%end%>		
+	</tbody>
+
+

@@ -1,0 +1,18 @@
+<%statusvalue='' if statusvalue.nil?%>
+
+<select id='popup_asset_status' class='standarddropdown'>
+	<option></option>	
+	<% AssetStatus.select("id,status_name").each do |status| %>
+		<option   <%='selected' if statusvalue==status.status_name%>  value='<%= status.status_name %>'> <%=status.status_name %></option>
+	<% end %>
+</select>
+
+
+<script>
+	$(document).ready(function() {
+		$("#popup_asset_status").select2({
+			dropdownAutoWidth:true,
+			placeholder:"Select A Status"
+		});
+	});
+</script>

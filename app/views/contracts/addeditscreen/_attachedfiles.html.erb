@@ -1,0 +1,44 @@
+  <table style='margin-top:-30px'>
+    <tr>
+        <td>
+            <div class="borderpanel gridpanel" style="width:500px;height:487px">
+                <h5>Attached Files</h5>    
+                <div  id="currentattachedfileslist" > <!--loaded by ajax for responsiveness--></div>         
+
+                <button id="deleteattachment" class="delete-button" style="width:150px;float:right;margin-top:10px;margin-left:7px">Delete</button>
+                <button id="downloadattachment" class="regular-button" style="width:150px;float:right;margin-top:10px">Download</button>                      
+            </div>
+
+            
+
+        </td>
+        <td>
+
+            <div class='borderpanel' style='width:500px;height:487px;margin-left:10px;position:relative'>
+
+                <h5>Upload Your Images</h5>
+                <table style='width:100%'>
+                    <tr>
+                        <td>
+                            <form id='fileuploadform' enctype="multipart/form-data" onSubmit="return false;">
+                            <input type="file" id="attachmentfiles"  class='nice' multiple/>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style='text-align:right'>
+                            <button id="uploadattachments" class="regular-button" style="width:150px;margin-right:5px;margin-top:-5px">Upload</button>                            
+                        </td>
+                    </tr>
+                </table>
+
+                <div id="filestoupload" style='overflow-y:auto;height:300px'></div>
+                <div class="labelpanel" style="position:absolute;bottom:7px;left:7px;right:7px">
+                    <h5>File Storage</h5>
+                    Uploaded files are stored on Construction Manager's secure cloud storage server hosted by Amazon AWS                
+                </div>
+            </div>
+        </td>
+
+    </tr>
+</table>

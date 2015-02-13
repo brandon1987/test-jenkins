@@ -1,0 +1,6 @@
+<% items.each do |tag, text| %>
+<li data-perm="<%= "#{prefix}#{tag}" %>">
+	<input type="checkbox"<%= " checked" if @access_rights["#{prefix}#{tag}"] %>>
+	<%= text %>
+</li>
+<% end %>

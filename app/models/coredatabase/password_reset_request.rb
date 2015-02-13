@@ -1,0 +1,2 @@
+class PasswordResetRequest < Core
+end

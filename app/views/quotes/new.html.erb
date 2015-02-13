@@ -1,0 +1,21 @@
+<% content_for :page_specific_headers do %>
+  <script type="text/javascript" src="/assets/quotes/new.js"></script>
+  <link rel="stylesheet" type="text/css" href="/assets/quotes.css">
+  <script type="text/javascript">
+    COMPANY_ID = <%= session[:company_id] %>;
+    PRODUCTS_LIST = <%= raw @products_json %>;
+
+    CAN_EDIT   = <%= @access_rights["quotes_edit"] %>;
+  </script>
+<% end %>
+
+
+<%= render "quotemenu" %>
+
+<section class="row" style="margin-top: 0;">
+	<h1 id="quote-h1" style="margin-top: 0; margin-bottom: 0;">New Quote</h1>
+</section>
+
+<%= render "quoteform" %>
+
+<%= render "quotes/ordercreationdialog" %>

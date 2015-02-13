@@ -1,0 +1,45 @@
+<form class="aligned-form" style="width: 50%; float: left;">
+	<div>
+		<label for="ref">Ref</label>
+		<input type="text" id="ref" value="<%= @quote.ref %>" maxlength="32">
+	</div>
+
+	<div>
+		<label for="ex_ref">Ex ref</label>
+		<input type="text" id="ex_ref" value="<%= @quote.ex_ref %>" maxlength="32">
+	</div>
+
+	<div>
+		<label for="classification_id">Classification</label>
+		<select id="classification_id">
+			<% DesktopContractType.select(:id, :name).each do |c| %>
+			<option value="<%= c.id %>"<%= " selected" if c.id == @quote.classification_id %>><%= c.name %></option>
+			<% end %>
+		</select>
+	</div>
+
+	<div>
+		<label for="analysis_id">Job analysis</label>
+		<select id="analysis_id">
+			<% DesktopJobAnalysis.select(:id, :name).each do |anal| %>
+			<option value="<%= anal.id %>"<%= " selected" if anal.id == @quote.analysis_id %>><%= anal.name %></option>
+			<% end %>
+		</select>
+	</div>
+
+	<div>
+		<label for="project_manager_id">Project manager</label>
+		<select id="project_manager_id">
+			<option></option>
+			<% DesktopEmployee.project_managers.select("tblEmployee_Reference,CONCAT(tblEmployee_FirstName,' ',tblEmployee_Surname) AS managername").each do |projectmanager| %>
+				<option<%= ' selected' if @quote.project_manager_id==projectmanager.tblEmployee_Reference%> value='<%=projectmanager.tblEmployee_Reference %>'><%= projectmanager.managername %></option>
+			<% end %>
+			<% DesktopEmployeeCIS.project_managers.select("tblEmployeeCIS_Reference,CONCAT(tblEmployeeCIS_FirstName,' ',tblEmployeeCIS_Surname) AS managername").each do |projectmanager| %>
+				<option<%='  selected' if @quote.project_manager_id==projectmanager.tblEmployeeCIS_Reference%>  value='<%=projectmanager.tblEmployeeCIS_Reference %>'><%= projectmanager.managername %></option>
+			<% end %>
+		</select>
+	</div>
+</form>
+
+
+

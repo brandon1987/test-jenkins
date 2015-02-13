@@ -1,0 +1,2 @@
+module CompanyPreferencesHelper
+end

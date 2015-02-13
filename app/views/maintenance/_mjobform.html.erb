@@ -1,0 +1,51 @@
+<div  style='padding:0' class='content-main' >
+  <div id='maintabs' style="border-radius: 0;display:none">
+    <ul>
+      <li><a href="#maintab0"><span>Details</span></a></li>
+      <li><a href="#maintab1"><span>Defaults</span></a></li>
+      <li><a href="#maintab2"><span>Repetition</span></a></li>
+      <li><a href="#maintab3"><span>Attachments</span></a></li>
+      <li><a href="#maintab4"><span>Transactions</span></a></li>
+      <li><a href="#maintab5"><span>Schedule</span></a></li>    
+      <li><a href="#maintab6"><span>Markups & Invoices</span></a></li>
+
+      <button id="back-button" class="regular-button" title="Back"><a href="/maintenance"><i class="fa fa-caret-left fa-2x"></i></a></button>
+      <button id="mjob_save_button" class="save-button" title="Save"><i class="fa fa-save fa-2x"></i></button>      
+    </ul>  
+
+    <div id='maintab0' class='maintenance-screen-tabs'  >
+    <!-- Main Job Tab  !-->
+      <%= render "mjob_tab_0" %>
+    </div>
+
+    <div id='maintab1'>
+    <!-- Defaults Tab  !-->
+      <%= render "mjob_tab_1" %>
+
+    </div>
+
+    <div id='maintab2'>
+    <!-- Repetition Tab  !-->
+
+    </div> 
+
+    <div id='maintab3'>
+    <!-- Attachments Tab  !-->
+      <%= render "mjob_tab_3" %>
+    </div> 
+
+    <div id='maintab4'>
+    <!-- Transactions Tab  !-->
+      <%= render "mjob_tab_4" %>
+    </div> 
+    <div id='maintab5'>
+    <!-- Shedule of Rates Tab  !-->
+
+    </div> 
+    <div id='maintab6'>
+    <!-- markups & inv Tab  !-->
+
+    </div> 
+  </div>
+</div>
+

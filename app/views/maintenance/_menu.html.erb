@@ -1,0 +1,40 @@
+<ul class="sub-menu-bar" style="font-size: small;">
+	<%if @access_rights["maintenance_add"] %>
+		<li id="new-button"><%= link_to 'New', controller: 'maintenance', action: 'new' %></li>
+	<% end %>
+
+	<% if @access_rights["maintenance_edit"] %>
+		<li id="edit-maintenance-button">Record</li>
+	<% end %>	
+
+	<% if @access_rights["maintenance_delete"] %>
+		<li id="delete-maintenance-button">Delete</li>
+	<% end %>	
+
+
+	<li style="display:none">Job Card</li>
+
+	<% if @access_rights["maintenance_jobprogress"] %>
+		<li style="display:none">Job Progress</li>
+	<% end %>	
+		
+	<% if @access_rights["maintenance_invoice"] %>
+		<li style="display:none">Invoice</li>
+	<% end %>	
+
+	
+
+	<li style="display:none">Site Addresses</li>
+
+
+	<% if @access_rights["maintenance_scheduleofrates"] %>
+		<li style="display:none">SOR</li>
+	<% end %>	
+	
+	
+	<li style="display:none">Excel</li>
+	<li style="display:none">Maintenance Details</li>
+
+</ul>
+
+

@@ -1,0 +1,30 @@
+<div  style='padding:0' class='content-main' >
+  <div id='maintabs' style="border-radius: 0;display:none">
+    <ul>
+      <li><a href="#maintab0"><span>Equipment Record</span></a></li>
+      <li><a href="#maintab1"><span>Service Plans</span></a></li>
+      <li><a href="#maintab2"><span>Service History</span></a></li>
+
+
+      <button id="back-button" class="regular-button" title="Back"><a href="/assets"><i class="fa fa-caret-left fa-2x"></i></a></button>
+      <button id="asset_save_button" class="save-button" title="Save"><i class="fa fa-save fa-2x"></i></button>      
+    </ul>  
+
+    <div id='maintab0' class='asset-screen-tabs'  >
+    <!-- Details Tab  !-->
+      <%= render "assetform" %>
+    </div>
+
+    <div id='maintab1'>
+    <!-- Service Plans  !-->
+
+
+    </div>
+
+    <div id='maintab2'>
+    <!-- Service History  !-->
+
+    </div> 
+
+  </div>
+</div>

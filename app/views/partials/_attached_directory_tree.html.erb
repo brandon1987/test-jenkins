@@ -1,0 +1,40 @@
+
+<% 
+
+
+def traversetree(location)
+	folderstructure=getAmazonFolderStructure(location)
+		puts folderstructure.to_json
+	output="<ul>"
+	output<<"<li class='jstree-open tree-root'>"
+	output<<recursefolders(folderstructure,"")
+	output<<"</li>"
+	output<<"</ul>"
+	return output
+end
+
+def recursefolders (parent,currentpath)
+	output=""
+	if parent.getsubfolders.length!=0
+		output<<"<ul>"
+		parent.getsubfolders.each do |folder|
+
+			output<<"<li class='jstree-open' data-path='/#{currentpath+folder.name}'>"
+			output<<folder.name
+			output<<recursefolders(folder,currentpath+folder.name+"/")
+			output<<"</li>"
+		end
+		output<<"</ul>"
+	end
+	return output
+end
+
+
+%>
+
+<%=traversetree("#{folder}/#{id}").html_safe%>
+
+
+
+
+

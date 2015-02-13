@@ -1,0 +1,110 @@
+<div class="borderpanel asset_details_panel">
+	<h5>Asset details</h5>
+	<form>
+		<table class="asset_details_table">
+			<tr>
+				<td class="asset_label_column">
+					Name
+				</td>
+				<td>
+					<input id="asset_name" type="text" class="standardinput">
+				</td>
+			</tr>
+			<tr>
+				<td class="asset_label_column">
+					Make
+				</td>
+				<td>
+					<input id="asset_make" type="text" class="standardinput">
+				</td>
+			</tr>
+			<tr>
+				<td class="asset_label_column">
+					Model
+				</td>
+				<td>
+					<input id="asset_model" type="text" class="standardinput">
+				</td>
+			</tr>						
+			<tr>
+				<td class="asset_label_column">
+					Serial No.
+				</td>
+				<td>
+					<input id="asset_serial_no" type="text" class="standardinput">
+				</td>
+			</tr>						
+			<tr>
+				<td class="asset_label_column">
+					Site Address
+				</td>
+				<td>
+					<%= render "/partials/popups/site_address_popup", :xidcontract => -1,:addressid=> @asset.xid_site_address,:withaddbutton=>true %>
+				</td>
+			</tr>	
+			
+		</table>
+		<!-- column 2 -->
+		<table class="asset_details_table">
+					
+			<tr>
+				<td class="asset_label_column">
+					Type
+				</td>
+				<td>
+					<%= render "/partials/popups/asset_type_popup",:statusvalue=> @asset.type%>
+				</td>
+			</tr>	
+			<tr>
+				<td class="asset_label_column">
+					Status
+				</td>
+				<td>
+					<%= render "/partials/popups/asset_status_popup",:statusvalue=> @asset.status%>
+
+				</td>
+			</tr>
+					
+						
+			<tr>
+				<td class="asset_label_column">
+					Installation Date
+				</td>
+				<td>
+					<input id='asset_installation_date' value="<%=date_format(@asset.installation_date) if !@asset.installation_date.nil?  %>" class='standardinput datepicker'>
+				</td>
+			</tr>						
+			<tr>
+				<td class="asset_label_column">
+					Decommission Date
+				</td>
+				<td>
+					<input id='asset_decomission_date' value="<%=date_format(@asset.decomission_date) if !@asset.decomission_date.nil?  %>" class='standardinput datepicker'>
+
+				</td>
+			</tr>
+
+
+		</table>
+		<table>
+
+			<tr>
+				<td class="asset_label_column" style="vertical-align:top;padding-top:10px;">
+					Location Description
+				</td>
+				<td>
+					<textarea id="asset_location_description" class="standardtextarea" style="margin-right:10px"></textarea>
+				</td>					
+				<td class="asset_label_column" style="vertical-align:top;padding-top:10px;">
+					Notes
+				</td>
+				<td>
+					<textarea id="asset_notes" class="standardtextarea" ></textarea>
+				</td>
+			
+			</tr>	
+		</table>
+
+	</form>
+
+</div>

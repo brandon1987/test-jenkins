@@ -1,0 +1,99 @@
+<% @site_address ||= DesktopSiteAddress.new %>
+
+<form id="address-data-form" onsubmit="return false;">
+	<section class="aligned-form" style="width: 50%; float: left;">
+		<div>
+			<label for="address_name">Name</label>
+			<input type="text" id="address_name" name="address[name]" placeholder="Name" value="<%= @site_address.name %>">
+		</div>
+
+		<div>
+			<label for="address_ref">Ref</label>
+			<input type="text" id="address_ref" name="address[ref]" placeholder="Ref" value="<%= @site_address.ref %>">
+		</div>
+
+		<div>
+			<label for="address">Street 1</label>
+			<input type="text" id="address" name="address[address_1]" placeholder="Street 1" value="<%= @site_address.address_1 %>">
+		</div>
+
+		<div>
+			<label for="address_2">Street 2</label>
+			<input type="text" id="address_2" name="address[address_2]" placeholder="Street 2" value="<%= @site_address.address_2 %>">
+		</div>
+
+		<div>
+			<label for="town">Town</label>
+			<input type="text" id="town" name="address[address_3]" placeholder="Town" value="<%= @site_address.address_3 %>">
+		</div>
+
+		<div>
+			<label for="county">County</label>
+			<input type="text" id="county" name="address[address_4]" placeholder="County" value="<%= @site_address.address_4 %>">
+		</div>
+
+		<div>
+			<label for="postcode">Post code</label>
+			<input type="text" id="postcode" name="address[address_5]" placeholder="Post code" value="<%= @site_address.address_5 %>">
+		</div>
+
+		<div>
+			<label for="fax">Fax</label>
+			<input type="text" id="fax" name="address[fax]" placeholder="Fax" value="<%= @site_address.fax %>">
+		</div>
+
+		<div>
+			<label for="tel">Tel</label>
+			<input type="text" id="tel" name="address[tel]" placeholder="Tel" value="<%= @site_address.tel %>">
+		</div>
+	</section>
+	<section class="aligned-form" style="width: 50%; float: left;">
+		<div>
+			<label for="workphone">Tel (Work)</label>
+			<input type="text" id="workphone" name="address[work_phone]" placeholder="Tel (Work)" value="<%= @site_address.work_phone %>">
+		</div>
+
+		<div>
+			<label for="mobile">Tel (Mobile)</label>
+			<input type="text" id="mobile" name="address[mobile_phone]" placeholder="Tel (Mobile)" value="<%= @site_address.mobile_phone %>">
+		</div>
+
+		<div>
+			<label for="homephone">Tel (Home)</label>
+			<input type="text" id="homephone" name="address[home_phone]" placeholder="Tel (Home)"
+			 value="<%= @site_address.home_phone %>">
+		</div>
+
+		<div>
+			<label for="descrip">Description</label>
+			<input type="text" id="descrip" name="address[description]" placeholder="Description" value="<%= @site_address.description %>">
+		</div>
+
+		<div>
+			<label for="email">Email</label>
+			<input type="text" id="email" name="address[email]" placeholder="Email" value="<%= @site_address.email %>">
+		</div>
+
+		<div>
+			<label for="contact">Contact</label>
+			<input type="text" id="contact" name="address[contact]" placeholder="Contact" value="<%= @site_address.contact %>">
+		</div>
+
+		<div>
+			<label for="analysis1">Analysis 1</label>
+			<input type="text" id="analysis1" name="address[analysis_1]" placeholder="Analysis 1" value="<%= @site_address.analysis_1 %>">
+		</div>
+
+		<div>
+			<label for="analysis2">Analysis 2</label>
+			<input type="text" id="analysis2" name="address[analysis_2]" placeholder="Analysis 2" value="<%= @site_address.analysis_2 %>">
+		</div>
+
+		<div>
+			<label for="analysis3">Analysis 3</label>
+			<input type="text" id="analysis3" name="address[analysis_3]" placeholder="Analysis 3" value="<%= @site_address.analysis_3 %>">
+		</div>
+
+		<button id="save-address-btn" class="save-button full-width" style="margin-top: 20px;">Save</button>
+	</section>
+</form>

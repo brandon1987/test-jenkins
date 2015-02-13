@@ -1,0 +1,84 @@
+<form class="aligned-form" style="width: 50%; float: left;">
+	<div>
+		<label for="quote_number">Quote number</label>
+		<input type="text" id="quote_number"<%= " disabled" unless params[:action] == "new" %> value="<%= @quote.number %>">
+	</div>
+
+	<div>
+		<label for="customer">Customer</label>
+		<select name="customer" id="customer" style="width: 70%;">
+			<option value="-1">No Customer</option>
+			<option value="-2">[New Customer]</option>
+			<% Customer.select(:id, :name).each do |customer| %>
+				<option value="<%= customer.id %>"<%= " selected" if @quote[:xid_customer] == customer.id %>><%= customer.name %></option>
+			<% end %>
+		</select>
+	</div>
+
+	<div>
+		<label for="branch">Branch</label>
+		<select name="branch" id="branch">
+			<option value="-1">Default</option>
+			<% @branch_addresses.each do |address| %>
+			<option value="<%= address.id %>"<%= " selected" if @quote.branch_address_id == address.id %>><%= address.add1 %></option>
+			<% end %>
+		</select>
+	</div>
+
+	<div>
+		<label for="address">&nbsp;</label>
+		<textarea name="address" id="address" disabled<%= " style=\"visibility: hidden;\"" unless @quote.xid_customer == -1 %>><%= quote_address %></textarea>
+	</div>
+</form>
+<form class="aligned-form" style="width: 50%; float: left;">
+	<div>
+		<label for="contact_name">Contact name</label>
+		<input type="text" id="contact_name" value="<%= @quote.contact_name %>">
+	</div>
+
+	<div>
+		<label for="contact_email">Contact email</label>
+		<input type="text" id="contact_email" value="<%= @quote.contact_email %>">
+	</div>
+
+	<div>
+		<label for="contact_tel">Contact tel</label>
+		<input type="text" id="contact_tel" value="<%= @quote.contact_tel %>">
+	</div>
+
+
+	<div>
+		<label for="status">Status</label>
+		<select id="status" <%= "disabled" if ["Won", "Invoiced"].include? @quote[:status] %>>
+			<%= render "statusoptions" %>
+		</select>
+	</div>
+
+	<div>
+		<label for="quotedate">Date</label>
+		<input id="quotedate" value="<%= date_format(@quote[:date])	%>">
+	</div>
+
+	<div>
+		<label for="site_address">Site Address</label>
+		<select name="site_address" id="site_address" style="width: 70%;">
+			<option value="-1">See customer address</option>
+			<option value="-2">[New site address]</option>
+			<% DesktopSiteAddress.select(:id, :name).each do |address| %>
+				<option value="<%= address.id %>"<%= " selected" if address.id == @quote.address_id %>><%= address.name %></option>
+			<% end %>
+		</select>
+	</div>
+</form>
+
+<form action="" class="quotes-textfields aligned-form" style="clear: both;">
+	<div>
+		<label for="quotenotes">Header</label>
+		<textarea id="quotenotes" cols="30" rows="10" style="height: 50px;"><%= @quote[:details] %></textarea>
+	</div>
+
+	<div>
+		<label for="instructions">Description of works</label>
+		<textarea name="quote[instructions]" id="instructions" cols="30" rows="20"><%= @quote.instructions %></textarea>
+	</div>
+</form>

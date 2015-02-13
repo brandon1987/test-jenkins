@@ -1,0 +1,23 @@
+#products {
+  background: white;
+  color: #34495e;
+  //box-shadow: -5px 9px 2px #2980b9;
+}
+
+.dataTable td {
+  border-color: white;
+}
+
+#add-edit-product-form input, #add-edit-product-form select, #add-edit-product-form textarea{
+  border-color: #FFF;
+}
+
+#add-edit-product-form input:focus, #add-edit-product-form select:focus, #add-edit-product-form textarea:focus{
+  border-color: #34495e;
+}
+
+.regular-width-col {
+	width:     100px;
+	max-width: 100px;
+	min-width: 100px;
+}

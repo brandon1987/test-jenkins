@@ -1,0 +1,6 @@
+<ul class="sub-menu-bar">
+	<li><%= link_to 'New', controller: 'customers', action: 'new' %></li>
+	<li onclick="editSelectedCustomer()">Edit</li>
+	<li id="delete-customer-button" onclick="checkCustomerDelete()">Delete</li>
+	<li id="bulk-customer-import-button" onclick="bulkCustomerImport()">Import from Desktop Client</li>
+</ul>

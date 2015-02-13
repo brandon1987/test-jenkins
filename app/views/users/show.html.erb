@@ -1,0 +1,452 @@
+<% content_for :page_specific_headers do %>
+  <link rel="stylesheet" type="text/css" href="/assets/users.css">
+<% end %>
+
+<section class="row">
+	<h1>Details for <%= @user.username %></h1>
+
+	<h2>Access Rights</h2>
+
+	<div class="button-bar" style="margin-bottom: 10px;">
+		<!--<button onclick="enablePostings();">Enable Postings</button>
+		<button onclick="disablePostings();">Disable Postings</button>-->
+		<button id="save-access-rights" type="submit">Save Access Rights</button>
+	</div>
+
+	<div id="accordion">
+		<h3>General</h3>
+		<div>
+			<ul>
+			<%= render "permli", :perm => "constructionmanageradministration", :label => "Construction Manager Administration" %>
+			<%= render "permli", :perm => "databackup", :label => "Data Backup" %>
+			</ul>
+		</div>
+
+		<!--<h3>Contracts</h3>
+		<div>
+			<table>
+				<thead>
+					<tr>
+						<th>Contracts</th>
+						<th>Job management</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							<ul>
+								<%= render "permlis", :prefix => "contracts_", :items => {
+									"new"          => "New",
+									"edit"         => "Edit",
+									"delete"       => "Delete",
+									"editnotes"    => "Edit Notes",
+									"changestatus" => "Change Status"
+								} %>
+							</ul>
+						</td>
+						<td>
+							<ul>
+								<%= render "permlis", :prefix => "contracts_jobmanagement_", :items => {
+									"activity"    => "Activity",
+									"wip"         => "WIP",
+									"adjustments" => "Adjustments",
+									"valuation"   => "Valuation"
+								} %>
+							</ul>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<h3>Customers</h3>
+		<div>
+			<table>
+				<thead>
+					<tr>
+						<th>Customers</th>
+						<th>Applications</th>
+						<th>Certificates</th>
+						<th>Receipts</th>
+						<th>Invoices</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							<ul>
+								<%= render "permlis", :prefix => "customers_", :items => {
+									"add"            => "Add",
+									"edit"           => "Edit",
+									"delete"         => "Delete"
+								} %>
+							</ul>
+						</td>
+						<td>
+							<ul>
+								<%= render "permlis", :prefix => "customers_applications_", :items => {
+									"add"            => "Add",
+									"edit"           => "Edit",
+									"delete"         => "Delete",
+									"certify_post"   => "Certify/Post",
+									"salesinvoices"  => "Sales Invoices"
+								} %>
+							</ul>
+						</td>
+						<td>
+							<ul>
+								<%= render "permlis", :prefix => "customers_certificates_", :items => {
+									"post"   => "Post",
+									"delete" => "Delete"
+								} %>
+							</ul>
+						</td>
+						<td>
+							<ul>
+								<%= render "permlis", :prefix => "customers_receipts_", :items => {
+									"new"    => "New",
+									"delete" => "Delete"
+								} %>
+							</ul>
+						</td>
+						<td>
+							<ul>
+								<%= render "permlis", :prefix => "customers_invoices_", :items => {
+									"newinvoice" => "New",
+									"newcredit"  => "Edit",
+									"edit"       => "Delete",
+									"delete"     => "Edit Notes",
+									"invoicing"  => "Change Status",
+									"post"       => "Post"
+								} %>
+							</ul>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<h3>Labour</h3>
+		<div>
+			<table>
+				<thead>
+					<tr>
+						<th>Labout</th>
+						<th>Timesheets</th>
+						<th>Employees</th>
+						<th>Pay rates</th>
+						<th>Pay groups</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							<ul>
+								<%= render "permlis", :prefix => "labour_", :items => {
+									"labourratesvisible" => "Labour Rates Visible",
+									"edit"               => "Edit",
+									"delete"             => "Delete"
+								} %>
+							</ul>
+						</td>
+						<td>
+							<ul>
+								<%= render "permlis", :prefix => "labour_timesheets_", :items => {
+									"new"             => "New",
+									"edit"            => "Edit",
+									"delete"          => "Delete",
+									"post"            => "Post"
+								} %>
+							</ul>
+						</td>
+						<td>
+							<ul>
+								<%= render "permlis", :prefix => "labour_employees_", :items => {
+									"new"             => "New",
+									"edit"            => "Edit",
+									"delete"          => "Delete"
+								} %>
+							</ul>
+						</td>
+						<td>
+							<ul>
+								<%= render "permlis", :prefix => "labour_payrates_", :items => {
+									"new"             => "New",
+									"edit"            => "Edit",
+									"delete"          => "Delete"
+								} %>
+							</ul>
+						</td>
+						<td>
+							<ul>
+								<%= render "permli", :perm => "labour_paygroups", :label => "Paygroups" %>
+							</ul>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>-->
+
+		<h3>Maintenance</h3>
+		<div>
+			<ul>
+				<%= render "permlis", :prefix => "maintenance_", :items => {
+					"add"             => "Add",
+					"edit"            => "Edit",
+					"delete"          => "Delete",
+					"jobprogress"     => "Job Progress",
+					"invoice"         => "Invoice",
+					"repetitions"     => "Repetitions",
+					"scheduleofrates" => "Schedule of Rates"
+				} %>
+			</ul>
+		</div>
+
+		<h3>Planner</h3>
+		<div>
+			<ul>
+				<%= render "permlis", :prefix => "calendar_", :items => {
+					"add"           => "Add",
+					"edit"          => "Edit",
+					"delete"        => "Delete"
+				} %>
+			</ul>
+		</div>
+
+		<!--<h3>Plant</h3>
+		<div>
+			<ul>
+				<%= render "permlis", :prefix => "plant_", :items => {
+					"add"         => "Add",
+					"edit"        => "Edit",
+					"delete"      => "Delete",
+					"pop"         => "POP"
+				} %>
+			</ul>
+		</div>
+
+		<h3>Subcontractors</h3>
+		<div>
+			<table>
+				<thead>
+					<tr>
+						<th>Applications</th>
+						<th>Certificates</th>
+						<th>Worksheets</th>
+						<th>Payments</th>
+						<th>Returns</th>
+						<th>POP</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							<ul>
+								<%= render "permlis", :prefix => "subcontractors_applications_", :items => {
+									"new"           => "New",
+									"edit"          => "Edit",
+									"delete"        => "Delete",
+									"certify_post"  => "Post"
+								} %>
+							</ul>
+						</td>
+						<td>
+							<ul>
+								<%= render "permlis", :prefix => "subcontractors_certificates_", :items => {
+									"new"           => "New",
+									"batch"         => "Batch",
+									"edit"          => "Edit",
+									"delete"        => "Delete",
+									"post"          => "Post"
+								} %>
+							</ul>
+						</td>
+						<td>
+							<ul>
+								<%= render "permlis", :prefix => "subcontractors_worksheets_", :items => {
+									"new"           => "New",
+									"edit"          => "Edit",
+									"certify_post"  => "Certify/Post",
+									"delete"        => "Delete"
+								} %>
+							</ul>
+						</td>
+						<td>
+							<ul>
+								<%= render "permlis", :prefix => "subcontractors_payments_", :items => {
+									"new"       => "Add",
+									"edit"      => "Edit",
+									"delete"    => "Delete",
+									"post"      => "Post"
+								} %>
+							</ul>
+						</td>
+						<td>
+							<ul>
+								<%= render "permlis", :prefix => "subcontractors_returns_", :items => {
+									"new"           => "Add",
+									"edit"          => "Edit",
+									"delete"        => "Delete",
+									"esubmissions"  => "E Submissions"
+								} %>
+							</ul>
+						</td>
+						<td>
+							<ul>
+								<%= render "permlis", :prefix => "subcontractors_pop_", :items => {
+									"new"           => "Add",
+									"edit"          => "Edit",
+									"delete"        => "Delete",
+									"application"   => "Application",
+									"certify"       => "Certify",
+									"approval_post" => "Approval/Post"
+								} %>
+							</ul>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<h3>Suppliers</h3>
+		<div>
+			<table>
+				<thead>
+					<tr>
+						<th>Suppliers</th>
+						<th>Invoice</th>
+						<th>Products</th>
+						<th>Purchase orders</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							<ul>
+								<%= render "permli", :perm => "suppliers_new", :label => "New" %>
+								<%= render "permli", :perm => "suppliers_edit", :label => "Edit" %>
+								<%= render "permli", :perm => "suppliers_delete", :label => "Delete" %>
+							</ul>
+						</td>
+						<td>
+							<ul>
+								<%= render "permlis", :prefix => "suppliers_invoice_", :items => {
+									"newinvoice" => "New Invoice",
+									"newcredit"  => "New Credit",
+									"edit"       => "Edit",
+									"delete"     => "Delete",
+									"post"       => "Post"
+								} %>
+							</ul>
+						</td>
+						<td>
+							<ul>
+								<%= render "permlis", :prefix => "suppliers_products_", :items => {
+									"in"     => "In",
+									"out"    => "Out",
+									"edit"   => "Edit",
+									"delete" => "Delete"
+								} %>
+							</ul>
+						</td>
+						<td>
+							<ul>
+								<%= render "permlis", :prefix => "suppliers_purchaseorders_", :items => {
+									"new"           => "New",
+									"edit"          => "Edit",
+									"delete"        => "Delete",
+									"order"         => "Order",
+									"goodsreceived" => "Goods Received",
+									"update"        => "Update",
+									"orderactivity" => "Order Activity",
+									"post"          => "Post",
+									"approval"      => "Approval"
+								} %>
+							</ul>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>-->
+
+		<h3>Quotes</h3>
+		<div>
+			<ul>
+				<%= render "permlis", :prefix => "quotes_", :items => {
+					"add"           => "New",
+					"edit"          => "Edit",
+					"delete"        => "Delete",
+					"order"         => "Order",
+					"invoice"       => "Invoice",
+					"email"         => "Email"
+				} %>
+			</ul>
+		</div>
+	</div>
+</section>
+
+<script>
+function mapTree() {
+	$("#accordion > ul > li").each(function(){
+		if ($(this).children("ul").length > 0) {
+			var node = $(this);
+
+			var nodeHTML = node.html();
+			nodeHTML = '<input type="checkbox"> ' + nodeHTML;
+			node.html(nodeHTML);
+
+			node.children("input").click(function(){
+				var checked = node.children("input").prop("checked");
+				node.children("ul").find("input").prop("checked", checked);
+			});
+		}
+	});
+}
+
+function saveAccessRights() {
+	var permissions = {};
+
+	$("li[data-perm]").each(function(){
+		var perm   = $(this).attr("data-perm");
+		var status = $(this).find("input[type=checkbox]").prop("checked");
+
+		permissions[perm] = status;
+	});
+
+	$.ajax({
+		type: "PATCH",
+		url: "/user_access_rights/<%= @user.id %>",
+		data: {
+			permissions: permissions
+		},
+		success: function(response) {
+			console.log(response);
+		}
+	});
+}
+
+function enablePostings() {
+	setPostings(true);
+}
+
+function disablePostings() {
+	setPostings(false);
+}
+
+function setPostings(state) {
+	$("#accordion [data-perm]").each(function(){
+		var perm = $(this).attr("data-perm");
+		if (perm.indexOf("_post") != -1) {
+			$(this).find("[type=checkbox]").prop("checked", state);
+		}
+	});
+}
+
+$(function(){
+	mapTree();
+
+	$("button#save-access-rights").click(saveAccessRights);
+	$("#accordion").accordion({ collapsible: true, heightStyle: "content" });
+});
+
+</script>

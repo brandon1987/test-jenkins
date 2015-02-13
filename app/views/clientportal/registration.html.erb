@@ -1,0 +1,95 @@
+<% content_for :page_specific_headers do %>
+  <link rel="stylesheet" type="text/css" href="/assets/clientportal.css">
+  <script type="text/javascript" src="/assets/clientportal/registration.js"></script>
+<%end%>
+
+<header class="login-header">
+
+      <table class='product-name-frame' style='empty-cells:show'>
+      <tr>
+        <td rowspan=2>
+          <img src='<%=image_path("logo.svg")%>' style="height:135px;width:135px;margin-right:7px;margin-top:-5px">
+        </td>
+        <td>Construction</td>
+         </tr>
+      <tr>
+        <td>Manager.Net</td>
+      </tr>
+      <tr><td></td>
+      </td><td style='line-height:10px'> <span class="company-name">by JNC Solutions Ltd.</span></td></tr>
+    </table>
+
+	<br>
+
+</header>
+
+
+	<section class="login-page-section">
+	  Client Portal Registration<p>
+
+  	<div class="notice-box"  style='<%="display:none" if InviteCode.where(:invite_code => params[:invite]).count!=0 %>' >
+  		<strong>This invitation code has already been used to register a user or has expired. Please contact your contractor for a new invitation.</strong> .
+    </div>
+    <div class="clientportal-registration-box"  style='<%="display:none" if InviteCode.where(:invite_code => params[:invite]).count==0 %>'  >
+      Please fill in the details below to complete your registration
+      <form action="#" onsubmit="return false;">
+        <input type="text" name="clientportal-username" id="clientportal-username" placeholder="Username" autocomplete="off">
+        <input type="password" name="clientportal-password" id="clientportal-password" placeholder="Password" autocomplete="off">
+        <input type="password" name="clientportal-repeat-password" id="clientportal-repeat-password" placeholder="Repeat Password" autocomplete="off">
+        <input type="hidden" name="clientportal-invite" id="clientportal-invite" value="<%=params[:invite]%>">
+        <button id="clientportal-register-button">Register</button>
+        <div id="clientportal-error-message-wrapper" class="notice-box"></div>
+      </form>
+    </div>
+	</section>
+
+
+
+<section class="login-page-section expandingsection" style="padding:0px!important;">
+
+</section>
+
+
+<section class="login-page-section">
+
+</section>
+
+
+
+
+
+<footer id="footer">
+			<a target="_blank" href="/termsandconditions">Terms &amp; Conditions</a> 
+			<span style="font-style: normal;">|</span>
+			<a target="_blank" href="/privacy">Privacy Policy</a> 
+			<span style="font-style: normal;">|</span>
+			<a target="_blank" href="http://docs.constructionmanager.net">User Manual</a>
+</footer>
+
+<script>
+function sendLoginRequest() {
+  $('#log-in-button').setButtonActive();
+  $.ajax({
+    type: 'POST',
+    url: '/login/check',
+    data: {
+      username: $("#clientportal-username").val(),
+      password: $("#clientportal-password").val(),
+      invite: $("#clientportal-invite").val()
+    },
+    success: function(response) {
+      if( response.error != undefined ) {
+        $('#log-in-button').setButtonFailed("Invalid username or password");
+      } else {
+        document.location = "/welcome"
+      }
+    },
+    dataType: 'json'
+  });
+}
+
+$(function() {
+  $('#log-in-button').click(sendLoginRequest);
+  $("#username").focus();
+});
+</script>

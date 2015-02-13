@@ -1,0 +1,3 @@
+class ServicePlan < Core
+
+end

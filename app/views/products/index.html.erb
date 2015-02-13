@@ -1,0 +1,44 @@
+<% content_for :page_specific_headers do %>
+  <script type="text/javascript" src="/assets/products/index.js"></script>
+  <script type="text/javascript" src="/assets/products/upload.js"></script>
+  <link rel="stylesheet" type="text/css" href="/assets/products.css">
+<% end %>
+
+<ul class="sub-menu-bar">
+	<li><%= link_to 'New', controller: 'products', action: 'new' %></li>
+	<li id="edit-stock-item-button">Edit</li>
+	<li id="delete-stock-item-button">Delete</li>
+	<li id="stock-import-button">Import from CSV</li>
+	<li id="sage-import-button">Import from Sage</li>
+</ul>
+
+<%= render "partials/csv_upload_form", {
+	prefix:  "products",
+	columns: ["Stock Code*", "Description*", "Long Description", "Cost Price*", "Unit of Sale*"],
+	callback: "postProductCSV"
+} %>
+
+<div class="content-main">
+	<table id="product-grid">
+		<thead>
+			<tr>
+				<th>Code</th>
+				<th>Short Description</th>
+				<th>Long Description</th>
+				<th>Unit Cost</th>
+				<th>Unit Type</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @products.each do |product| %>
+			<tr id="<%= dom_id(product) %>">
+				<td><%= product.code %></td>
+				<td><%= product.short_description %></td>
+				<td><%= product.long_description %></td>
+				<td><%= money_format(product.unit_cost) %></td>
+				<td><%= product.unit_type %></td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>

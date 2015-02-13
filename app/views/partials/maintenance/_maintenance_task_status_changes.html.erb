@@ -1,0 +1,24 @@
+
+	<thead>
+		<tr>
+			<th>User</th>
+			<th>Status</th>
+			<th>Timestamp</th>
+		</tr>
+	</thead>
+	<tbody>
+
+		<%unless id.nil? %>
+
+			<% DesktopMaintenanceTaskStatusChanges.includes(:desktop_maintenance_status).where(xidmjob: id).each do |statuschange| %>
+				<tr>
+					<td><%= statuschange.user  %></td>	
+					<td><%= statuschange.desktop_maintenance_status.statusname %></td>	
+					<td><%= datetime_format(statuschange.timestamp) %></td>	
+
+
+				</tr>
+
+			<%end%>
+		<%end%>
+	</tbody>

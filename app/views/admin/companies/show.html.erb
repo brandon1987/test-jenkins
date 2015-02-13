@@ -1,0 +1,91 @@
+<h1>Details for <%= @company.display_name %> <i>(id: <%= @company.id %>)</i></h1>
+
+<% if @users.empty? %>
+<div class="alert alert-info" role="alert">
+	This company has no users. The first user you create will automatically become the company's primary user.
+</div>
+
+<% else %>
+<h2>Users</h2>
+
+<table class="table table-striped">
+	<thead>
+		<th>ID</th>
+		<th>Email</th>
+		<th></th>
+		<th></th>
+	</thead>
+	<tbody>
+		<% @users.each do |user| %>
+		<tr>
+			<td><%= user.id %></td>
+			<td><%= user.username %></td>
+			<td><a href="/admin/users/<%= user.id %>">View</a></td>
+			<td><a href="/admin/users/<%= user.id %>/use" target="_blank">Use</a></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+<% end %>
+
+<%= form_tag("/admin/users", method: "POST") do %>
+  <%= label_tag(:username, "Email") %>
+  <%= text_field_tag(:username) %>
+  <input type="hidden" name="company_id" value="<%= @company.id %>">
+  <button type="submit" class="btn btn-sm btn-primary">Create User</button>
+<% end %>
+
+<h2>Invites</h2>
+
+<table class="table table-striped">
+	<thead>
+		<th>Recipient</th>
+		<th></th>
+	</thead>
+	<tbody>
+		<% @invites.each do |invite| %>
+		<tr id="<%= dom_id(invite) %>">
+			<td><%= invite.recipient %></td>
+			<td><a href="/admin/users/revoke_invite/<%= invite.id %>">Revoke</a></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<%= form_tag("/admin/users/invite", method: "POST") do %>
+  <%= label_tag(:username, "Email") %>
+  <%= text_field_tag(:username) %>
+  <input type="hidden" name="company_id" value="<%= @company.id %>">
+  <button type="submit" class="btn btn-sm btn-primary">Invite User</button>
+<% end %>
+
+<h2>Products Licensed</h2>
+
+<table class="table table-striped">
+	<thead>
+		<th>Contracts</th>
+		<th>Maintenance</th>
+		<th>Visit List</th>
+		<th>Purchase Orders</th>
+		<th>Purchase Invoices</th>
+		<th>Quotes</th>
+		<th>Customers</th>
+		<th>Planner</th>
+		<th>Products</th>
+		<th>Reports</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td><%= render "permbutton", :label => "contracts", :status => @permission.contracts %></td>
+			<td><%= render "permbutton", :label => "maintenance", :status => @permission.maintenance %></td>
+			<td><%= render "permbutton", :label => "visitlist", :status => @permission.visitlist %></td>
+			<td><%= render "permbutton", :label => "purchaseorders", :status => @permission.purchaseorders %></td>
+			<td><%= render "permbutton", :label => "purchaseinvoices", :status => @permission.purchaseinvoices %></td>
+			<td><%= render "permbutton", :label => "quotes", :status => @permission.quotes %></td>
+			<td><%= render "permbutton", :label => "customers", :status => @permission.customers %></td>
+			<td><%= render "permbutton", :label => "planner", :status => @permission.planner %></td>
+			<td><%= render "permbutton", :label => "products", :status => @permission.products %></td>
+			<td><%= render "permbutton", :label => "reports", :status => @permission.reports %></td>
+		</tr>
+	</tbody>
+</table>

@@ -1,0 +1,131 @@
+<% pretty_prefix ||= prefix.capitalize %>
+
+<div id="<%= prefix %>-import-dialog" title="Import <%= pretty_prefix %>" style="display: none;">
+	<form action="" method="POST" onsubmit="return false;">
+		Choose a CSV file to import your data:
+		<input type="file" name="<%= prefix %>-data_import_csv">
+		<br>
+		<button onclick="<%= prefix %>CSVUploader.parseCSV();">Import <%= pretty_prefix %></button>
+	</form>
+</div>
+
+<div id="<%= prefix %>-column-checklist-dialog" title="Import Columns" style="display: none;">
+	<form id="<%= prefix %>-upload-column-selections" class="aligned-form upload-columns-form" onsubmit="return false;">
+		<label for="<%= prefix %>-upload-range-from">Upload range</label>
+		<input id="<%= prefix %>-upload-range-from" name="upload-range-from" value="1">
+		<div class="upload-range-spacer">to</div>
+		<input id="<%= prefix %>-upload-range-to" name="upload-range-to">
+
+		<label for="<%= prefix %>-upload-column-has-headers">Skip first row?</label>
+		<input type="checkbox" id="<%= prefix %>-upload-column-has-headers" name="upload-column-has-headers" checked>
+
+		<br>
+
+		<div class="upload-column-list">
+			<% columns.each do |column| %>
+			<div>
+				<label for="<%= prefix %>-ul-col-select-<%= column.downcase.tr(" *", "") %>"><%= column %></label>
+				<select name="<%= prefix %>-columns[<%= column.downcase.tr(" *", "") %>]" id="<%= prefix %>-ul-col-select-<%= column.downcase.tr(" *", "") %>">
+				</select>
+			</div>
+			<% end %>
+		</div>
+
+		<button id="<%= prefix %>-confirm-upload-button" onclick="<%= prefix %>CSVUploader.uploadCSVData();">Upload Data</button>
+	</form>
+</div>
+
+<script type="text/javascript">
+$(function() {
+	<%= prefix %>CSVUploader.setUpStockImportDialog();
+	<%= prefix %>CSVUploader.setUpChecklistDialog();
+});
+
+var <%= prefix %>CSVUploader = {
+	setUpStockImportDialog: function() {
+		$('#<%= prefix %>-import-dialog').dialog({
+			width: '400px',
+			modal: 'true',
+			autoOpen: false,
+			resizable: false
+		});
+	},
+
+	setUpChecklistDialog: function() {
+		$("#<%= prefix %>-column-checklist-dialog").dialog({
+			width: '400px',
+			modal: 'true',
+			autoOpen: false,
+			resizable: false
+		});
+	},
+
+	setUpChecklistForm: function(data) {
+		var columnString = data.columns;
+		var rowCount     = data.rows;
+
+		if (columnString !== null) {
+			columnString = columnString.replace(/\+/g, ' ');
+
+			var colArray = columnString.split(",");
+
+			var columnOptions = '<option value="-1"></option>';
+			for (var i = 0; i < colArray.length; i++) {
+				var colName = colArray[i].replace(/ /g,'');
+				colName = colName.toLowerCase();
+				var chr = String.fromCharCode(65 + i);
+				columnOptions += '<option value="' + i + '">(' + chr + ') ' + colArray[i] + '</option>';
+			}
+
+			$("#<%= prefix %>-upload-column-selections .upload-column-list select").html(columnOptions);
+
+			$("#<%= prefix %>-upload-range-to").val(rowCount);
+
+			$('#<%= prefix %>-import-stock-dialog').dialog('close');
+			$("#<%= prefix %>-column-checklist-dialog").dialog('open');
+		}
+	},
+
+	parseCSV: function() {
+		$('input[name=<%= prefix %>-data_import_csv]').parse({
+			config: {
+				complete: function(results) {
+					var data = {
+						columns: results.data[0].join(","),
+						rows:    results.data.length
+					};
+
+					<%= prefix %>CSVUploader.setUpChecklistForm(data);
+				}
+			}
+		});
+	},
+
+	uploadCSVData: function() {
+		var formData = new FormData();
+
+		formData.append('file',       $('input[name=<%= prefix %>-data_import_csv]')[0].files[0]);
+		formData.append('from',       $("#<%= prefix %>-upload-range-from").val());
+		formData.append('to',         $("#<%= prefix %>-upload-range-to").val());
+
+		if ($("#<%= prefix %>-upload-column-has-headers").is(":checked")) {
+			formData.append("skip_first", 1);
+		} else {
+			formData.append("skip_first", 0);
+		}
+
+		$("#<%= prefix %>-upload-column-selections .upload-column-list select").each(function() {
+			var name = $(this).attr("name");
+			var val  = $(this).val();
+			formData.append(name, val);
+		});
+
+		<%= callback %>(formData);
+	},
+
+	closeDialogs: function() {
+		$('#<%= prefix %>-import-dialog').dialog('close');
+		$("#<%= prefix %>-column-checklist-dialog").dialog('close');
+	}
+}
+</script>

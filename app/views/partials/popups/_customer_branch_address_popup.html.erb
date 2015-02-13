@@ -1,0 +1,21 @@
+
+
+<%addressid=-2 if addressid.nil?%>
+<%customerid=-2 if customerid.nil?%>
+<%customerref="" if customerref.nil?%>
+
+<select id='popup_customerbranchaddress' class='standarddropdown'>	
+	<option></option>
+	<% DesktopCustomerSiteAddress.select("tblBranchAddressesCustomer_ID,CONCAT(tblBranchAddressesCustomer_Name,' - ',tblBranchAddressesCustomer_Add1) as popupdescription,tblBranchAddressesCustomer_XIDCustomerRef,tblBranchAddressesCustomer_XIDCustomer").where("tblBranchAddressesCustomer_XIDCustomer = ? or tblBranchAddressesCustomer_XIDCustomerRef = ?", customerid, customerref).each do |address| %>
+		<option value='<%= address.tblBranchAddressesCustomer_XIDCustomer %>' <%='selected' if addressid==address.tblBranchAddressesCustomer_ID %>><%= escape_nil(address.popupdescription) %></option>
+	<% end %>
+</select>
+
+<script>
+	$(document).ready(function() {
+		$("#popup_customerbranchaddress").select2({
+			dropdownAutoWidth:true,
+			placeholder:""
+		});
+	});
+</script>

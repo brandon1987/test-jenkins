@@ -1,0 +1,19 @@
+<ul class="sub-menu-bar">
+	<% if @access_rights["quotes_add"] %>
+	<li><%= link_to 'New', controller: 'quotes', action: 'new' %></li>
+	<% end %>
+
+	<li id="edit-quote-button"><%= edit_label %></li>
+
+	<% if @access_rights["quotes_delete"] %>
+	<li id="delete-quote-button">Delete</li>
+	<% end %>
+	<li><a href="/quotes/printable_list" target="_blank">Print list</a></li>
+	<% if reports_enabled? %>
+	<li id="print-quote-button">Print</li>
+	<% if @access_rights["quotes_email"] %>
+	<li id="bulk-email-button">Auto email</li>
+	<% end %>
+	<% end %>
+    <li><a href="/quotes.xls">Excel</a></li>
+</ul>

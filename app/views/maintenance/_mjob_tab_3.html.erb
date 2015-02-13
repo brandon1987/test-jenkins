@@ -1,0 +1,64 @@
+<div id="filelistloading"><span>Loading...</span></div>                            
+
+<table style='margin-top:-30px'>
+    <tr>
+        <td>
+            <div class="borderpanel gridpanel" style="width:910px;height:487px">
+
+                <h5 style="margin-bottom:10px">Attached Files</h5> 
+                    <table style="width:100%;height:100%;margin-right:5px">
+                    <tr>
+                        <td style="width:400px;vertical-align:top;">   
+                            <div id="attachedfilesdirectorytree" >
+
+                            </div>
+                            <button id="attachmentfolderadd" class="attachmentsfolderbutton">Create Folder</button<a href=""></a>
+                            <button id="attachmentfolcerrename" class="attachmentsfolderbutton">Rename Folder</button<a href=""></a>
+                            <button id="attachmentfolderdelete" class="attachmentsfolderbutton">Delete Folder</button<a href=""></a>
+                        </td>
+                        <td style="vertical-align:top;">
+
+                            <div id="currentattachedfilescontainer" style="background:white;padding:0px;;margin-right:5px;height:383px;width:490px">
+                                <div  id="currentattachedfileslist" style="width:490px;"></div>
+                            </div>  
+                            <button id="deleteattachment" class="delete-button" style="width:150px;float:right;margin-top:10px;margin-left:7px;margin-right:5px">Delete</button>
+                            <button id="downloadattachment" class="regular-button" style="width:150px;float:right;margin-top:10px;">Download</button>                                       
+                        </td>
+                    </tr>
+                </table>
+                  
+                </div>
+
+
+
+        </td>
+        <td>
+
+            <div class='borderpanel' style='width:400px;height:487px;margin-left:10px;position:relative'>
+
+                <h5>Upload Your Images</h5>
+                <table style='width:100%'>
+                    <tr>
+                        <td style="padding-top:7px">
+                            <form id='fileuploadform' enctype="multipart/form-data" onSubmit="return false;">
+                            <input type="file" id="attachmentfiles"  class='nice' multiple/>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style='text-align:right'>
+                            <button id="uploadattachments" class="regular-button" style="width:150px;margin-right:15px;margin-top:-5px">Upload</button>                            
+                        </td>
+                    </tr>
+                </table>
+
+                <div id="filestoupload" style='overflow-y:auto;height:300px'></div>
+                <div class="labelpanel" style="position:absolute;bottom:12px;left:12px;right:12px">
+                    <h5>File Storage</h5>
+                    Uploaded files are stored on Construction Manager's secure cloud storage server hosted by Amazon AWS                
+                </div>
+            </div>
+        </td>
+
+    </tr>
+</table>

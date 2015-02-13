@@ -1,0 +1,15 @@
+<% content_for :page_specific_headers do %>
+  <script type="text/javascript" src="/assets/customers/edit.js"></script>
+  <script type="text/javascript" src="/assets/customers/save_customer.js"></script>
+  <link rel="stylesheet" type="text/css" href="/assets/customers.css">
+<% end %>
+
+<ul class="sub-menu-bar">
+	<li class="menu-back-button"><%= link_to 'Back to list', controller: 'customers' %></li>
+</ul>
+
+<section class="row">
+	<h1 style="margin: 0;font-weight: normal;">Editing Customer <b><%= @customer.name %></b></h1>
+</section>
+
+<%= render "detailsform" %>

@@ -1,0 +1,19 @@
+<!--[if lt IE 7]>
+	<p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+<![endif]-->
+
+<div id="top-banner">
+	<a href="/clientportal/home"><span class="header-product-name"><img src='<%=image_path("logo.svg")%>'  style="height:45px;width:45px;margin-top:-10px;margin-right:7px">ConstructionManager.Net</span></a>
+	
+	<span class="owner-name-label">
+		<%=session[:company_name]%>
+	</span>	
+	<span class="company-name-label" >
+		<% if session[:hijacked_session] %>
+		&nbsp; <%= session[:company_id] %>: <%= session[:username] %>
+		<% else %>
+		<%= @section_name_override.nil? ? params[:controller].capitalize.gsub("_", " ") : @section_name_override %>
+		<% end %>
+	</span>
+
+</div>

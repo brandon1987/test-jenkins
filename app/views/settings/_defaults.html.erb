@@ -1,0 +1,51 @@
+<div id="defaults-tabs">
+	<ul>
+		<li><a href="#quote-defaults-tab">Quotes</a></li>
+	</ul>
+
+	<div id="quote-defaults-tab">
+		<div style="width: 33.3%; float: left;">
+			<form action="aligned-form">
+				<div>
+					<label for="quote-num-to-contract-num">Use quote number as contract number</label>
+					<input id="quote-num-to-contract-num" type="checkbox" name="company_preferences[quote_num_to_contract_num]"<%= " checked" if @company_preferences.quote_num_to_contract_num %>>
+				</div>
+
+				<div>
+					<label for="quote-start-number">Start number</label>
+					<input type="text" id="quote-start-number" name="company_preferences[quote_start_number]" value="<%= @company_preferences.quote_start_number %>">
+				</div>
+			</form>
+		</div>
+		<div style="width: 33.3%; float: left;">
+			<div style="margin-bottom: 10px;">
+				<table id="quote-status-table">
+					<thead>
+						<tr>
+							<td>Name</td>
+							<td>Default</td>
+							<td>Hidden</td>
+							<td></td>
+						</tr>
+					</thead>
+					<tbody>
+						<% QuoteStatus.all.each do |status| %>
+						<tr id="<%= dom_id(status) %>">
+							<td><%= status.name %></td>
+							<td><%= status.is_default %></td>
+							<td><%= status.is_hidden %></td>
+							<td></td>
+						</tr>
+						<% end %>
+					</tbody>
+				</table>
+			</div>
+
+			<form action="" onsubmit="return false;">
+				<input type="text" id="new-custom-status-name"> <button id="add-custom-status-btn">Add</button>
+			</form>
+		</div>
+		<div style="width: 33.3%; float: left;">
+		</div>
+	</div>
+</div>

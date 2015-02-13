@@ -1,0 +1,21 @@
+<%engineerid="" if engineerid.nil?%>
+
+<select id='popup_engineers' class='standarddropdown'>
+	<option></option>	
+	<% DesktopEmployee.select("CONCAT(tblEmployee_FirstName,' ',tblEmployee_Surname) AS engineername,tblEmployee_EngineerID,tblEmployee_Reference").where("tblEmployee_EngineerID!=''").each do |engineer| %>
+		<option   <%='selected' if engineerid==engineer.tblEmployee_EngineerID%>  value='<%=engineer.tblEmployee_EngineerID %>' data-resourcekey="Employees<%=engineer.tblEmployee_Reference%>"> <%= engineer.engineername %></option>
+	<% end %>
+	<% DesktopEmployeeCIS.select("CONCAT(tblEmployeeCIS_FirstName,' ',tblEmployeeCIS_Surname) AS engineername,tblEmployeeCIS_EngineerID,tblEmployeecis_Reference").where("tblEmployeeCIS_EngineerID!=''").each do |engineer| %>
+		<option   <%='selected' if engineerid==engineer.tblEmployeeCIS_EngineerID%>  value='<%=engineer.tblEmployeeCIS_EngineerID%>' data-resourcekey="Employees<%=engineer.tblEmployeecis_Reference%>"> <%= engineer.engineername %></option>
+	<% end %>
+</select>
+
+
+<script>
+	$(document).ready(function() {
+		$("#popup_engineers").select2({
+			dropdownAutoWidth:true,
+			placeholder:"Select An Engineer"
+		});
+	});
+</script>

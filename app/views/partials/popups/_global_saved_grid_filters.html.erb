@@ -1,0 +1,18 @@
+
+<%grid_name="" if grid_name.nil?%>
+
+<select id='<%=grid_name%>_popup_saved_grid_filters' style='width:195px'>	
+	<option value='!!!invisiblenewpreset!!!' data-presetcolumns='' data-presetvalues='' selected>Save as New Preset</option>
+	<% SavedGridFilter.select("preset_name, GROUP_CONCAT(column_title SEPARATOR '|') as presetscolumns,GROUP_CONCAT(filter_setting SEPARATOR '|') as presetvalues ").group("tablename,preset_name").where(tablename: grid_name).each do |preset| %>
+		<option value='<%= preset.preset_name %>' data-presetcolumns='<%=preset.presetscolumns%>' data-presetvalues='<%=preset.presetvalues%>'><%= preset.preset_name %></option>
+	<% end %>
+</select>
+
+<script>
+	function initGridFilterPopup(){
+		$("#<%=grid_name%>_popup_saved_grid_filters").select2({
+			dropdownAutoWidth:false,
+			'width':'195px'
+		});
+	}
+</script>

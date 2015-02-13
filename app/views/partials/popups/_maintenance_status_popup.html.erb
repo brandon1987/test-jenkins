@@ -1,0 +1,18 @@
+<%statusid=-2 if statusid.nil?%>
+
+<select id='popup_mjobstatus' class='standarddropdown'>
+	<option></option>	
+	<% DesktopMaintenanceStatus.select("tblMaintenanceCustomStatuses_ID,tblMaintenanceCustomStatuses_StatusName,tblMaintenanceCustomStatuses_DefaultStatus").each do |status| %>
+		<option   <%='selected' if statusid==status.tblMaintenanceCustomStatuses_ID%>  value='<%= status.tblMaintenanceCustomStatuses_ID %>' <%='selected' if status.tblMaintenanceCustomStatuses_DefaultStatus==-1 && statusid=-2 %> > <%= status.tblMaintenanceCustomStatuses_StatusName %></option>
+	<% end %>
+</select>
+
+
+<script>
+	$(document).ready(function() {
+		$("#popup_mjobstatus").select2({
+			dropdownAutoWidth:true,
+			placeholder:"Select A Status"
+		});
+	});
+</script>

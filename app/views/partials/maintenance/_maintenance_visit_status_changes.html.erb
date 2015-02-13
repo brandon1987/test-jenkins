@@ -1,0 +1,25 @@
+
+	<thead>
+		<tr>
+			<th>Status Changed To</th>
+			<th>Note</th>
+			<th>Timestamp</th>
+		</tr>
+	</thead>
+	<tbody>
+
+		<%unless params[:xidvisit].nil? %>
+
+			<% DesktopMaintenanceVisitStatusChanges.includes(:desktop_integration_status).where(visitref: params[:xidvisit]).each do |statuschange| %>
+				<tr>
+					<td><%= statuschange.desktop_integration_status.integrationstatus_statusname %></td>	
+					<td><%= statuschange.comment %></td>	
+					<td><%= datetime_format(statuschange.timestamp) %></td>	
+
+
+				</tr>
+
+			<%end%>
+		<%end%>
+	</tbody>
+

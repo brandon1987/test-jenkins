@@ -1,0 +1,13 @@
+<ul class="dropdown-menu">
+	<% if session[:clientportal_access].include? "maintenance_tasks"%>
+		<li id='maintenancetasks' style="padding-left:5px;padding-right:5px"><a href='/clientportal/portal_maintenance_task'>Maintenance Job List</a></li>
+	<% end %>
+
+	<% if session[:clientportal_access].include? "maintenance_visits"%>
+		<li id='maintenancevisits' style="padding-left:5px;padding-right:5px"><a href='/clientportal/portal_maintenance_visit'>Maintenance Visits List</a></li>
+	<% end %>
+
+
+    <li style="float: right;"><a href='/clientportal/logout'><i class="fa fa-sign-out fa-lg"></i></a></li>
+    
+</ul>

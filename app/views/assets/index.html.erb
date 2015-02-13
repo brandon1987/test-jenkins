@@ -1,0 +1,46 @@
+
+<% content_for :page_specific_headers do %>
+  
+  <script type="text/javascript" src="/assets/assets/index.js"></script>
+  <link rel="stylesheet" type="text/css" href="/assets/assets.css">
+<% end %>
+
+<%= render "menu" %>
+<div id="asset_type_dialog" style="display:none">
+	<table id="asset_type_dialog_table" style='width:240px;'>
+	</table>
+	<button id="asset_type_add" class="asset_dialog_button">Add</button>
+	<button id="asset_type_delete" class="asset_dialog_button">Delete</button>
+</div>
+
+
+<div id="asset_status_dialog" style="display:none">
+	<table id="asset_status_dialog_table" style='width:240px;'>
+	</table>
+	<button id="asset_status_add" class="asset_dialog_button">Add</button>
+	<button id="asset_status_delete" class="asset_dialog_button">Delete</button>
+</div>
+
+
+
+<div id="main" class="content-main">
+	<table id="assets-table" style="width:100%">
+		<thead>
+			<th>Name</th>
+			<th>Make</th>
+			<th>Model</th>
+			<th>Type</th>
+			<th>Status</th>			
+			<th>Serial No.</th>
+			<th>Location</th>
+			<th>Installation Date</th>
+			<th>Decomission Date</th>
+			<th>Notes</th>
+		</thead>
+	    <tbody>
+
+	    </tbody>	
+
+	</table>
+</div>
+

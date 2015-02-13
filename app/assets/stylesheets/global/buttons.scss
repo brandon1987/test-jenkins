@@ -1,0 +1,182 @@
+.control-bar {
+	list-style: none;
+
+	li {
+		padding-left: 25px;
+		margin-right: 20px;
+		text-align: center;
+		float: left;
+		background-repeat: no-repeat;
+		cursor: pointer;
+	}
+}
+
+button {
+	cursor: pointer;
+	height: 40px;
+	background-color: #2980b9;
+	background-repeat:no-repeat;
+	background-position: center center;
+	background-origin: border-box;
+	background-size: 30px 30px;
+	border-width: 0;
+    font-family: "Open Sans", "Arial", sans-serif;
+	font-weight: 400;
+	color: #fff;
+	padding-right: 10px;
+	padding-left: 10px;
+	border-radius: 6px;
+
+	&:focus {
+		outline: 0;
+	}
+
+	&.right-float {
+		float: right;
+	}
+
+	&[disabled] {
+		background-color: #7f8c8d;
+		color: rgba(0,0,0,0.5);
+	}
+	
+	// Button statuses
+	&:active {
+		box-shadow: #366 0 0 0 0;
+		transition: 0.2s;
+	}
+
+	&.in-use {
+		background-color: #597F96;
+		transition: 0.1s;
+	}
+
+	&.succeeded {
+		background-color: #7FC46C;
+		transition: 0.1s;
+	}
+
+	&.failed {
+		background-color: #E64747;
+		transition: 0.1s;
+	}
+	// End button Statuses
+}
+
+.save-button{
+	background:#2980b9;
+	-webkit-transition:background 0.8s;
+	-moz-transition:background 0.8s;
+	-o-transition:background 0.8s;
+	transition:background 0.8s;
+}
+
+.save-button:not([disabled]):hover {  //added exceptions like this so that disabled buttons don't change colour any more.
+	background: $green;
+}
+
+.delete-button button, button.delete-button{
+	background:#2980b9;
+	-webkit-transition:background 0.8s;
+	-moz-transition:background 0.8s;
+	-o-transition:background 0.8s;
+	transition:background 0.8s
+}
+
+.delete-button[disabled]{
+  background-color: #7f8c8d;
+}
+
+button:not([disabled]).delete-button:hover{
+ 		background: $red;
+}
+
+.delete-button button:not([disabled]):hover{
+	background: $red;
+}
+
+// Button Effects
+button:not(.ui-widget) {
+  display: inline-block;
+  -webkit-transition:background-color 0.4s, -webkit-transform 0.4s;
+  transition:background-color 0.4s, transform 0.4s;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+
+}
+
+// The scaling makes font rendering & tooltips go dodgy
+//button:not([disabled]):hover {
+//  -webkit-transform: scale(1.03);
+//  -ms-transform: scale(1.03);
+//  transform: scale(1.03);
+//}
+
+.regular-button:hover{background-color: #34495e;}
+.save-button:hover{background-color: $green;}
+.delete-button button:hover, button.delete-button:hover{background-color: $red;}
+
+button[disabled]:hover{
+  background: #7f8c8d;
+ // -webkit-transform: scale(1);
+ // -ms-transform: scale(1);
+ // transform: scale(1);
+}
+
+.regular-button[disabled]{
+  background-color: white;
+  color:#ccc;
+}
+
+.button-toggled-on{
+  background: $orange !important;
+  -webkit-transition:background 0.8s;
+  -moz-transition:background 0.8s;
+  -o-transition:background 0.8s;
+  transition:background 0.8s
+}
+
+.button-toggled-on:hover{
+  background: $red !important;
+}
+
+//End of Button Effects
+
+#invite-list .button-column{
+	width: 65px;
+}
+
+//i.fa-gear{
+//	-webkit-transition-duration: 0.8s;
+//	-moz-transition-duration: 0.8s;
+//	-o-transition-duration: 0.8s;
+//	transition-duration: 0.8s;
+//
+//	-webkit-transition-property: -webkit-transform;
+//	-moz-transition-property: -moz-transform;
+//	-o-transition-property: -o-transform;
+//	transition-property: transform;
+//}
+//
+//i.fa-gear:hover {
+//	-webkit-transform:rotate(360deg);
+//	-moz-transform:rotate(360deg); 
+//	-o-transform:rotate(360deg);
+//}
+
+.button-bar {
+	button {
+		margin-right: 10px;
+
+		&:last-of-type {
+			margin-right: 0;
+		}
+	}
+}
+
+button.full-width{
+  width: 100%;
+}

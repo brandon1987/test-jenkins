@@ -1,0 +1,59 @@
+
+<ul class="dropdown-menu">
+	<% if @permitted_modules['customers'] == 1 %>
+	<li id="customers">
+		<span>Customers</span>
+		<ul>
+			<% if @permitted_modules['quotes'] == 1 %>
+			<li><%= link_to 'Quotes', controller: 'quotes' %></li>
+			<% end %>
+			<li><%= link_to 'Manage Customers', controller: 'customers' %></li>
+			<li><%= link_to 'Site Addresses', controller: 'site_addresses' %></li>
+		</ul>
+	</li>
+	<% end %>
+	
+	<% if @permitted_modules['contracts'] == 1 %>
+	<li id='contracts'><%= link_to 'Contracts', controller: 'contracts' %></li>
+	<% end %>
+
+	<% if @permitted_modules['maintenance'] == 1 %>
+	<li id="maintenance">
+		<span>Maintenance</span>
+		<ul>
+			<li><%= link_to 'Maintenance Jobs', controller: 'maintenance' %></li>
+			<% if @permitted_modules['visitlist'] %>
+				<li><%= link_to 'Visit List', controller: 'maintenance_visit' %></li>
+			<% end %>
+			<li><%= link_to 'Equipment Register', controller: 'assets' %></li>
+
+		</ul>
+	</li>
+	<% end %>
+
+
+
+	<% if @permitted_modules['planner'] == 1 %>
+    <li id="planner"><%= link_to 'Planner', controller: 'planner' %></li>
+    <% end %>
+
+	<% if @permitted_modules['products'] == 1 %>
+    <li id="products"><%= link_to 'Products', controller: 'products' %></li>
+    <% end %>
+
+    <% if @permitted_modules['reports'] == 1 %>
+    <li id="reports"><a href="/reports">Reports</a></li>
+    <% end %>
+
+    <li class="expanding_menu_icon" style="float: right;"><%= link_to raw('<i class="fa fa-sign-out fa-lg"></i><div class="expanding_menu_text">Logout</div>'), {:controller => "login", :action => "logout"}, :title => "Logout" %></li>
+    <li class="expanding_menu_icon" id="settings" style="float: right;"><%= link_to raw('<i class="fa fa-gear fa-lg"></i><div class="expanding_menu_text">Settings</div>'), {:controller => "settings", :action => "index"}, :title => "Settings" %></li>
+	<li class="expanding_menu_icon" style="float: right;"><a target="_blank" href="http://docs.constructionmanager.net/<%= @help_link_extension %>"><i class="fa fa-question-circle fa-lg"></i><div class="expanding_menu_text">Help</div></a></li>
+	<li class="expanding_menu_icon" style="float: right;<%='display:none' if UserNotifications.where(user_id:session[:user_id]).count==0 %>" id="notification_menu"><a id="notification_anchor"><i id="notification_icon"  class="fa fa-exclamation-circle fa-lg"></i><div class="expanding_menu_text notification_text">Notifications</div></a></li>
+
+    <li id="testlink" style="float:right;display:none">TEST</li>
+
+</ul>
+
+<div id="notification_panel" style="display:none" >
+
+</div>

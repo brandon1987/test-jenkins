@@ -1,0 +1,18 @@
+<%typevalue='' if typevalue.nil?%>
+
+<select id='popup_asset_type' class='standarddropdown'>
+	<option></option>	
+	<% AssetType.select("id,type_name").each do |type| %>
+		<option   <%='selected' if typevalue==type.type_name%>  value='<%= type.type_name %>'> <%=type.type_name %></option>
+	<% end %>
+</select>
+
+
+<script>
+	$(document).ready(function() {
+		$("#popup_asset_type").select2({
+			dropdownAutoWidth:true,
+			placeholder:"Select A Type"
+		});
+	});
+</script>

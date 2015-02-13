@@ -1,0 +1,52 @@
+<%addressid=-2 if addressid.nil?%>
+<%xidcontract=-1 if xidcontract.nil?%>
+<%withaddbutton=false if withaddbutton.nil?%>
+
+<%if withaddbutton%>
+<%	popupclass="standarddropdownwithadd"%>
+<%else%>
+<%	popupclass="standarddropdown"%>
+<%end%>
+
+<select id='popup_siteaddress' class='<%=popupclass%>'>	
+<option id='-1'></option>
+	<% DesktopSiteAddress.select(:id,:name,:address_1,:address_2,:address_3,:address_4,:address_5).where("tblAddresses_XIDContract=-1 OR tblAddresses_XIDContract=" + xidcontract.to_s).each do |siteaddress| %>
+		<option data-fulladdress='<%=siteaddress.full_address_returns%>' <%='selected' if addressid.to_s==siteaddress.id.to_s %> value='<%= siteaddress.id %>'><%= siteaddress.name + " " + siteaddress.address_1 %></option>
+	<% end %>
+</select>
+<%if withaddbutton %>
+	<button id="addsiteaddress" class="addsiteaddressbutton"><i class="fa  fa-plus"></i></button>
+<%end %>
+<script>
+	$(document).ready(function() {
+		init_site_add_popup();
+	});
+	function init_site_add_popup(){
+		$("#popup_siteaddress").select2({
+			dropdownAutoWidth:true,
+			placeholder:"Select An Address"
+		});	
+	 	$("#addsiteaddress").click(function(){
+	 		try{
+		 		showAddSiteAddress();
+	 		}catch(err){
+	 			console.log(err);
+	 		}
+	 	});		
+		setToolTipSAPopup();
+	 	$("#popup_siteaddress").on("click", function () {
+	 		setToolTipSAPopup();
+	 	});
+	}
+
+	function setToolTipSAPopup(){
+	 	var tip=$("#popup_siteaddress").select2().find(":selected").data("fulladdress");
+
+		$("#s2id_popup_siteaddress").tooltip({
+	 		items: 'div',
+			content:tip
+		});
+	}
+</script>
+
+

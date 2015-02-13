@@ -1,0 +1,51 @@
+.widecolumn{
+	width:200px;
+	max-width:200px;
+	min-width: 200px;
+
+}
+
+.asset_label_column{
+	width:150px;
+	padding-right:10px;	
+}
+
+.asset_details_panel{
+
+  margin-left:10px;
+
+	width:860px;
+}
+
+#maintabs.ui-tabs .ui-tabs-panel {
+  padding-left:5px;
+}
+
+#maintabs.ui-tabs .ui-tabs-nav{
+  margin-bottom:0px;
+
+}
+
+.asset_details_table{
+  display:inline-block;
+  vertical-align: top;
+  margin-right:10px;
+}
+
+
+
+.asset_dialog_button{
+	width:calc(50% - 5px);
+	margin-right:5px;
+	margin-top:10px;
+}
+.asset_dialog_button:last-child{
+	margin-right:0px;
+}
+
+
+.dialogcell{
+	width:300px;
+	max-width: 300px;
+	min-width: 300px;
+}

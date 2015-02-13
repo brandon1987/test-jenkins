@@ -1,0 +1,11 @@
+<% if params[:action] == "new" %>
+  <% @statuses.each do |status| %>
+  <option<%= " selected" if status.default? %>><%= status.name %></option>
+  <% end %>
+<% else %>
+  <% @statuses.each do |status| %>
+  <option<%= " selected" if @quote[:status] == status.name %>><%= status.name %></option>
+  <% end %>
+
+  <option value="Invoiced"<%= " selected" if @quote[:status] == "Invoiced" %> disabled>Invoiced</option>
+<% end %>

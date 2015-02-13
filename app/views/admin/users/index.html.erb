@@ -1,0 +1,17 @@
+<table class="table table-striped">
+	<thead>
+		<th>ID</th>
+		<th>Username</th>
+		<th>Company</th>
+	</thead>
+	<tbody>
+		<% @users.each do |user| %>
+		<tr>
+			<td><%= user.id %></td>
+			<td><%= user.username %></td>
+			<td><%= user.company.display_name %></td>
+			<td><a href="/admin/users/<%=user.id%>">View</a></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>

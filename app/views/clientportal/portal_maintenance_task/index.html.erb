@@ -1,0 +1,19 @@
+
+
+<% content_for :page_specific_headers do %>
+
+  <script type="text/javascript" src="/assets/clientportal/maintenancetask/index.js"></script>
+
+
+  <script>GRID_NAME='portal_maintenance_task_grid<%=params[:customerid]%>'</script>
+  <link rel="stylesheet" type="text/css" href="/assets/maintenance.css">
+<% end %>
+
+<%= render "menu" %>
+
+
+
+
+
+
+<%=render "grid" %>

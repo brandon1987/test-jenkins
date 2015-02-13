@@ -1,0 +1,103 @@
+<% content_for :page_specific_headers do %>
+	<link rel="stylesheet" type="text/css" href="/assets/login.css">
+<% end %>
+
+<header class="login-header">
+	<span class="product-name">Construction Manager</span>
+	<br>
+	<span class="company-name">by JNC Solutions Ltd.</span>
+</header>
+
+<section class="login-page-section">
+	Your colleague has invited you to join them on Construction Manager. Please fill in the following details to get started.
+</section>
+
+<section class="login-page-section sign-up-box">
+	<form class="stacked-form" onsubmit="return false;">
+		<label for="username">Username</label>
+		<input type="text" name="username" id="username" placeholder="Email" value="<%= @invite.recipient %>">
+
+		<label for="password">Password</label>
+		<input type="password" name="password" id="password" placeholder="Password">
+
+		<label for="confirm-password">Confirm Password</label>
+		<input type="password" id="confirm-password" placeholder="Confirm password">
+
+		<button id="sign-up-button" onclick="return false;" disabled>Sign Up</button>
+	</form>
+
+	<div class="notice-span">Passwords must be at least 8 characters long.</div>
+</section>
+
+<script>
+$(function() {
+	$('#sign-up-button').click(sendSignupRequest);
+	$("#password").focus();
+
+	$('#password, #confirm-password').keyup(testPasswords);
+});
+
+function testPasswords() {
+	if (passwordsMatch() && passwordIsComplex()) {
+		$("#sign-up-button").prop("disabled", false);
+	} else {
+		$("#sign-up-button").prop("disabled", true);
+	}
+}
+
+function passwordsMatch() {
+	var password = $("#password").val();
+	var confirm_password = $("#confirm-password").val();
+
+	if (password === confirm_password) {
+		$("#confirm-password").css("border-color", "green");
+		$("#confirm-password").css("border-width", "1px");
+		return true;
+	} else {
+		$("#confirm-password").css("border-color", "red");
+		$("#confirm-password").css("border-width", "2px");
+		return false;
+	}
+}
+
+function passwordIsComplex() {
+	var password = $("#password").val();
+	return password.length >= 8;
+}
+
+function sendSignupRequest() {
+	$.ajax({
+		type: 'POST',
+		url: '/login/sign_up',
+		data: {
+		  username: $("#username").val(),
+		  password: $("#password").val(),
+		  code:     "<%= @code %>"
+		},
+		success: function(response) {
+			if (response.success) {
+				swal({
+					title: "Great!",
+					text: "You can now log in with the username and password you selected.",
+					type: "success",
+					showCancelButton: false,
+					confirmButtonColor: "#AEDEF4",
+					confirmButtonText: "Okay",
+					closeOnConfirm: false
+				},
+				function(){
+					document.location = "/";
+				}
+				);
+			} else {
+				swal({
+					title: "Error!",
+					text: "There was a problem processing your registration. We will investigate, so please try again later or contact support.",
+					type: "error",
+					confirmButtonText: "Okay"
+				});
+			}
+		}
+	});
+}
+</script>

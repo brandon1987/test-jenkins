@@ -1,0 +1,49 @@
+<% content_for :page_specific_headers do %>
+	<script type="text/javascript" src="/assets/quotes/index.js"></script>
+	<link rel="stylesheet" type="text/css" href="/assets/quotes.css">
+	<script type="text/javascript">
+		DEFAULT_REPORT = "<%= @default_report %>";
+	</script>
+<% end %>
+
+<%= render "menu" %>
+
+<div class="content-main">
+	<table id="quotes-grid" style="opacity: 0;">
+		<thead>
+			<tr>
+				<th>Number</th>
+				<th>Name</th>
+				<th>Site Address</th>
+				<th>Date</th>
+				<th>Details</th>
+				<th>Net</th>
+				<th>VAT</th>
+				<th>Total</th>
+				<th>Status</th>
+				<th>Contract</th>
+				<th>Mjob</th>
+				<th>Created by</th>
+				<th>Date created</th>
+				<th>Modified by</th>
+				<th>Date modified</th>
+				<th>Ref</th>
+				<th>Ex Ref</th>
+				<th>Job classification</th>
+				<th>Job analysis</th>
+				<th>Project manager</th>
+			</tr>
+		</thead>
+		<tbody></tbody>
+	</table>
+</div>
+
+<div id="mail-export-status-dialog" title="Sending Email(s)..." style="display: none;">
+	Sending <span id="mail-export-count">0</span> mail(s).
+	<br>
+	Sent: <span id="mail-export-status">0</span>
+	<br>
+	<div id="mail-export-notifications"></div>
+
+	<button id="mail-export-status-close" style="width: 160px; margin-top: 10px;">Close</button>
+</div>

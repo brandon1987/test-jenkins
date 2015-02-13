@@ -1,0 +1,38 @@
+
+
+<% content_for :page_specific_headers do %>
+  <link rel="stylesheet" type="text/css" href="/assets/clientportal.css">
+<%end%>
+
+<div style='margin-left:100px'>
+<span style='font-size:30px;font-weight:600'> Welcome <%=@customer.name %></span><p>
+<span style='font-size:20px'><%=@company.display_name%> is sharing the following information with you.</span>
+</div>
+
+<% if session[:clientportal_access].include? "maintenance_tasks"%>
+
+	<a href='/clientportal/portal_maintenance_task' class='homepagelink'>
+		<div class="sectionpanel" >
+			<H5 >Maintenance Job</h5>
+			<i class='fa fa-wrench' ></i><i class='fa fa-tasks' style='font-size:30px;margin-left:-40px;margin-top:65px;'></i>View all jobs which have been logged to the system<br>
+			Latest change was made on : <%=@latestmaintenancetask[0..9]%> at  <%=@latestmaintenancetask[9..-1]%> <br>
+			Listing <%=@activetaskcount%> active visits with <%=@totaltaskcount%> visits in total.
+		</div>
+	</a>
+	
+<%end%>
+
+<% if session[:clientportal_access].include? "maintenance_visits"%>
+
+	<a href='/clientportal/portal_maintenance_visit' class='homepagelink'>
+		<div class="sectionpanel" >
+			<H5 >Maintenance Visit List</h5>
+			<i class='fa fa-wrench' ></i><i class='fa fa-mobile-phone' style='font-size:45px;margin-left:-30px;margin-top:50px;'></i>View jobs which have been allocated to an engineer for action.<br>
+			Latest change was made on : <%=date_format(@latestmaintenancevisit)%> at  <%=time_format(@latestmaintenancevisit)%> <br>
+			Listing <%=@activevisitcount%> active visits with <%=@totalvisitcount%> visits in total.
+		</div>
+	</a>
+	
+<%end%>
+
+

@@ -1,0 +1,40 @@
+<table id='materialstransactionsgrid' style="width:100%">
+	<thead>
+		<th>Acc Ref.</th>
+		<th>Ref</th>
+		<th>Ex Ref</th>
+		<th>N Code</th>
+		<th>Tender</th>		
+		<th>Dept</th>
+		<th>Details</th>
+		<th>Date</th>
+		<th>Net</th>
+		<th>Vat</th>
+		<th>Total</th>
+		<th>Atrail</th>
+		<th>Tran No</th>
+
+
+	</thead>
+	<tbody>
+		<%unless id.nil?%>
+			<% DesktopMaterials.where(xid_maintenancetask: id).each do |materials| %>
+				<tr id="<%= materials.id %>" >
+					<td><%=materials.acc_ref %></td>	
+					<td><%=materials.inv_ref %></td>	
+					<td><%=materials.ex_ref %></td>	
+					<td><%=materials.ncode %></td>	
+					<td><%=materials.tender_ref %></td>	
+					<td><%=materials.dept %></td>	
+					<td><%=materials.details %></td>	
+					<td><%=materials.date %></td>	
+					<td><%=money_format(materials.net*materials.signn) %></td>	
+					<td><%=money_format(materials.vat*materials.signn) %></td>	
+					<td><%=money_format((materials.net+materials.vat)*materials.signn) %></td>	
+					<td><%=materials.atrail %></td>	
+					<td><%=materials.tran_no %></td>	
+				</tr>
+			<% end %>
+		<%end%>
+	</tbody>
+</table>
