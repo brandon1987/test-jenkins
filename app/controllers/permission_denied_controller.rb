@@ -1,3 +1,0 @@
-class PermissionDeniedController < ApplicationController
-
-end

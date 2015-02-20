@@ -1,5 +1,0 @@
-
-
-<%  DesktopMaintenanceCustomFieldChoices.select("tblMaintenanceCustomFieldsChoices_ID,tblMaintenanceCustomFieldsChoices_XIDField,tblMaintenanceCustomFieldsChoices_Choice").where("tblMaintenanceCustomFieldsChoices_XIDField="+id.to_s).each do |customfieldchoice| %>
-	<option <%='Selected' if customfieldchoice.tblMaintenanceCustomFieldsChoices_Choice==defaultvalue.to_s %>><%=escape_nil(customfieldchoice.tblMaintenanceCustomFieldsChoices_Choice)%></option>
-<%end%>

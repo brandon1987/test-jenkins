@@ -1,7 +1,0 @@
-	<option value=" Not IN (4,5,100000)" selected>Hide Completed</option>
-	<option value=" IN (4,5,100000)">Show Completed</option>
-	<option value="">Show All</option>
-	<%DesktopMaintenanceStatus.all.each do |status|%>
-		<option value="=<%=status.id%>"><%=status.statusname%></option>
-	<%end%>
-
